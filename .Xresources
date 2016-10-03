@@ -1,0 +1,133 @@
+! Font
+xterm*font: terminus-12
+xterm*boldFont: terminus-12
+xterm*faceSize: 10
+
+urxvt*font: xft:Terminus:style=Regular:size=12
+urxvt*boldFont: xft:Terminus:style=Regular:size=12
+
+Xft.dpi:        72
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hintstyle:  hintslight
+Xft.autohint:   false
+Xft.lcdfilter:  lcddefault
+
+URxvt.scrollBar: false
+
+!urxvt*transparent: true
+!urxvt*shading: 50
+urxvt*depth: 32
+urxvt*background: rgba:0000/0000/0000/6666
+
+! Every shell is a login shell
+xterm*loginShell: true
+
+xterm*vt100*geometry: 80x50
+
+! Scrollback
+xterm*saveLines: 2000
+URxvt.saveLines: 16834
+
+xterm*charClass: 33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
+
+xterm*termName: xterm-color
+xterm*eightBitInput: false
+
+! Colors
+
+! Text (Normal, Normal, Cursor)
+! Black (Cursor)
+! Red (Tag)
+! Green (Special Key)
+! Yellow (Keyword)
+! Blue (Number)
+! Magenta (Precondit)
+! Cyan (Float)
+! White (Search)
+! FMT(?) (Include, StatusLine, ErrorMsg)
+
+! special
+*.foreground:   #a8a8a8
+*.background:   #000000
+*.cursorColor:  #a8a8a8
+
+! black
+*.color0:       #000000
+*.color8:       #545454
+
+! red
+*.color1:       #a80000
+*.color9:       #fc5454
+
+! green
+*.color2:       #00a800
+*.color10:      #54fc54
+
+! yellow
+*.color3:       #a85400
+*.color11:      #fcfc54
+
+! blue
+*.color4:       #0000a8
+*.color12:      #5454fc
+
+! magenta
+*.color5:       #a800a8
+*.color13:      #fc54fc
+
+! cyan
+*.color6:       #00a8a8
+*.color14:      #54fcfc
+
+! white
+*.color7:       #a8a8a8
+*.color15:      #fcfcfc
+
+! one dark
+
+! special
+!*.foreground:	#abb2bf
+!*.cursorColor:	#a8a8a8
+!*.background:	#282c34
+
+! black
+!*.color0:	#282c34
+!*.color8:	#5c6370
+
+! red
+!*.color1:	#e06c75
+!*.color9:	#be5046
+
+! green
+!*.color2:	#98c379
+!*.color10:	#7a9f60
+
+! yellow
+!*.color3:	#e5c07b
+!*.color11:	#d19a66
+
+! blue
+!*.color4:	#61afef
+!*.color12:	#3b84c0
+
+! magenta
+!*.color5:	#c678dd
+!*.color13:	#9a52af
+
+! cyan
+!*.color6:	#56b6c2
+!*.color14:	#3c909b
+
+! white
+!*.color7:	#abb2bf
+!*.color15:	#828997
+
+vim: ft=dosini cms=#%s
+
+URxvt.boldMode: false
+URxvt*colorBDMode: true
+
+! Linking
+! xrdb -merge .Xresources
