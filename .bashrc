@@ -15,7 +15,7 @@ alias getproj='~/Documents/projects/bash/getproj.sh'
 alias prime='ssh abarnett@px1.cs.ohio.edu'
 #PS1='\[\e[1;36m\]\u \W \$\[\e[0;37m\] '
 
-PS1='\[\e[1;37m\][ \[\e[1;36m\]\u@\h \[\e[1;37m\]] \[\e[1;32m\]\w\n\[\e[1;36m\]$\[\e[0;37m\]> '
+PS1='\[\e[1;37m\][ \[\e[1;36m\]\u@\h \[\e[1;37m\]] \[\e[1;32m\]\w\n\[\e[1;36m\]$\[\e[00m\]> '
 
 # To update
 #'source .bashrc'
