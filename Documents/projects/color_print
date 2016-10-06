@@ -7,6 +7,8 @@
 #   test use of that color on all nine background 
 #   colors (default + 8 escapes).
 #
+#   I did not write this script, I uploaded it to
+#   my repo for my own convenience.
 
 T='gYw'   # The test text
 
