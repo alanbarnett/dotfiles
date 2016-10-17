@@ -13,6 +13,7 @@ alias copy='~/Documents/projects/bash/copy.sh'
 alias getproj='~/Documents/projects/bash/getproj.sh'
 alias prime='ssh abarnett@px1.cs.ohio.edu'
 alias scan='sudo arp-scan --interface=wlp3s0 --localnet'
+alias pi='ssh alan@74.140.73.224 -p 2022'
 
 # Old, very simple prompt I used to use
 #PS1='\[\e[1;36m\]\u \W \$\[\e[m\] '
