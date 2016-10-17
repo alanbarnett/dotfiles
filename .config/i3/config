@@ -208,7 +208,7 @@ bar {
 		# Whole color settings
 		background $transparent
 		statusline #eeeeee
-		separator #5454fc
+		separator #888888
 		# Type			border		background	font
 		focused_workspace	$transparent	$transparent	#ffffff
 		active_workspace	$transparent	$transparent	#cf6a4c
