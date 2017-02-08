@@ -1,0 +1,115 @@
+Burning
+	Windows = Rufus
+	Linux = "sudo dd if=/path_to_arch_.iso of=/dev/sdX"
+
+Set up internet
+	"ip link"
+	Ethernet
+		systemctl start dhcpcd@(name from ip link).service
+	Wifi
+		wifi-menu (name from service)
+		Select which one you want
+		Type password
+		*Make sure you have iw, wpa_supplicant, and dialog
+
+Partitioning
+	go into parted, set up a new scheme
+	(parted) mklabel gpt
+	Partition with cfdisk or parted
+	efi is 500M, swap is the same size as ram
+	in parted, "set 1 boot on" to turn on esp booting
+
+Formatting
+	Format boot partition with "mkfs.fat -F32 /dev/sdxY"
+	Root partition with "mkfs.ext4 /dev/sdxY"
+	
+Mounting
+	Root to /mnt
+	EFI (only for UEFI) to /mnt/boot (may have to mkdir -p /mnt/boot first)
+	mkswap /dev/sdaY
+	swapon /dev/sdaY
+
+(OPTIONAL)
+	cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
+	Comment out anything that isn't US, or
+		"sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup"
+	"rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist"
+	(Takes like 10-15 minutes.)
+
+pacstrap [-i] /mnt base base-devel
+	i -- asks you for confirmation.
+
+fstab
+	genfstab -U -p /mnt >> /mnt/etc/fstab
+	nano /mnt/etc/fstab
+		Check the partitions
+
+arch-chroot /mnt /bin/bash
+
+Locale
+	"nano /etc/locale.gen"
+	uncomment "en_US.UTF-8 UTF-8"
+	then type "locale-gen"
+	"echo LANG=en_US.UTF-8 > /etc/locale.conf"
+	"export LANG=en_US.UTF-8"
+	
+Time
+	"ln -s /usr/share/zoneinfo/America/New_York /etc/localtime"
+	"hwclock --systohc --utc"
+
+Hostname
+	"echo (hostname) > /etc/hostname"
+	"nano /etc/hosts"
+	add hostname after both "localhosts"s
+
+Repos
+	"nano /etc/pacman.conf"
+	Uncomment the include line under "[multilib]" for 32-bit programs
+	Add at the bottom:
+	
+	[archlinuxfr]
+	SigLevel = Never
+	Server = http://repo.archlinux.fr/$arch
+	update: "pacman -Syyu"
+
+Users
+	set root password
+	"passwd"
+	New user
+	"useradd -m -g users -G wheel,storage,power -s /bin/bash (user)"
+	Add a password
+	"passwd (user)"
+
+Set up sudoers
+	"EDITOR=nano visudo"
+	Uncomment the sudo thing for wheel
+
+Bootloader
+	If you need new files in /boot, do:
+		'mkinitcpio -p linux'
+	"bootctl install"
+	"pacman -S intel-ucode"
+	PARTUUID= "blkid -s PARTUUID -o value (path to root, ex /dev/sda2)"
+	"nano /boot/loader/entries/arch.conf"
+	title   Arch Linux
+	linux   /vmlinuz-linux
+	initrd  /intel-ucode.img
+	initrd  /initramfs-linux.img
+	options root=PARTUUID=(partuuid of root) rw
+
+Reboot, go into the new system
+
+Install things
+	(laptop) xf86-input-synaptics
+	mesa
+	yaourt
+	bash-completion
+	xorg-server xorg-server-utils xorg-xinit xorg-twm xorg-xclock xterm
+	(startx for fun)
+	gnome gnome-extra
+	gdm (may already be installed)
+	"systemctl enable gdm.service"
+	gnome-tweak-tool (also may be already installed)
+	"yaourt -S gnome-software"
+
+Reboot weeee
