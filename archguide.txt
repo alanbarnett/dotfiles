@@ -31,7 +31,8 @@ Mounting
 
 (OPTIONAL)
 	cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
-	Comment out anything that isn't US, or
+	By default, in the bootable iso, all are uncommented.
+	If not, comment out everything with:
 		"sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup"
 	"rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist"
 	(Takes like 10-15 minutes.)
