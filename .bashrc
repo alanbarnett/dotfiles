@@ -5,6 +5,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+PATH=~/bin:~/dotfiles/bin:$PATH
+
 mkcd ()
 {
 	mkdir -p -- "$@" && cd -- "$@"
@@ -21,30 +23,23 @@ newalias ()
 # Prompt from before my current one, just doesn't have the lines around it.
 #PS1='\[\e[1;37m\][ \[\e[1;36m\]\u@\h \[\e[1;37m\]] \[\e[1;32m\]\w\n\[\e[1;36m\]$\[\e[m\]> '
 
-PS1='\[\e[1;37m\]\342\224\214[ \[\e[1;36m\]\u@\h \[\e[1;37m\]]\342\224\200(\[\e[1;32m\]\w\[\e[1;37m\])\n\[\e[1;37m\]\342\224\224\342\224\200(\[\e[1;36m\]$\[\e[1;37m\]> \[\e[m\]'
+PS1='\[\e[1;37m\]\342\224\214[\[\e[1;33m\]\!\[\e[1;37m\]]\342\224\200[\[\e[1;36m\]\u@\h\[\e[1;37m\]]\342\224\200(\[\e[1;32m\]\w\[\e[1;37m\])\n\[\e[1;37m\]\342\224\224\342\224\200(\[\e[1;36m\]$\[\e[1;37m\]> \[\e[m\]'
 
 # Very functional bash prompt I pulled from someone else because it looked cool, and I wanted to
 # figure out how to use the angled lines before the text
 #PS1="\n\[\033[1;37m\]\342\224\214($(if [[ ${EUID} == 0 ]]; then echo '$bold${red}\u'; else echo '$bold${green}\u'; fi)\[\033[1;37m\])\342\224\200(\[\033[1;34m\]\#\[\033[1;37m\])\342\224\200(\[\033[1;33m\]\@ \d\[\033[1;37m\])\[\033[1;37m\]\n\342\224\224\342\224\200(\[\033[1;32m\]\w\[\033[1;37m\])\342\224\200(\[\033[1;32m\]\$(ls -1 | wc -l | sed 's: ::g') files, \$(ls -lah | grep -m 1 total | sed 's/total //')b\[\033[1;37m\])\342\224\200> \[\033[0m\]"
 
 alias ls='ls --color=auto'
+alias grep='grep --color=auto'
 alias proj='cd ~/Documents/projects'
 alias homework='cd ~/Documents/projects/homework'
 alias lab='cd ~/Documents/projects/lab'
-alias plab='cd ~/Documents/physics'
+alias physics='cd ~/Documents/physics'
 alias latek='cd ~/Documents/projects/latex'
 alias p5='cd ~/Documents/projects/p5'
 alias notes='cd ~/Documents/csclassnotes'
-alias bscripts='cd ~/Scripts/bash'
-alias copy='~/Scripts/bash/copy.sh'
-alias getproj='~/Scripts/bash/getproj.sh'
-alias newalias='~/Scripts/bash/newalias.sh'
-alias newprog='/home/alan/Scripts/bash/newprog.sh'
 alias prime='ssh abarnett@px1.cs.ohio.edu'
 alias odd='ssh abarnett@odd03.cs.ohio.edu'
 alias pi='ssh alan@74.140.73.224 -p 2022'
 alias scan='sudo arp-scan --interface=wlp3s0 --localnet'
-alias weather='curl http://wttr.in/Columbus'
-alias color='~/dotfiles/Scripts/color/color_print'
-alias spaceinv='~/dotfiles/Scripts/color/spaceinv'
-alias fuck='sudo !!'
+alias weather='curl http://wttr.in/45701'
