@@ -3,8 +3,10 @@ xterm*font: terminus-12
 xterm*boldFont: terminus-12
 xterm*faceSize: 10
 
-urxvt*font: xft:Terminus:style=Regular:size=12
-urxvt*boldFont: xft:Terminus:style=Regular:size=12
+!URxvt*font: xft:Terminus:style=Regular:size=12
+!URxvt*boldFont: xft:Terminus:style=Regular:size=12
+URxvt*font: -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
+URxvt*boldFont: -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
 
 Xft.dpi:        72
 Xft.antialias:  true
