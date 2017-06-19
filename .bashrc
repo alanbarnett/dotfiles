@@ -6,6 +6,10 @@
 [[ $- != *i* ]] && return
 
 PATH=~/bin:~/dotfiles/bin:$PATH
+odd='abarnett@odd03.cs.ohio.edu'
+rodd='rreedy@odd03.cs.ohio.edu'
+pi='alan@74.140.73.224'
+rpi='riley@74.140.73.224'
 
 mkcd ()
 {
@@ -52,6 +56,7 @@ PS1='\[\e[1;37m\]\342\224\214[\[\e[1;36m\]\u@\h\[\e[1;37m\]]\342\224\200(\[\e[1;
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
+<<<<<<< HEAD
 alias prime='ssh abarnett@px1.cs.ohio.edu'
 alias odd='ssh abarnett@odd03.cs.ohio.edu'
 alias pi='ssh alan@74.140.73.224 -p 22'
@@ -59,3 +64,14 @@ alias scan='sudo arp-scan --interface=wlp3s0 --localnet'
 alias weather='curl http://wttr.in/45701'
 alias rileypi='ssh riley@74.140.73.224 -p 22'
 alias bat='upower -i /org/freedesktop/UPower/devices/battery_BAT0| grep -E --color=never "state|to\ full|percentage"'
+=======
+alias proj='cd ~/Documents/projects'
+alias homework='cd ~/Documents/projects/homework'
+alias lab='cd ~/Documents/projects/lab'
+alias physics='cd ~/Documents/physics'
+alias cs='cd ~/Documents/cs'
+alias latek='cd ~/Documents/projects/latex'
+alias p5='cd ~/Documents/projects/p5'
+alias scan='sudo arp-scan --interface=wlp3s0 --localnet'
+alias weather='curl http://wttr.in/45701'
+>>>>>>> c425153f7ba0e670a52a64d59b10457784cfd57a
