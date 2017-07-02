@@ -65,6 +65,9 @@ Hostname
 
 Repos
 	"nano /etc/pacman.conf"
+	Under "Architecture = Auto" at the beginning, add
+		ILoveCandy
+		Color
 	Uncomment the include line under "[multilib]" for 32-bit programs
 	Add at the bottom:
 	
