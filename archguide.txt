@@ -17,7 +17,15 @@ Partitioning
 	(parted) mklabel gpt
 	Partition with cfdisk or parted
 	efi is 500M, swap is the same size as ram
-	in parted, "set 1 boot on" to turn on esp booting
+	If ESP is partition 1, then in parted, "set 1 boot on" to turn on esp booting
+
+	For Grub, here's some stuff from parted.
+		For one, you need a 2M partition at the front for grub shit.
+		(parted) mkpart primary 1MiB 3MiB
+		(parted) set 1 bios_grub on
+			if this says "invalid token", don't forget mklabel gpt
+		From here you can open cfdisk and make the rest of the partitions,
+		making sure to go back into parted to set the boot flag on your ESP.
 
 Formatting
 	Format boot partition with "mkfs.fat -F32 /dev/sdxY"
@@ -85,7 +93,7 @@ Set up sudoers
 	"EDITOR=nano visudo"
 	Uncomment the sudo thing for wheel
 
-Bootloader
+Bootloader (systemd boot)
 	If you need new files in /boot, do:
 		'mkinitcpio -p linux'
 	"bootctl install"
@@ -97,6 +105,10 @@ Bootloader
 	initrd  /intel-ucode.img
 	initrd  /initramfs-linux.img
 	options root=PARTUUID=(partuuid of root) rw
+Bootloader (grub)
+	grub-install /dev/sdX
+		Just the drive name, no specific partition
+	grub-mkconfig -o /boot/grub/grub.cfg
 
 Reboot, go into the new system
 
@@ -112,5 +124,17 @@ Install things
 	"systemctl enable gdm.service"
 	gnome-tweak-tool (also may be already installed)
 	"yaourt -S gnome-software"
+
+i3-gaps-next-git
+	git clone https://github.com/airblader/i3
+	cd i3
+	autoreconf --force --install
+	mkdir -p build
+	cd build
+	../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
+		If this doesn't work, install regular i3 first
+		Then remove it with sudo pacman -R i3-wm
+	make
+	sudo make install
 
 Reboot weeee
