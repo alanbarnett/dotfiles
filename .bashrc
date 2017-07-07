@@ -26,7 +26,7 @@ batterypercentage ()
 	bpercent=$(cat /sys/class/power_supply/BAT0/capacity)
 	status=$(cat /sys/class/power_supply/BAT0/status)
 
-	if [ $status == "Charging" ]; then
+	if [ $status == "Charging" ] || [ $status == "Unknown" ]; then
 		echo -e "\e[1;35m$bpercent%"
 	elif [ $bpercent -lt "11" ]; then
 		echo -e "\e[1;5;31m$bpercent%"
@@ -37,9 +37,9 @@ batterypercentage ()
 	fi
 }
 
-thetime ()
+btc ()
 {
-	date '+%I:%M %P'
+	curl -s http://api.coindesk.com/v1/bpi/currentprice.json | python -c "import json, sys; value=json.load(sys.stdin)['bpi']['USD']['rate']; print(value.split('.')[0])"
 }
 
 # Old, very simple prompt I used to use
@@ -48,7 +48,7 @@ thetime ()
 # Prompt from before my current one, just doesn't have the lines around it.
 #PS1='\[\e[1;37m\][ \[\e[1;36m\]\u@\h \[\e[1;37m\]] \[\e[1;32m\]\w\n\[\e[1;36m\]$\[\e[m\]> '
 
-PS1='\[\e[1;37m\]\342\224\214[\[\e[1;36m\]\u@\h\[\e[1;37m\]]\342\224\200(\[\e[1;32m\]\w\[\e[1;37m\])\342\224\200($(batterypercentage)\[\e[1;37m\])\342\224\200(\[\e[1;34m\]$(thetime)\[\e[1;37m\])\n\[\e[1;37m\]\342\224\224\342\224\200(\[\e[1;36m\]$\[\e[1;37m\]> \[\e[m\]'
+PS1='\[\e[1;37m\]\342\224\214[\[\e[1;36m\]\u@\h\[\e[1;37m\]]\342\224\200(\[\e[1;32m\]\w\[\e[1;37m\])\342\224\200($(batterypercentage)\[\e[1;37m\])\342\224\200(\[\e[1;34m\]$(date "+%I:%M %P")\[\e[1;37m\])\n\[\e[1;37m\]\342\224\224\342\224\200(\[\e[1;36m\]$\[\e[1;37m\]> \[\e[m\]'
 
 # Very functional bash prompt I pulled from someone else because it looked cool, and I wanted to
 # figure out how to use the angled lines before the text (which I now know are called box characters)
