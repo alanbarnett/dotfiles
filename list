@@ -1,0 +1,13 @@
+Things to do for next install
+
+Avoid Gnome
+	Use LightDM instead of GDM
+		or, add this to profile
+		if [ "$(tty)" = "/dev/tty1" ]; then
+		    startx && exit
+		fi
+Clone git repository
+Figure out network time
+Make sure to install 'pulseaudio-alsa', 'pulseaudio', 'alsa-plugins'
+Keep the synaptics file with my trackpad configurations
+Remember 'xterm -report-fonts'
