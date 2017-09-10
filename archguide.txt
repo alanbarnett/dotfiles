@@ -118,17 +118,28 @@ Reboot, go into the new system
 Install things
 	(laptop) xf86-input-synaptics
 	mesa
-	yaourt
 	bash-completion
-	xorg-server xorg-server-utils xorg-xinit xorg-twm xorg-xclock xterm
-	(startx for fun)
-	gnome gnome-extra
-	gdm (may already be installed)
-	"systemctl enable gdm.service"
-	gnome-tweak-tool (also may be already installed)
-	"yaourt -S gnome-software"
+	xorg-server xorg-server-utils xorg-xinit
+	vim git openssh
+	Once you've got an AUR helper (pacaur script in bin folder), install these as well
+		i3-gaps-next-git (if it doesn't come with i3status, i3bar, and dmenu, get those as well)
+		urxvt
+		neofetch/screenfetch (whichever)
+		compton
+		feh
+		qutebrowser (or preferred browser)
 
-i3-gaps-next-git
+Set up i3 to start with startx
+	Add these two lines to a `.xinitrc` file in your home directory:
+	xrdb .Xresources
+	exec i3
+
+To run startx on automatic login, add these lines to `.bash_profile` in home directory
+	if [ "$(tty)" = "/dev/tty1" ]; then
+	    startx && exit
+	fi
+
+i3-gaps-next-git (on arch, it's in the AUR. these are just instructions if you have to get it from source)
 	git clone https://github.com/airblader/i3
 	cd i3
 	autoreconf --force --install
