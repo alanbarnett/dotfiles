@@ -2,7 +2,7 @@ Things to do for next install
 
 Avoid Gnome
 	Use LightDM instead of GDM
-		or, add this to profile
+		or, add this to `.bash_profile` in home directory
 		if [ "$(tty)" = "/dev/tty1" ]; then
 		    startx && exit
 		fi
