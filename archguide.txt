@@ -11,6 +11,7 @@ Set up internet
 		Select which one you want
 		Type password
 		*Make sure you have iw, wpa_supplicant, and dialog
+			If it doesn't work, set device down first with `ip link set (device) down`
 
 Partitioning
 	go into parted, set up a new scheme
