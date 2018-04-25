@@ -48,6 +48,12 @@ Mounting
 
 pacstrap [-i] /mnt base base-devel
 	i -- asks you for confirmation.
+	If this fails due to keyring related issues, run these commands
+		[sudo] pacman -Scc
+		[sudo] pacman -Syy archlinux-eyrig archlinux32-keyring archlinuxarm-keyring [parabola-keyring]
+		[sudo] pacman-key --init
+		[sudo] pacman-key --populate archlinux archlinux32 archlinuxarm [parabola]
+		[sudo] pacman-key --refresh-keys
 
 fstab
 	genfstab -U -p /mnt >> /mnt/etc/fstab
