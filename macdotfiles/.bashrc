@@ -8,6 +8,7 @@
 mkdir -p /tmp/.abarnett-brew-locks
 PATH=~/bin:~/dotfiles/bin:~/.gem/ruby/2.5.0/bin:~/.brew/bin:$PATH
 MAIL=alanbarnett328@gmail.com
+DISPLAY=localhost:10.0
 export GOROOT=~/goroot
 CFLAGS='-Wall -Wextra -Werror'
 
