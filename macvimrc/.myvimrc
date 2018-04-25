@@ -1,0 +1,29 @@
+set nu rnu so=10 colorcolumn=80 ruler background=dark splitbelow
+
+" inoremap
+inoremap {} {<Enter>}<Esc>O
+inoremap jk <Esc>
+inoremap \fps ft_putstr(
+inoremap \fpc ft_putchar(
+inoremap \fpcn ft_putchar('\n');
+
+" nnoremap
+nnoremap 2O O<Esc>O
+nnoremap \og yyGo<Esc>p$xo{<Enter>}<Esc>O
+nnoremap \r :set relativenumber!<Enter>
+nnoremap \nu :set nu rnu<Enter>
+nnoremap \no :12sp ~/notes<Enter>
+nnoremap \c I//<Esc>
+nnoremap \C I<Del><Del><Esc>
+nnoremap \wt owrite(1,"t",1);<Esc>
+nnoremap <C-f> <C-w><C-f>
+nnoremap <C-j> <C-w><C-j>
+nnoremap <C-k> <C-w><C-k>
+nnoremap <C-l> <C-w><C-l>
+nnoremap \term <Esc>:tabe term:///bin/bash<Enter>:set nonu nornu<Enter>
+nnoremap \termvs <Esc>:vs term:///bin/bash<Enter>:set nonu nornu<Enter>a
+nnoremap \termsp <Esc>:sp term:///bin/bash<Enter>:set nonu nornu<Enter>a
+
+" tnoremap
+tnoremap jk <C-\><C-n>
+tnoremap <Esc> <C-\><C-n>
