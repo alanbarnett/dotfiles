@@ -1,5 +1,6 @@
 Things I'm Working On
 	freaking libft
+	add git information to bash prompt
 	parabola on x200
 	volume keys on x200
 	moving nvim windows around
@@ -7,6 +8,10 @@ Things I'm Working On
 	raspberry pi/marvin laundry project/sensor project/websites
 
 Things I Want To Work On
+	use terminal mail
+	how to write PKGBUILD
+	learn about fancy git things
+		branches, remote update, etc
 	maybe write my own task program that syncs mobile notes with command line task manager, and is usable with vim
 	set up a way to automatically backup and sync important files among devices with my own server
 	set up some type of offline chat
