@@ -1,6 +1,9 @@
 Burning
 	Windows = Rufus
 	Linux = "sudo dd if=/path_to_arch_.iso of=/dev/sdX"
+	
+Check if UEFI Mode
+	ls /sys/firmware/efi/efivars
 
 Set up internet
 	"ip link"
