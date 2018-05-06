@@ -1,0 +1,41 @@
+	description		|		package
+--------------------+----------------------
+audio buttons		|	pulseaudio-alsa
+					|	pulseaudio
+					|	alsa-plugins
+--------------------+----------------------
+applications		|	mplayer
+					|	wicd
+					|	vlc
+					|	ncmpcpp
+					|	ranger
+					|	rofi
+					|	youtube-dl
+					|	cool-retro-terminal
+					|	decrypt
+					|	emacs
+					|	tmux
+					|	irssi
+					|	fluxbox
+					|	blackbox
+					|	openbox
+					|	dwm
+					|	xmonad
+					|	awesomewm
+					|	scrotwm
+--------------------+----------------------
+
+git push!
+
+websites
+	download all of i3wm.org really
+		i3wm.org/docs/userguide.html
+		i3wm.org/docs/layout-saving.html
+
+youtube channels
+
+youtube videos
+
+silly wm's
+
+dictionary
