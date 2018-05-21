@@ -25,6 +25,19 @@ Things I Want To Work On
 			no visible buttons
 			simple and clean
 			easy to use, no need to worry about alarm time. it just rings when it needs to
+	learn about optimization for libft functions
+		maintain libft continually
+		how to optimize memory functions for aligned data
+		consistent style
+		make everything fast and work together
+	start taking proper notes
+		get field notes book for out and about
+			nice pencil
+				metal, mechanical
+				.5mm lead
+		document things on my computer
+			changes
+			learning new things
 	compile programs from source (i.e. try gentoo)
 		try and cut out as much as I can
 			even go as far as editing the source
@@ -221,3 +234,12 @@ Things I Want To Learn
 	i3 containers
 	vim jump tables
 	vim buffers
+	network things
+		how to bridge properly
+		subnets
+		gateway
+		dns
+		wake on lan
+	how to load pages for offline viewing later
+		save lots of arch wiki
+			maybe this isn't necessary, who knows

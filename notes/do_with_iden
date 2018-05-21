@@ -1,0 +1,27 @@
+make keyboard layout
+pick keyset colors
+design ergodox
+find keycaps
+find switches
+pick out vape hardware
+do arch
+
+iden linux notes
+	nouveau and nvidia
+		need all nouveau things, and pacman -S nvidia
+		lspci -v should have nouveau in use at the bottom
+	/boot is ESP (can be shared with windows)
+		windows esp is /dev/sda1
+		mount /dev/sda1 /mnt/boot
+			makes an EFI folder inside it (may already be in use with windows)
+	bootctl install makes boot files
+	mkinitcpio -p linux compiles some things
+		/etc/mkinitcpio.conf has some modules in it
+			may need to have nouveau in there
+	xorg log files are helpful
+	acpid and acpi may be necessary
+	efibootmgr is a super cool tool
+		manage boot order
+			lets you add or remove entries
+			efistub booting
+		bootctl install takes care of this

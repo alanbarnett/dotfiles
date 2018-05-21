@@ -8,12 +8,9 @@
 mkdir -p /tmp/.abarnett-brew-locks
 PATH=~/bin:~/dotfiles/bin:~/.gem/ruby/2.5.0/bin:~/.brew/bin:$PATH
 MAIL=alanbarnett328@gmail.com
+DISPLAY=localhost:10.0
 export GOROOT=~/goroot
 CFLAGS='-Wall -Wextra -Werror'
-odd='abarnett@odd03.cs.ohio.edu'
-rodd='rreedy@odd03.cs.ohio.edu'
-pi='alan@74.140.73.224'
-rpi='riley@74.140.73.224'
 
 mkcd ()
 {
@@ -40,3 +37,4 @@ alias cs='clear; screenfetch 2> /dev/null'
 alias bashrc='cat ~/.bashrc'
 alias cflags='-Wall -Wextra -Werror'
 alias cat='cat -e'
+alias notes='nvim ~/notes'

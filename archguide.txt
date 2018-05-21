@@ -1,6 +1,9 @@
 Burning
 	Windows = Rufus
 	Linux = "sudo dd if=/path_to_arch_.iso of=/dev/sdX"
+	
+Check if UEFI Mode
+	ls /sys/firmware/efi/efivars
 
 Set up internet
 	"ip link"
@@ -12,6 +15,15 @@ Set up internet
 		Type password
 		*Make sure you have iw, wpa_supplicant, and dialog
 			If it doesn't work, set device down first with `ip link set (device) down`
+
+(OPTIONAL)
+	cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
+	By default, in the bootable iso, all are uncommented.
+	If not, comment out everything with:
+		"sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup"
+	"rankmirrors -n 10 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist"
+	(Takes like 10-15 minutes.)
+
 
 Partitioning
 	go into parted, set up a new scheme
@@ -38,15 +50,7 @@ Mounting
 	mkswap /dev/sdaY
 	swapon /dev/sdaY
 
-(OPTIONAL)
-	cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
-	By default, in the bootable iso, all are uncommented.
-	If not, comment out everything with:
-		"sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup"
-	"rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist"
-	(Takes like 10-15 minutes.)
-
-pacstrap [-i] /mnt base base-devel
+pacstrap [-i] /mnt base base-devel vim git iw wpa_supplicant dialog
 	i -- asks you for confirmation.
 	If this fails due to keyring related issues, run these commands
 		[sudo] pacman -Scc
@@ -57,13 +61,13 @@ pacstrap [-i] /mnt base base-devel
 
 fstab
 	genfstab -U -p /mnt >> /mnt/etc/fstab
-	nano /mnt/etc/fstab
+	cat /mnt/etc/fstab
 		Check the partitions
 
 arch-chroot /mnt /bin/bash
 
 Locale
-	"nano /etc/locale.gen"
+	"vim /etc/locale.gen"
 	uncomment "en_US.UTF-8 UTF-8"
 	then type "locale-gen"
 	"echo LANG=en_US.UTF-8 > /etc/locale.conf"
@@ -74,21 +78,22 @@ Time
 	"hwclock --systohc --utc"
 
 Hostname
-	"echo (hostname) > /etc/hostname"
-	"nano /etc/hosts"
-	add hostname after both "localhosts"s
+	"echo [your hostname] > /etc/hostname"
+	"vim /etc/hosts"
+		#<ip-address>	<hostname>
+		127.0.0.1		localhost
+		127.0.1.1		[your hostname]
 
 Repos
-	"nano /etc/pacman.conf"
+	"vim /etc/pacman.conf"
 	Under "Architecture = Auto" at the beginning, add
 		ILoveCandy
 		Color
-	Uncomment the include line under "[multilib]" for 32-bit programs
+	Uncomment the two lines with "[multilib]" for 32-bit programs
 	Add at the bottom:
-	
-	[archlinuxfr]
-	SigLevel = Never
-	Server = http://repo.archlinux.fr/$arch
+		[archlinuxfr]
+		SigLevel = Never
+		Server = http://repo.archlinux.fr/$arch
 	update: "pacman -Syyu"
 
 Users
@@ -100,7 +105,7 @@ Users
 	"passwd (user)"
 
 Set up sudoers
-	"EDITOR=nano visudo"
+	visudo
 	Uncomment the sudo thing for wheel
 
 Bootloader (systemd boot)
@@ -108,8 +113,8 @@ Bootloader (systemd boot)
 		'mkinitcpio -p linux'
 	"bootctl install"
 	"pacman -S intel-ucode"
-	PARTUUID= "blkid -s PARTUUID -o value (path to root, ex /dev/sda2)"
-	"nano /boot/loader/entries/arch.conf"
+	blkid -s PARTUUID -o value (path to root, ex /dev/sda2) > /boot/loader/entries/arch.conf
+	vim /boot/loader/entries/arch.conf
 	title   Arch Linux
 	linux   /vmlinuz-linux
 	initrd  /intel-ucode.img
@@ -124,10 +129,8 @@ Reboot, go into the new system
 
 Install things
 	(laptop) xf86-input-synaptics
-	mesa
-	bash-completion
+	mesa bash-completion openssh
 	xorg-server xorg-server-utils xorg-xinit
-	vim git openssh
 	Once you've got an AUR helper (pacaur script in bin folder), install these as well
 		i3-gaps-next-git (if it doesn't come with i3status, i3bar, and dmenu, get those as well)
 		urxvt

@@ -6,10 +6,6 @@
 [[ $- != *i* ]] && return
 
 PATH=~/bin:~/dotfiles/bin:$PATH
-odd='abarnett@odd03.cs.ohio.edu'
-rodd='rreedy@odd03.cs.ohio.edu'
-pi='alan@74.140.73.224'
-rpi='riley@74.140.73.224'
 
 mkcd ()
 {

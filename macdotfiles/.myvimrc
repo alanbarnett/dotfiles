@@ -1,4 +1,4 @@
-set nu rnu so=10 colorcolumn=80 ruler background=dark splitbelow
+set nu rnu so=10 colorcolumn=80 ruler background=dark splitbelow splitright
 
 " inoremap
 inoremap {} {<Enter>}<Esc>O
@@ -16,7 +16,7 @@ nnoremap \no :12sp ~/notes<Enter>
 nnoremap \c I//<Esc>
 nnoremap \C I<Del><Del><Esc>
 nnoremap \wt owrite(1,"t",1);<Esc>
-nnoremap <C-f> <C-w><C-f>
+nnoremap <C-h> <C-w><C-h>
 nnoremap <C-j> <C-w><C-j>
 nnoremap <C-k> <C-w><C-k>
 nnoremap <C-l> <C-w><C-l>
