@@ -1,0 +1,245 @@
+Things I Want To Work On
+	GETTING A JOB
+	USE SPREADSHEETS TO TRY TO BUDGET
+	READ POSIX PROGRAMMER'S MANUAL MANPAGES
+	START A JOURNAL
+		convince our kids to start journals
+	CHECK OUT EMACS ORGMODE AND EVIL
+		maybe it's really good at tasks and lists and stuff
+		and scheduling
+	figure out if there's a vim equivalent to org mode
+		or a stupid plugin i guess
+		or if it's easy to write one
+	alarm on birth control container
+		altoids tin with buttons for setting and stopping
+			buttons:
+				stop ringing	[SR]
+				hold to set		[HS]
+				hour up/down
+					minute up/down: [SR]+[HS]+hour up/down
+			wired to stop when opened
+			a little complicated
+		altoids tin with no controls, internal alarm
+			wired to stop when opened
+			port on inside, for time setting
+			no visible buttons
+			simple and clean
+			easy to use, no need to worry about alarm time. it just rings when it needs to
+	learn about optimization for libft functions
+		maintain libft continually
+		how to optimize memory functions for aligned data
+		consistent style
+		make everything fast and work together
+	start taking proper notes
+		get field notes book for out and about
+			nice pencil
+				metal, mechanical
+				.5mm lead
+		document things on my computer
+			changes
+			learning new things
+	compile programs from source (i.e. try gentoo)
+		try and cut out as much as I can
+			even go as far as editing the source
+		makes things faster
+		better knowledge of system
+	set up dmenu/rofi for i3 workspaces
+		be able to rename them
+		open ones with new names
+		treat them like tabs essentially
+	window manager that doesn't use X
+		not necessarily all the time, just for fun
+		maybe I'll like it
+		maybe x windows are unnecessary
+		maybe I can write terminal apps for the things I need
+		temporarily start x
+			other tty's
+			in a terminal
+		things i need
+			slack, discord (wooh neat), reddit
+	vim-keybindings for i3
+		normal mode
+			moving
+		command mode
+			workspace naming/creating
+			window opening
+			: would be like rofi
+	new monitor in x200
+		not sure what resolution i want
+			currently has 1280x800
+				I am pretty happy with it, but it could be brighter
+	desktop is home phone
+		essentially, treat my desktop like a home phone
+			"home" hostname for mail
+			potentially irc/discord/slack accessable
+			maybe voip? hopefully
+			skype
+			linux
+	hostname/domain name
+		things I need to do
+			make a program to take all the different options and generate all the combinations of names
+			think about onions
+			figure out all the things I'd need to connect under these names
+				raspberry pi, desktop, laptop, email, personal website, social media
+			tier them and come up with hostname, domain, subdomain, extension, and redirects
+				hostname is device obviously
+					x200, t420, home, tvpi, whatever I do for other wifi devices
+					all get ip's generated based on characters in hostname
+					personal email as alan
+				domain is brand
+					ab328, 
+				extension
+					.com looks nice
+					.net would be kinda cool
+					.al? looks kinda nice
+						device.al for devices
+							x200@device.al
+							home@device.al
+						site.al for website
+							relevant pages for subdomains
+								home.site.al
+								music.site.al
+								facebook.site.al
+								42.site.al
+									intra profile
+						come up with nicknames for device and site
+							home@device looks weird, and so does alan@site
+							they need nicknames
+							cool nickname for device that sounds like a brand
+								lowercase, ideally 4-6 letters
+								based on japanese words maybe that sound cool
+									nice sounding kanji reading
+										device synonym, something like that
+											computer,
+										site synonym, something like that
+											website, online,
+									this can be my new online "username"
+										dope
+									maybe an abbreviation
+									same kana as ending
+										ke, ki, something like that
+						personal email
+							alan@site.al
+								@site.al looks really weird
+								how many people would I have to tell this
+									"and what's your email for the rewards card?"
+									"oh yeah it's alan@site.al"
+									"that's a-l-a-n"
+									"AT site (that's s-i-t-e) dot a-l"
+									how fucking dumb is that
+							home@device.al
+								home email?
+									can't expect anyone to actually use this
+									how can I make people use this?
+										fancy encryption? blockchain? decentralized somthing?
+										gpg? that would be dope
+										an app?
+								
+				subdomain
+				redirects
+		hostname
+			computer name
+				home
+				t420
+				x200
+		domain name
+			ab328.com
+		hostname@domain
+			x200@
+			alan@ab328.com
+			home@ab328.com
+		email
+			receiving mail
+				email set to hostname@dom
+		redirecting to other websites of mine
+		subdomains
+			ex
+				store.nike.com
+				shoes.nike.com
+				clothing.nike.com
+	reading list
+	i3 leader keys
+	i3 layer on planck
+	yoga
+	try taskwarrior
+	figure out how to do tagging
+		jumping to tags
+		duh lol that's just fekin /pattern<CR>
+	set up file extension for notes so I can make the fucking folds work
+		only show two layers at a time, maybe three
+			should be customizable
+			this is to prevent getting overwhelmed from having too much to look at
+		use it in my program later maybe so it can plaintext them
+			figure out how to make nice looking plaintext lists and tables, etc
+		remember :help zf, then gg and read the whole thing. learn about:
+			,foldmethod marker
+			,
+	write my own task/notes program that works on mobile and in cli
+		-smart watch display current task
+		-base list, easily be able to add one time events for the day
+		-have the ability to pin items
+		-make notes like nvim help menus
+			+table of contents kinda
+		-ncurses
+		-fancy boxes
+		-checking and unchecking list items
+			+real-time tagging, synced with other people
+		-notifications
+		-vim/nvim
+		-c vs c++
+			-are classes necessary
+	use intra api to write a program to tell you how many hours you need
+		set up intra api
+		get amount of hours worked throughout the month/week
+			compare with how many hours are needed throughout w/m
+			break it down to multiple schedules
+				my scheduler!!!!
+				different week plans
+					days we want free
+						working extra hours at the beginning to get time at end
+					work schedules
+						working extra hours on certain days to get other days free
+					temporary schedules
+						create temporary schedules based on curves, see #temporary
+		record hours and set up statistics
+			set up a matlab database for cool math
+				show graphs based on current work, past work
+				create temporary schedules based on how much work you've done		#temporary
+					need more work
+						schedule to give you more work time
+					need less work
+						schedule to give you less work time
+			use it like a spreadsheet
+				like budgeting programs and stuff
+	photo organizational program
+		sort by tags, easy to move around folders
+	fix my drone
+	photography
+	make an easy to read list of key shortcuts I am using in i3
+	automatically backup and sync important files among devices with my own server
+	some type of offline chat
+	opening links from terminal
+	cli bookmarks
+	startpage
+	task scheduling
+	start intelligently tagging things
+	translate frita calo from japanese
+	SLFS: Secure Linux From Scratch
+	speed up key reapeat
+
+
+Things I Want To Learn
+	if it's good to use face wash
+	netcat, how to open ports and pipe things through the network
+	i3 containers
+	vim jump tables
+	vim buffers
+	network things
+		how to bridge properly
+		subnets
+		gateway
+		dns
+		wake on lan
+	how to load pages for offline viewing later
+		save lots of arch wiki
+			maybe this isn't necessary, who knows
