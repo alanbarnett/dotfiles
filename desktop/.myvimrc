@@ -1,5 +1,4 @@
 set nu rnu so=10 colorcolumn=80 ruler background=dark splitbelow splitright
-syntax on
 
 " inoremap
 inoremap {} {<Enter>}<Esc>O
@@ -7,7 +6,6 @@ inoremap jk <Esc>
 inoremap \fps ft_putstr(
 inoremap \fpc ft_putchar(
 inoremap \fpcn ft_putchar('\n');
-inoremap \fpn ft_putnbr(
 
 " nnoremap
 nnoremap 2O O<Esc>O
