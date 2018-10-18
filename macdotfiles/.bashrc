@@ -14,6 +14,7 @@ PATH=~/valgrind:~/color-scripts/color-scripts:~/bin:~/dotfiles/bin:~/.gem/ruby/2
 MAIL=alanbarnett328@gmail.com
 export GOROOT=~/goroot
 CFLAGS='-Wall -Wextra -Werror'
+EDITOR='nvim'
 
 mkcd ()
 {

@@ -27,8 +27,12 @@ gaps outer 0
 smart_gaps on
 #smart_borders on
 
+# scratchpad
+bindsym $mod+s scratchpad show
+bindsym $mod+Shift+s move scratchpad
+
 # Monitors
-xrandr --output HDMI-1-2 --auto --left-of DVI-D-0
+exec xrandr --output HDMI-1-2 --auto --left-of DVI-D-0
 
 # Setting background
 exec --no-startup-id feh --bg-fill ~/dotfiles/Pictures/blue.jpg ~/dotfiles/Pictures/blue.jpg
@@ -52,11 +56,11 @@ font pango:monospace 11
 # font, it doesn’t scale on retina/hidpi displays.
 
 # Lock screen
-bindsym $mod+Mod1+q exec i3lock
+bindsym $mod+Mod1+q exec i3lock -c 000000
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 14 +2%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 14 -2%
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 2 +2%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 2 -2%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -115,7 +119,7 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
+#bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
