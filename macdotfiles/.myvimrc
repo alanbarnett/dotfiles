@@ -1,10 +1,22 @@
-set nu rnu so=10 colorcolumn=80 ruler background=dark splitbelow splitright
+set nu rnu so=10 ruler background=dark splitbelow splitright
+
+set foldmethod=marker foldmarker=/*,*/ foldcolumn=2
+
+highlight OverLength ctermbg=red ctermfg=white
+call matchadd('OverLength', '\%81v.\+')
+highlight ExtraWhitespace ctermbg=darkgreen
+call matchadd('ExtraWhitespace', '\s\+$\| \+\ze\t')
+
 syntax on
+
+" autocmd
+autocmd BufRead *.o :e *.c
 
 " inoremap
 inoremap {} {<Enter>}<Esc>O
 inoremap jk <Esc>
 inoremap \fps ft_putstr(
+inoremap \fpe ft_putendl(
 inoremap \fpc ft_putchar(
 inoremap \fpcn ft_putchar('\n');
 inoremap \fpn ft_putnbr(
