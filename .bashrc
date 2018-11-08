@@ -5,7 +5,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-PATH=~/bin:~/dotfiles/bin:$PATH
+PATH=$PATH:~/bin:~/dotfiles/bin
 
 mkcd ()
 {
