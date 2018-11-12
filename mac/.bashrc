@@ -10,11 +10,13 @@ launchctl remove com.apple.followupd
 find ~/Library/Logs/DiagnosticReports -mindepth 1 -delete > /dev/null 2>&1
 
 mkdir -p /tmp/.abarnett-brew-locks
-PATH=~/valgrind:~/color-scripts/color-scripts:~/bin:~/dotfiles/bin:~/.gem/ruby/2.5.0/bin:~/.brew/bin:$PATH
-MAIL=alanbarnett328@gmail.com
+
+export MAIL=alanbarnett328@gmail.com
 export GOROOT=~/goroot
+export EDITOR='nvim'
+
+PATH=~/valgrind:~/color-scripts/color-scripts:~/bin:~/dotfiles/bin:~/.gem/ruby/2.5.0/bin:~/.brew/bin:$PATH
 CFLAGS='-Wall -Wextra -Werror'
-EDITOR='nvim'
 
 mkcd ()
 {
