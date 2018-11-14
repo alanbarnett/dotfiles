@@ -2,15 +2,16 @@ set nu rnu so=10 ruler background=dark splitbelow splitright
 
 set foldmethod=marker foldmarker=/*,*/ foldcolumn=2
 
+highlight ExtraWhitespace ctermbg=darkgreen
+call matchadd('ExtraWhitespace', '\s\+$\| \+\ze\t\|\t\zs \+')
 highlight OverLength ctermbg=red ctermfg=white
 call matchadd('OverLength', '\%81v.\+')
-highlight ExtraWhitespace ctermbg=darkgreen
-call matchadd('ExtraWhitespace', '\s\+$\| \+\ze\t')
 
 syntax on
 
 " autocmd
-autocmd BufRead *.o :e *.c
+autocmd BufRead *.o edit *.c
+autocmd BufRead Makefile setlocal foldmethod=manual
 
 " inoremap
 inoremap {} {<Enter>}<Esc>O
@@ -20,10 +21,10 @@ inoremap \fpe ft_putendl(
 inoremap \fpc ft_putchar(
 inoremap \fpcn ft_putchar('\n');
 inoremap \fpn ft_putnbr(
+inoremap \ftp ft_printf("
+inoremap \pr printf("
 
 " nnoremap
-nnoremap 2O O<Esc>O
-nnoremap \og yyGo<Esc>p$xo{<Enter>}<Esc>O
 nnoremap \r :set relativenumber!<Enter>
 nnoremap \nu :set nu rnu<Enter>
 nnoremap \no :12sp ~/notes<Enter>
@@ -34,10 +35,11 @@ nnoremap <C-h> <C-w><C-h>
 nnoremap <C-j> <C-w><C-j>
 nnoremap <C-k> <C-w><C-k>
 nnoremap <C-l> <C-w><C-l>
-nnoremap \term <Esc>:tabe term:///bin/bash<Enter>:set nonu nornu<Enter>
-nnoremap \termvs <Esc>:vs term:///bin/bash<Enter>:set nonu nornu<Enter>a
-nnoremap \termsp <Esc>:sp term:///bin/bash<Enter>:set nonu nornu<Enter>a
+nnoremap \tt <Esc>:tabe term:///bin/bash<Enter>:set nonu nornu<Enter>a
+nnoremap \tv <Esc>:vs term:///bin/bash<Enter>:set nonu nornu<Enter>a
+nnoremap \ts <Esc>:sp term:///bin/bash<Enter>:set nonu nornu<Enter>a
 
 " tnoremap
-tnoremap jk <C-\><C-n>
+"tnoremap jk <C-\><C-n>
 tnoremap <Esc> <C-\><C-n>
+tnoremap \<Esc> <Esc>
