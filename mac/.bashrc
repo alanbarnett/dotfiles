@@ -18,7 +18,7 @@ export EDITOR='nvim'
 export MAIL=alanbarnett328@gmail.com
 
 PATH=~/valgrind:~/color-scripts/color-scripts:~/bin:~/dotfiles/bin:~/.gem/ruby/2.5.0/bin:~/.brew/bin:$PATH
-HISTIGNORE="history:ls:fg:exit"
+HISTIGNORE="history:ls:pwd:fg:bg:clear:exit"
 HISTCONTROL=ignoreboth
 
 CFLAGS='-Wall -Wextra -Werror'

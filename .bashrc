@@ -8,7 +8,7 @@
 export EDITOR=nvim
 
 PATH=$PATH:~/bin:~/dotfiles/bin
-HISTIGNORE="history:ls:fg:exit"
+HISTIGNORE="history:ls:pwd:fg:bg:clear:exit"
 HISTCONTROL=ignoreboth
 
 mkcd ()
