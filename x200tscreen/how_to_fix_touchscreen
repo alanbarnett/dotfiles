@@ -1,3 +1,4 @@
+install xf86-input-wacom (driver)
 install linux-headers (to install kernel modules)
 install input-wacom-dkms from aur (has kernel modules)
 
