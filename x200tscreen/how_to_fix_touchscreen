@@ -1,0 +1,8 @@
+install linux-headers (to install kernel modules)
+install input-wacom-dkms from aur (has kernel modules)
+
+ta fucking da
+
+(I used to have xorg conf files and things, included in this folder,
+but they apparently aren't necessary (and didn't do anything anyway,
+according to xorg logs.))
