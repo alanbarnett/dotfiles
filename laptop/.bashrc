@@ -5,6 +5,9 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Set tabs to 4 spaces
+tabs -4
+
 export EDITOR=nvim
 
 PATH=$PATH:~/bin:~/dotfiles/bin:~/color-scripts/color-scripts
@@ -29,7 +32,7 @@ battery ()
 	if [ $status == "Charging" ] || [ $status == "Unknown" ]; then
 		echo -e "\e[1;35m$percent%\e[m"
 	elif [ $percent -lt "11" ]; then
-		echo -e "\e[1;5;31m$bpercent%\e[m"
+		echo -e "\e[1;5;31m$percent%\e[m"
 	elif [ $percent -lt "26" ]; then
 		echo -e "\e[1;31m$percent%\e[m"
 	else
@@ -56,4 +59,4 @@ alias grep='grep --color=auto'
 # shortcut aliases
 alias weather='curl http://wttr.in/45701'
 alias cn='clear;neofetch'
-alias 42fc='bash ~/42filechecker/42FileChecker.sh'
+alias 42fc='bash ~/clones/42filechecker/42FileChecker.sh'
