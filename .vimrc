@@ -142,6 +142,16 @@ else
 	highlight Visual ctermbg=238
 	highlight ColorColumn ctermbg=234
 	highlight VertSplit ctermbg=242 ctermfg=236 cterm=none
+	" highlight ModeMsg
+	" highlight WildMenu
+	" highlight Search
+	" highlight Pmenu	  
+	" highlight PmenuSel  
+	" highlight PmenuSbar 
+	" highlight PmenuThumb
+	" highlight MatchParen
+	" highlight Substitute
+	" highlight Incsearch
 endif
 
 " Highlight groups for my statusline (TODO make into colorschemes)
@@ -432,6 +442,7 @@ endfunction
 "		modeline
 "		sandbox
 "		preview window
+"		highlight
 "	read the defaults
 "	read the index
 "		window commands
