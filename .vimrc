@@ -299,14 +299,6 @@ nnoremap + ddkP
 " move line down
 nnoremap - ddp
 
-" scroll up a line
-nnoremap <Ins> <C-y>
-" scroll down a line
-nnoremap <Del> <C-e>
-" scroll up a line without moving the cursor
-nnoremap <A-e> <C-e>j
-nnoremap <A-y> <C-y>k
-
 " disables last highlight
 nnoremap <CR> :noh<CR>
 
@@ -370,12 +362,20 @@ nnoremap <Leader>zn :set scrolloff=6<CR>
 """"""""""""""""""""""""""""""""""""""""""}}}
 " Scrolling modes {{{
 """""""""""""""""""""""""""""""""""""""""""""
+" scroll up a line without moving the cursor
 nnoremap <A-e> <C-e>j
 nnoremap <A-y> <C-y>k
-nnoremap j <C-e>j
-nnoremap k <C-y>k
+
+" Line moving maps for different modes (TODO function)
+" nnoremap j <C-e>j
+" nnoremap k <C-y>k
 nnoremap <C-j> j
 nnoremap <C-k> k
+
+" scroll up a line
+nnoremap <Ins> <C-y>
+" scroll down a line
+nnoremap <Del> <C-e>
 """"""""""""""""""""""""""""""""""""""""""}}}
 " Window navigation {{{
 """""""""""""""""""""""""""""""""""""""""""""
