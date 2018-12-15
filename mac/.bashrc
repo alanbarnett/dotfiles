@@ -17,7 +17,8 @@ export GOROOT=~/goroot
 export EDITOR='nvim'
 export MAIL=alanbarnett328@gmail.com
 
-PATH=~/valgrind:~/color-scripts/color-scripts:~/bin:~/dotfiles/bin:~/.gem/ruby/2.5.0/bin:~/.brew/bin:$PATH
+PATH=~/clones/valgrind:~/clones/color-scripts/color-scripts:~/bin:~/dotfiles/bin:~/.gem/ruby/2.5.0/bin:~/.brew/bin:$PATH
+export GEM_PATH=$HOME/.gem/ruby/2.5.0
 HISTIGNORE="history:ls:pwd:fg:bg:clear:exit"
 HISTCONTROL=ignoreboth
 
@@ -54,5 +55,5 @@ alias proj='cd ~/cadet/projects'
 alias gproj='cd ~/cadet/git'
 alias pdfs='cd /nfs/intrav2cdn/pdf/pdf'
 alias cs='clear; screenfetch 2> /dev/null'
-alias 42fc='bash ~/42FileChecker/42FileChecker.sh'
-alias 42fcnoi='bash ~/42FileChecker/42FileChecker.sh --project "gnl" --path "~/cadet/gitgnl"'
+alias 42fc='bash ~/clones/42FileChecker/42FileChecker.sh'
+alias 42fcnoi='bash ~/clones/42FileChecker/42FileChecker.sh --project "ft_printf" --path "~/cadet/projects/ft_printf"'
