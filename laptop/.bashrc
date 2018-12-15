@@ -9,6 +9,7 @@
 tabs -4
 
 export EDITOR=nvim
+export EMAIL=alanbarnett328@gmail.com
 
 PATH=$PATH:~/bin:~/dotfiles/bin:~/color-scripts/color-scripts
 HISTIGNORE="history:ls:pwd:fg:bg:clear:exit"
