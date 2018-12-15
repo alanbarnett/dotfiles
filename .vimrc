@@ -7,7 +7,7 @@ filetype plugin indent on	" filetype plugins and indentation
 syntax enable				" syntax highlighting
 
 set number					" line numbering
-set scrolloff=6				" space around the cursor when scrolling
+set scrolloff=99			" space around the cursor when scrolling
 set colorcolumn=80			" a big column at column 80
 set cursorline				" highlight the line with the cursor
 set noruler					" disables the ruler, so <C-g> has useful info
@@ -118,9 +118,9 @@ set statusline+=\ 			" space separator
 set background=dark			" forcing my terminal to have light colors
 
 " Highlight group for extra spaces (set to green)
-highlight ExtraWhitespace ctermbg=darkgreen
+highlight ExtraWhitespace ctermbg=darkcyan
 " Highlight group for characters past column 80 (set to red)
-highlight OverLength ctermbg=red ctermfg=none
+highlight OverLength ctermbg=red ctermfg=none cterm=bold
 
 " setting some differences between tty and 256color term
 " (TODO make into colorschemes)
@@ -134,14 +134,26 @@ if $TERM == "linux"
 	highlight ColorColumn ctermbg=darkred
 else
 	highlight Normal ctermbg=232 ctermfg=7
+	highlight NormalNC ctermbg=16 ctermfg=7
 	highlight EndOfBuffer ctermbg=234 ctermfg=24
 	highlight Folded ctermbg=234 ctermfg=80
-	highlight LineNr ctermbg=234 ctermfg=38
-	highlight CursorLineNr ctermbg=236 ctermfg=50
+	" highlight LineNr ctermbg=234 ctermfg=38
+	highlight LineNr ctermbg=234 ctermfg=240
+	" highlight CursorLineNr ctermbg=236 ctermfg=50
+	highlight CursorLineNr ctermbg=236 ctermfg=magenta
 	highlight CursorLine ctermbg=236 cterm=none
 	highlight Visual ctermbg=238
 	highlight ColorColumn ctermbg=234
 	highlight VertSplit ctermbg=242 ctermfg=236 cterm=none
+	"highlight Normal ctermbg=none ctermfg=7
+	"highlight NormalNC ctermbg=none ctermfg=7
+	"highlight EndOfBuffer ctermbg=none ctermfg=24
+	"highlight Folded ctermbg=none ctermfg=80
+	"highlight LineNr ctermbg=none ctermfg=240
+	"highlight CursorLineNr ctermbg=236 ctermfg=magenta
+	"highlight CursorLine ctermbg=236 cterm=none
+	"highlight Visual ctermbg=238
+	"highlight ColorColumn ctermbg=238
 	" highlight ModeMsg
 	" highlight WildMenu
 	" highlight Search
@@ -230,6 +242,14 @@ augroup filetype_helpers
 	autocmd Filetype sh nnoremap <buffer> <LocalLeader>c I# <Esc>
 	autocmd Filetype sh nnoremap <buffer> <LocalLeader>C ^2x<Esc>
 augroup END
+
+" Terminal settings to remove numbers
+augroup terminal_settings
+	autocmd!
+	autocmd TermOpen * setlocal nonumber norelativenumber
+	" TODO terminal statusline differences
+    "autocmd TermOpen * setlocal statusline=%{b:term_title}
+augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
 " Insert mode remaps {{{
@@ -249,6 +269,9 @@ inoremap <Leader>sc /*<Enter>/<Esc>O
 
 " delete comment leader
 inoremap <C-c> <C-u>
+
+" switch to last buffer
+inoremap <Leader>bl <Esc>:b #<CR>
 
 " jump to tag
 inoremap <Leader><Space> <Esc>/<++><CR>:noh<CR>cf>
@@ -280,6 +303,9 @@ nnoremap - ddp
 nnoremap <Ins> <C-y>
 " scroll down a line
 nnoremap <Del> <C-e>
+" scroll up a line without moving the cursor
+nnoremap <A-e> <C-e>j
+nnoremap <A-y> <C-y>k
 
 " disables last highlight
 nnoremap <CR> :noh<CR>
@@ -306,7 +332,7 @@ nnoremap <Leader>fm :set foldmethod=manual<CR>
 " Commenting shortcuts (TODO move to filetype plugins)
 nnoremap <Leader>c I//<Esc>
 nnoremap <Leader>C ^2x
-nnoremap <Leader>sC ?\/\*<CR>dd/\*\/<CR>dd2<C-o>:noh<CR>
+nnoremap <Leader>sC $?\/\*<CR>dd/\*\/<CR>dd2<C-o>:noh<CR>
 
 " good for quickly putting a breakpoint-style printing statement
 nnoremap <Leader>wt owrite(1,"t",1);<Esc>
@@ -328,37 +354,54 @@ nnoremap <Leader>ev :edit ~/.vimrc<CR>
 " edits bashrc
 nnoremap <Leader>eb :edit ~/.bashrc<CR>
 
-" Fullscreen window
-nnoremap <C-w>f <C-w>_<C-w><bar>
-" Lock cursor to center
-nnoremap <Leader>zz zz:set scrolloff=99<CR>
-" Return cursor to normal
-nnoremap <Leader>zn :set scrolloff=6<CR>
-
 " switches to last buffer
 nnoremap <Leader>bl :buffer #<CR>
 " deletes buffer and switches to last buffer
 nnoremap <Leader>bd :buffer #<CR>:bdelete #<CR>
 
-" Window navigation
-nnoremap <C-h> <C-w><C-h>
-nnoremap <C-j> <C-w><C-j>
-nnoremap <C-k> <C-w><C-k>
-nnoremap <C-l> <C-w><C-l>
-" Tab navigation
-nnoremap <C-A-h> gT
-nnoremap <C-A-l> gt
+" Cursor modes {{{
+"""""""""""""""""""""""""""""""""""""""""""""
+" Snap cursor to center
+nnoremap <Leader>zc :set scrolloff=99<CR>:set scrolloff=0<CR>
+" Lock cursor to center
+nnoremap <Leader>zz zz:set scrolloff=99<CR>
+" Return cursor to normal
+nnoremap <Leader>zn :set scrolloff=6<CR>
+""""""""""""""""""""""""""""""""""""""""""}}}
+" Scrolling modes {{{
+"""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <A-e> <C-e>j
+nnoremap <A-y> <C-y>k
+nnoremap j <C-e>j
+nnoremap k <C-y>k
+nnoremap <C-j> j
+nnoremap <C-k> k
+""""""""""""""""""""""""""""""""""""""""""}}}
+" Window navigation {{{
+"""""""""""""""""""""""""""""""""""""""""""""
+" Changing windows
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
+" Fullscreen window
+nnoremap <C-w>f <C-w>_<C-w><bar>
+" Tab naviaation
+nnoremap <A-S-h> gT
+nnoremap <A-S-l> gt
+""""""""""""""""""""""""""""""""""""""""""}}}
 
 " Terminal opening shortcuts
-nnoremap <Leader>tt :tabe term:///bin/bash<CR>:set nonu nornu<CR>a
-nnoremap <Leader>tv :vs term:///bin/bash<CR>:set nonu nornu<CR>a
-nnoremap <Leader>ts :sp term:///bin/bash<CR>:set nonu nornu<CR>a
+nnoremap <Leader>tt :tabe term://bash<CR>a
+nnoremap <Leader>tv :vs term://bash<CR>a
+nnoremap <Leader>ts :sp term://bash<CR>a
+nnoremap <Leader>tb :term<CR>a
+nnoremap <Leader>td :buffer #<CR>:bdelete! #<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
 " Visual mode remaps {{{
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " esc shortcut
-vnoremap jk <Esc>
 vnoremap <Leader><Leader> <Esc>
 
 " wrap a selection with a Norm c comment
@@ -393,6 +436,18 @@ cnoremap <Leader><Leader> <C-c>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " nice esc shortcut, jk is inconvenient for scrolling and <c-\><c-n> sucks
 tnoremap <Leader><Leader> <C-\><C-n>
+
+" Window navigation
+tnoremap <A-h> <C-\><C-N><C-w>h
+tnoremap <A-j> <C-\><C-N><C-w>j
+tnoremap <A-k> <C-\><C-N><C-w>k
+tnoremap <A-l> <C-\><C-N><C-w>l
+" Tab naviaation
+tnoremap <A-S-h> <C-\><C-N>gT
+tnoremap <A-S-l> <C-\><C-N>gt
+
+" Buffer navigation
+tnoremap <Leader>bl <C-\><C-N>:b #<CR>
 
 " Command shortcuts! How fun!
 tnoremap <A-s> <C-\><C-n>:call VisualMapper(g:commander)<cr>
@@ -429,6 +484,7 @@ endfunction
 "		preview marker
 "		buffer number
 "	reading:
+"		object-motions
 "		local-options
 "		setlocal
 "		map-local
