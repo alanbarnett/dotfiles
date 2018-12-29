@@ -7,9 +7,9 @@ filetype plugin indent on	" filetype plugins and indentation
 syntax enable				" syntax highlighting
 
 set number					" line numbering
-set scrolloff=99			" space around the cursor when scrolling
+set scrolloff=6				" space around the cursor when scrolling
 set colorcolumn=80			" a big column at column 80
-set cursorline				" highlight the line with the cursor
+" set cursorline				" highlight the line with the cursor
 set noruler					" disables the ruler, so <C-g> has useful info
 
 set backspace=indent,eol,start	" more useful backspace behavior
@@ -50,6 +50,10 @@ set shiftround				" snap to width of 4 when using indent (>> and <<)
 set noexpandtab				" don't turn tabs into spaces
 
 set grepprg=grep\ -nH\ $*	" grep alias to show line number and filename
+
+set formatoptions-=o		" don't allow repeat comment leaders with o/O
+							" just A<CR> if you need a new comment leader
+							" for real this saves more trouble than it causes
 
 " Good commenting behavior for norm-style C comments (TODO autocommand)
 "set comments=s:/*,mb:**,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
@@ -113,71 +117,21 @@ set statusline+=%P			" percentage of file (top, bot, all, or percent)
 set statusline+=\ 			" space separator
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
-" Highlight groups {{{
+" Highlight groups / Colors {{{
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set background=dark			" forcing my terminal to have light colors
 
-" Highlight group for extra spaces (set to green)
-highlight ExtraWhitespace ctermbg=darkcyan
-" Highlight group for characters past column 80 (set to red)
+" Highlight group for extra spaces
+highlight ExtraWhitespace ctermbg=yellow
+" Highlight group for characters past column 80
 highlight OverLength ctermbg=red ctermfg=none cterm=bold
 
-" setting some differences between tty and 256color term
-" (TODO make into colorschemes)
+" picking a color scheme
 if $TERM == "linux"
-	highlight Normal ctermbg=8 ctermfg=7
-	highlight Folded ctermbg=magenta
-	highlight LineNr ctermbg=magenta ctermfg=darkred
-	highlight CursorLineNr ctermbg=darkred ctermfg=red
-	highlight CursorLine ctermbg=red cterm=bold
-	highlight Visual ctermbg=magenta
-	highlight ColorColumn ctermbg=darkred
+	colorscheme eight_color
 else
-	highlight Normal ctermbg=232 ctermfg=7
-	highlight NormalNC ctermbg=16 ctermfg=7
-	highlight EndOfBuffer ctermbg=234 ctermfg=24
-	highlight Folded ctermbg=234 ctermfg=80
-	" highlight LineNr ctermbg=234 ctermfg=38
-	highlight LineNr ctermbg=234 ctermfg=240
-	" highlight CursorLineNr ctermbg=236 ctermfg=50
-	highlight CursorLineNr ctermbg=236 ctermfg=magenta
-	highlight CursorLine ctermbg=236 cterm=none
-	highlight Visual ctermbg=238
-	highlight ColorColumn ctermbg=234
-	highlight VertSplit ctermbg=242 ctermfg=236 cterm=none
-	"highlight Normal ctermbg=none ctermfg=7
-	"highlight NormalNC ctermbg=none ctermfg=7
-	"highlight EndOfBuffer ctermbg=none ctermfg=24
-	"highlight Folded ctermbg=none ctermfg=80
-	"highlight LineNr ctermbg=none ctermfg=240
-	"highlight CursorLineNr ctermbg=236 ctermfg=magenta
-	"highlight CursorLine ctermbg=236 cterm=none
-	"highlight Visual ctermbg=238
-	"highlight ColorColumn ctermbg=238
-	" highlight ModeMsg
-	" highlight WildMenu
-	" highlight Search
-	" highlight Pmenu	  
-	" highlight PmenuSel  
-	" highlight PmenuSbar 
-	" highlight PmenuThumb
-	" highlight MatchParen
-	" highlight Substitute
-	" highlight Incsearch
+	colorscheme dark_green
 endif
-
-" Highlight groups for my statusline (TODO make into colorschemes)
-highlight st_filet ctermbg=238 ctermfg=38
-" highlight st_modif ctermbg=red ctermfg=white
-highlight st_modif ctermbg=236 ctermfg=red
-highlight st_norm ctermbg=234 ctermfg=none
-highlight st_ascii ctermbg=236 ctermfg=magenta
-highlight st_ruler ctermbg=238 ctermfg=yellow
-highlight StatusLine ctermbg=38 ctermfg=254 cterm=none
-" highlight StatusLine ctermbg=darkcyan ctermfg=254 cterm=none
-" highlight StatusLine ctermbg=248 ctermfg=234 cterm=none
-highlight StatusLine ctermbg=green ctermfg=23 cterm=none
-highlight StatusLineNC ctermbg=240 ctermfg=green cterm=none
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
 " Latex stuff {{{
@@ -285,6 +239,12 @@ inoremap <Leader>fpn ft_putnbr(
 inoremap <Leader>fpr ft_printf("%\n", <++>);<C-o>F\
 iabbr fpr ft_printf("%\n", <++>);<C-o>F\
 inoremap <Leader>pr printf("%\n", <++>);<C-o>F\
+
+" Changing windows
+inoremap <A-h> <Esc><C-w>h
+inoremap <A-j> <Esc><C-w>j
+inoremap <A-k> <Esc><C-w>k
+inoremap <A-l> <Esc><C-w>l
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
 " Normal mode remaps {{{
@@ -298,6 +258,11 @@ nnoremap <Leader>r :set relativenumber!<CR>
 nnoremap + ddkP
 " move line down
 nnoremap - ddp
+
+" insert empty line below
+nnoremap <Leader>o o<Esc>
+" insert empty line above
+nnoremap <Leader>O O<Esc>
 
 " disables last highlight
 nnoremap <CR> :noh<CR>
@@ -330,7 +295,7 @@ nnoremap <Leader>sC $?\/\*<CR>dd/\*\/<CR>dd2<C-o>:noh<CR>
 nnoremap <Leader>wt owrite(1,"t",1);<Esc>
 
 " surround current line with {}
-nnoremap <Leader>s{ O{<Esc>jo}<Esc>k
+nnoremap <Leader>s{ O{<Esc>jo}<Esc>k==
 " delete {} around line (really just deletes above and below lines
 nnoremap <Leader>d{ kddjddk
 
@@ -354,11 +319,13 @@ nnoremap <Leader>bd :buffer #<CR>:bdelete #<CR>
 " Cursor modes {{{
 """""""""""""""""""""""""""""""""""""""""""""
 " Snap cursor to center
-nnoremap <Leader>zc :set scrolloff=99<CR>:set scrolloff=0<CR>
+nnoremap <Leader>zc :set scrolloff=99<CR>:set scrolloff=6<CR>
 " Lock cursor to center
 nnoremap <Leader>zz zz:set scrolloff=99<CR>
 " Return cursor to normal
 nnoremap <Leader>zn :set scrolloff=6<CR>
+" Turn off scrolloffset
+nnoremap <Leader>zo :set scrolloff=0<CR>
 """"""""""""""""""""""""""""""""""""""""""}}}
 " Scrolling modes {{{
 """""""""""""""""""""""""""""""""""""""""""""
@@ -410,7 +377,7 @@ vnoremap <Leader>sn <Esc>'<<C-v>'><S-i>** <Esc>ko/*<Esc>'>o/<Esc>
 vnoremap <Leader>sN <Esc>'<<C-v>'>lld'<dd'>dd
 
 " wrap a selection with normal c comments
-vnoremap <Leader>sc <Esc>'<ko/*<Esc>'>o*/<Esc>
+vnoremap <Leader>sc <Esc>'>o*/<Esc>'<O/*<Esc>
 " remove the comments in a selection
 vnoremap <Leader>sC <Esc>'<dd'>dd
 
@@ -499,6 +466,7 @@ endfunction
 "		sandbox
 "		preview window
 "		highlight
+"		last-position-jump
 "	read the defaults
 "	read the index
 "		window commands
