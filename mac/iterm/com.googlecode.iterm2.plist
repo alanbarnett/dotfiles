@@ -4911,7 +4911,7 @@
 	<key>ShowBookmarkName</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
-	<true/>
+	<false/>
 	<key>SplitPaneDimmingAmount</key>
 	<real>0.34192457932692311</real>
 	<key>SwitchPaneModifier</key>
