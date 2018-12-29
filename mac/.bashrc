@@ -12,13 +12,11 @@ find ~/Library/Logs/DiagnosticReports -mindepth 1 -delete > /dev/null 2>&1
 
 # brew stuff
 mkdir -p /tmp/.abarnett-brew-locks
-export GOROOT=~/goroot
 
 export EDITOR='nvim'
 export MAIL=alanbarnett328@gmail.com
 
-PATH=~/clones/valgrind:~/clones/color-scripts/color-scripts:~/bin:~/dotfiles/bin:~/.gem/ruby/2.5.0/bin:~/.brew/bin:$PATH
-export GEM_PATH=$HOME/.gem/ruby/2.5.0
+PATH=$HOME/clones/valgrind:$HOME/clones/color-scripts/color-scripts:$HOME/bin:$HOME/dotfiles/bin:$HOME/.brew/bin:$PATH
 HISTIGNORE="history:ls:pwd:fg:bg:clear:exit"
 HISTCONTROL=ignoreboth
 
