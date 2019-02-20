@@ -189,6 +189,7 @@ augroup filetype_helpers
 	autocmd!
 	" better norm comments for c files
 	autocmd Filetype c setlocal comments=s:/*,mb:**,ex:*/,://
+	autocmd Filetype cpp setlocal comments=s:/*,mb:**,ex:*/,://
 	" fold comments in c files
 	autocmd Filetype c setlocal foldmethod=marker foldmarker=/*,*/
 	" turn off automatic folding on Makefiles
