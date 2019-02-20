@@ -134,7 +134,7 @@ highlight OverLength ctermbg=red ctermfg=none cterm=bold
 if $TERM == "linux"
 	colorscheme eight_color
 else
-	colorscheme dark_green
+	colorscheme transparent
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
