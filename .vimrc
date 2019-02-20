@@ -371,10 +371,19 @@ nnoremap <A-S-l> gt
 """"""""""""""""""""""""""""""""""""""""""}}}
 
 " Terminal opening shortcuts
-nnoremap <Leader>tt :tabe term://bash<CR>a
-nnoremap <Leader>tv :vs term://bash<CR>a
-nnoremap <Leader>ts :sp term://bash<CR>a
-nnoremap <Leader>tb :term<CR>a
+if has("mac")
+	nnoremap <Leader>tt :tabe term://~/.brew/bin/bash<CR>a
+	nnoremap <Leader>tv :vs term://~/.brew/bin/bash<CR>a
+	nnoremap <Leader>ts :sp term://~/.brew/bin/bash<CR>a
+	nnoremap <Leader>tb :e term://~/.brew/bin/bash<CR>a
+else
+	nnoremap <Leader>tt :tabe term://bash<CR>a
+	nnoremap <Leader>tv :vs term://bash<CR>a
+	nnoremap <Leader>ts :sp term://bash<CR>a
+	nnoremap <Leader>tb :term<CR>a
+endif
+
+" Forced bdelete, for deleting a terminal
 nnoremap <Leader>td :buffer #<CR>:bdelete! #<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
