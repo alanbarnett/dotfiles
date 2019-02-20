@@ -324,6 +324,8 @@ nnoremap <Leader>eb :edit ~/.bashrc<CR>
 nnoremap <Leader>bl :buffer #<CR>
 " deletes buffer and switches to last buffer
 nnoremap <Leader>bd :buffer #<CR>:bdelete #<CR>
+" switches to next terminal buffer
+nnoremap <Leader>bt :buffer term<Tab><CR>
 
 " Cursor modes {{{
 """""""""""""""""""""""""""""""""""""""""""""
