@@ -311,8 +311,16 @@ nnoremap <Leader>ev :edit ~/.vimrc<CR>
 " edits bashrc
 nnoremap <Leader>eb :edit ~/.bashrc<CR>
 
+" opens a manpage
+nnoremap <Leader>m <Esc>:Man
+
+" Edit a file in the home directory
+nnoremap <Leader>eh <Esc>:edit ~/
+
 " switches to last buffer
 nnoremap <Leader>bl :buffer #<CR>
+" switches to first terminal buffer
+nnoremap <Leader>bt :buffer term<Tab><CR>
 " deletes buffer and switches to last buffer
 nnoremap <Leader>bd :buffer #<CR>:bdelete #<CR>
 
@@ -412,6 +420,12 @@ tnoremap <A-l> <C-\><C-N><C-w>l
 " Tab naviaation
 tnoremap <A-S-h> <C-\><C-N>gT
 tnoremap <A-S-l> <C-\><C-N>gt
+
+" Shortcut for man
+tnoremap <Leader>m <C-\><C-N>:Man
+
+" Edit a file in the home directory
+tnoremap <Leader>eh <C-\><C-N>:edit ~/
 
 " Buffer navigation
 tnoremap <Leader>bl <C-\><C-N>:b #<CR>
