@@ -12,9 +12,13 @@ set colorcolumn=80			" a big column at column 80
 " set cursorline				" highlight the line with the cursor
 set noruler					" disables the ruler, so <C-g> has useful info
 
+set wrap					" turn on line wrapping
+set textwidth=79			" wrap text at column 79
+
 set backspace=indent,eol,start	" more useful backspace behavior
 
-set nojoinspaces			" why the hell would I want two spaces
+set nojoinspaces			" why the hell would I want two spaces when it
+							" joins lines
 
 set modeline				" interpret modelines in files
 set modelines=1				" look at only one line at the top and bottom
