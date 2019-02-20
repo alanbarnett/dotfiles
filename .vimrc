@@ -397,6 +397,13 @@ vnoremap <Leader>cC <Esc>'<<C-v>'>lld
 " surround selection with brackets, and indent it properly
 vnoremap <Leader>s{ <Esc>'<O{<Esc>'>o}<Esc>='<
 
+" surround a selection with parenthesis
+vnoremap <Leader>s( <Esc>`>a)<Esc>`<i(<Esc>
+" surround a selection with double quotes
+vnoremap <Leader>s" <Esc>`>a"<Esc>`<i"<Esc>
+" remove surrounding characters (not highlighted)
+vnoremap <Leader>ds <Esc>`>lx<Esc>`<hx<Esc>
+
 " highlight function
 vnoremap <Leader>f [[ko][
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
