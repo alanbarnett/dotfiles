@@ -240,9 +240,9 @@ inoremap <Leader>fpe ft_putendl(
 inoremap <Leader>fpc ft_putchar(
 inoremap <Leader>fpcn ft_putchar('\n');
 inoremap <Leader>fpn ft_putnbr(
-inoremap <Leader>fpr ft_printf("%\n", <++>);<C-o>F\
-iabbr fpr ft_printf("%\n", <++>);<C-o>F\
-inoremap <Leader>pr printf("%\n", <++>);<C-o>F\
+inoremap <Leader>fpr ft_printf("\n", <++>);<C-o>F\
+iabbr fpr ft_printf("\n", <++>);<C-o>F\
+inoremap <Leader>pr printf("\n", <++>);<C-o>F\
 
 " Changing windows
 inoremap <A-h> <Esc><C-w>h
