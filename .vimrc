@@ -268,6 +268,11 @@ nnoremap <Leader>o o<Esc>
 " insert empty line above
 nnoremap <Leader>O O<Esc>
 
+" Disables q:
+nnoremap q: <nop>
+" Moves q: functionality to g:
+nnoremap g: q:
+
 " disables last highlight
 nnoremap <CR> :noh<CR>
 
