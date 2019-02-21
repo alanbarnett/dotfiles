@@ -62,6 +62,10 @@ alias cp='cp -iv'
 alias grep='grep --color=auto'
 
 # shortcut aliases
-alias weather='curl http://wttr.in/45701'
+alias weather='curl http://wttr.in/94555'
 alias cn='clear;neofetch'
 alias 42fc='bash ~/clones/42filechecker/42FileChecker.sh'
+alias journal='journalctl -xe'
+alias setv='pactl set-sink-volume 0 '
+
+# vim: foldmethod=marker foldmarker={{{,}}}
