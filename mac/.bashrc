@@ -37,16 +37,7 @@ norminator ()
 	norminette $1 | GREP_COLOR='1;38;5;40' egrep --color=always "^Norme|$" | GREP_COLOR='1;38;5;33' egrep --color=always '^Warning|$' | GREP_COLOR='1;38;5;196' egrep --color=always '^Error|$'
 }
 
-git_branch_prompt ()
-{
-	OUTPUT=$(git branch 2> /dev/null | sed -n "s/^\* //p")
-
-	if [ ! -e $OUTPUT ]; then
-		printf "\e[1;37m:\e[1;31m$OUTPUT\e[m"
-	fi
-}
-
-PS1='\[\e[1;37m\]\342\224\214[\[\e[1;36m\]\u@\h\[\e[1;37m\]]\342\224\200(\[\e[1;32m\]\w$(git_branch_prompt)\[\e[1;37m\])\342\224\200(\[\e[1;34m\]$(date "+%I:%M %p")\[\e[1;37m\])\n\[\e[m\]'
+PS1='\[\e[1;37m\]\342\224\214[\[\e[1;36m\]\u@\h\[\e[1;37m\]]\342\224\200(\[\e[1;32m\]\w$(git_branch_prompt.sh)\[\e[1;37m\])\342\224\200(\[\e[1;34m\]$(date "+%I:%M %p")\[\e[1;37m\])\n\[\e[m\]'
 
 # quality of life improvements
 alias ls='ls -G'
