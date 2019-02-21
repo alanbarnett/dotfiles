@@ -655,9 +655,9 @@ New Tab with Current Profile</string>
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>1988 649 445 77 0 0 3200 1800 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>40 624 770 429 0 0 3200 1800 </string>
+	<string>202 693 918 381 0 0 3200 1800 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1800 820 1200 980 0 0 3200 1800 </string>
+	<string>0 0 1400 1800 0 0 3200 1800 </string>
 	<key>NeverWarnAboutShortLivedSessions_B3736BCE-603B-4F39-AC1C-435E5C39B0C6</key>
 	<true/>
 	<key>NeverWarnAboutShortLivedSessions_B3736BCE-603B-4F39-AC1C-435E5C39B0C6_selection</key>
@@ -2096,13 +2096,13 @@ New Tab with Current Profile</string>
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.9411468505859375</real>
+				<real>1</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.5594482421875</real>
+				<real>0.62943350989371538</real>
 				<key>Red Component</key>
-				<real>0.2014617919921875</real>
+				<real>0.410919189453125</real>
 			</dict>
 			<key>Ansi 13 Color</key>
 			<dict>
@@ -2158,13 +2158,13 @@ New Tab with Current Profile</string>
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.8705596923828125</real>
+				<real>0.923675537109375</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.2097930908203125</real>
+				<real>0.3597761975599037</real>
 				<key>Red Component</key>
-				<real>0.15997314453125</real>
+				<real>0.31725977081805468</real>
 			</dict>
 			<key>Ansi 5 Color</key>
 			<dict>
