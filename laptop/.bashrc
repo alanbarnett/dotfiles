@@ -8,8 +8,15 @@
 # Set tabs to 4 spaces
 tabs -4
 
+# figlet for funsies
+#figlet alan@x200
+#printf "\n"
+
 export EDITOR=nvim
 export EMAIL=alanbarnett328@gmail.com
+
+# Enable git information in my prompt
+export GIT_PROMPT=1
 
 PATH=$PATH:~/bin:~/dotfiles/bin:~/color-scripts/color-scripts
 HISTIGNORE="history:ls:pwd:fg:bg:clear:exit"
