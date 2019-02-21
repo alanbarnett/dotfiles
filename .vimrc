@@ -12,9 +12,13 @@ set colorcolumn=80			" a big column at column 80
 " set cursorline				" highlight the line with the cursor
 set noruler					" disables the ruler, so <C-g> has useful info
 
+set wrap					" turn on line wrapping
+set textwidth=79			" wrap text at column 79
+
 set backspace=indent,eol,start	" more useful backspace behavior
 
-set nojoinspaces			" why the hell would I want two spaces
+set nojoinspaces			" why the hell would I want two spaces when it
+							" joins lines
 
 set modeline				" interpret modelines in files
 set modelines=1				" look at only one line at the top and bottom
@@ -130,7 +134,7 @@ highlight OverLength ctermbg=red ctermfg=none cterm=bold
 if $TERM == "linux"
 	colorscheme eight_color
 else
-	colorscheme dark_green
+	colorscheme transparent
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
@@ -185,6 +189,7 @@ augroup filetype_helpers
 	autocmd!
 	" better norm comments for c files
 	autocmd Filetype c setlocal comments=s:/*,mb:**,ex:*/,://
+	autocmd Filetype cpp setlocal comments=s:/*,mb:**,ex:*/,://
 	" fold comments in c files
 	autocmd Filetype c setlocal foldmethod=marker foldmarker=/*,*/
 	" turn off automatic folding on Makefiles
@@ -236,9 +241,9 @@ inoremap <Leader>fpe ft_putendl(
 inoremap <Leader>fpc ft_putchar(
 inoremap <Leader>fpcn ft_putchar('\n');
 inoremap <Leader>fpn ft_putnbr(
-inoremap <Leader>fpr ft_printf("%\n", <++>);<C-o>F\
-iabbr fpr ft_printf("%\n", <++>);<C-o>F\
-inoremap <Leader>pr printf("%\n", <++>);<C-o>F\
+inoremap <Leader>fpr ft_printf("\n", <++>);<C-o>F\
+iabbr fpr ft_printf("\n", <++>);<C-o>F\
+inoremap <Leader>pr printf("\n", <++>);<C-o>F\
 
 " Changing windows
 inoremap <A-h> <Esc><C-w>h
@@ -263,6 +268,11 @@ nnoremap - ddp
 nnoremap <Leader>o o<Esc>
 " insert empty line above
 nnoremap <Leader>O O<Esc>
+
+" Disables q:
+nnoremap q: <nop>
+" Moves q: functionality to g:
+nnoremap g: q:
 
 " disables last highlight
 nnoremap <CR> :noh<CR>
@@ -323,6 +333,8 @@ nnoremap <Leader>bl :buffer #<CR>
 nnoremap <Leader>bt :buffer term<Tab><CR>
 " deletes buffer and switches to last buffer
 nnoremap <Leader>bd :buffer #<CR>:bdelete #<CR>
+" switches to next terminal buffer
+nnoremap <Leader>bt :buffer term<Tab><CR>
 
 " Cursor modes {{{
 """""""""""""""""""""""""""""""""""""""""""""
@@ -367,10 +379,19 @@ nnoremap <A-S-l> gt
 """"""""""""""""""""""""""""""""""""""""""}}}
 
 " Terminal opening shortcuts
-nnoremap <Leader>tt :tabe term://bash<CR>a
-nnoremap <Leader>tv :vs term://bash<CR>a
-nnoremap <Leader>ts :sp term://bash<CR>a
-nnoremap <Leader>tb :term<CR>a
+if has("mac")
+	nnoremap <Leader>tt :tabe term://~/.brew/bin/bash<CR>a
+	nnoremap <Leader>tv :vs term://~/.brew/bin/bash<CR>a
+	nnoremap <Leader>ts :sp term://~/.brew/bin/bash<CR>a
+	nnoremap <Leader>tb :e term://~/.brew/bin/bash<CR>a
+else
+	nnoremap <Leader>tt :tabe term://bash<CR>a
+	nnoremap <Leader>tv :vs term://bash<CR>a
+	nnoremap <Leader>ts :sp term://bash<CR>a
+	nnoremap <Leader>tb :term<CR>a
+endif
+
+" Forced bdelete, for deleting a terminal
 nnoremap <Leader>td :buffer #<CR>:bdelete! #<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
