@@ -1,10 +1,12 @@
 ! Font
-xterm*font: terminus-12
-xterm*boldFont: terminus-12
+xterm*font: xft:xos4 Terminus:style=Regular:size=12
+xterm*boldFont: xft:xos4 Terminus:style=Regular:size=12
 xterm*faceSize: 10
 
 URxvt*font: xft:xos4 Terminus:style=Regular:size=12
 URxvt*boldFont: xft:xos4 Terminus:style=Regular:size=12
+!URxvt*font: xft:Misc Tamsyn:style=Regular:size=12
+!URxvt*boldFont: xft:Misc Tamsyn:style=Regular:size=12
 
 Xft.dpi:        72
 Xft.antialias:  true

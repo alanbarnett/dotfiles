@@ -321,8 +321,16 @@ nnoremap <Leader>ev :edit ~/.vimrc<CR>
 " edits bashrc
 nnoremap <Leader>eb :edit ~/.bashrc<CR>
 
+" opens a manpage
+nnoremap <Leader>m <Esc>:Man
+
+" Edit a file in the home directory
+nnoremap <Leader>eh <Esc>:edit ~/
+
 " switches to last buffer
 nnoremap <Leader>bl :buffer #<CR>
+" switches to first terminal buffer
+nnoremap <Leader>bt :buffer term<Tab><CR>
 " deletes buffer and switches to last buffer
 nnoremap <Leader>bd :buffer #<CR>:bdelete #<CR>
 " switches to next terminal buffer
@@ -410,6 +418,13 @@ vnoremap <Leader>cC <Esc>'<<C-v>'>lld
 " surround selection with brackets, and indent it properly
 vnoremap <Leader>s{ <Esc>'<O{<Esc>'>o}<Esc>='<
 
+" surround a selection with parenthesis
+vnoremap <Leader>s( <Esc>`>a)<Esc>`<i(<Esc>
+" surround a selection with double quotes
+vnoremap <Leader>s" <Esc>`>a"<Esc>`<i"<Esc>
+" remove surrounding characters (not highlighted)
+vnoremap <Leader>ds <Esc>`>lx<Esc>`<hx<Esc>
+
 " highlight function
 vnoremap <Leader>f [[ko][
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
@@ -433,6 +448,12 @@ tnoremap <A-l> <C-\><C-N><C-w>l
 " Tab naviaation
 tnoremap <A-S-h> <C-\><C-N>gT
 tnoremap <A-S-l> <C-\><C-N>gt
+
+" Shortcut for man
+tnoremap <Leader>m <C-\><C-N>:Man
+
+" Edit a file in the home directory
+tnoremap <Leader>eh <C-\><C-N>:edit ~/
 
 " Buffer navigation
 tnoremap <Leader>bl <C-\><C-N>:b #<CR>
