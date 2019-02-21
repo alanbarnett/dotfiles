@@ -9,5 +9,7 @@ Avoid Gnome
 Clone git repository
 Figure out network time
 Make sure to install 'pulseaudio-alsa', 'pulseaudio', 'alsa-plugins'
+Also need acpi for i3blocks stupid battery script
+maybe amixer or pamixer for i3blocks stupid volume script
 Keep the synaptics file with my trackpad configurations
 Remember 'xterm -report-fonts'
