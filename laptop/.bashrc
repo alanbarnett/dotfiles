@@ -15,9 +15,6 @@ tabs -4
 export EDITOR=nvim
 export EMAIL=alanbarnett328@gmail.com
 
-# Enable git information in my prompt
-export GIT_PROMPT=1
-
 PATH=$PATH:~/bin:~/dotfiles/bin:~/color-scripts/color-scripts
 HISTIGNORE="history:ls:pwd:fg:bg:clear:exit"
 HISTCONTROL=ignoreboth
@@ -50,16 +47,22 @@ btc ()
 # PS1='            \[\e[1;36m\]__            \[\e[1;35m\]______      \[\e[0;35m\]___   ____  ____\n     \[\e[1;36m\]____ _/ /___ _____  \[\e[1;35m\]/ ____ \\\[\e[0;35m\]_  _|__ \ / __ \/ __ \\\[\e[1;37m\]__<\[\e[1;32m\]\w\[\e[1;37m\]>\n  \[\e[1;37m\]_ \[\e[1;36m\]/ __ \`/ / __ \`/ __ \\\[\e[1;35m\]/ / __ \`/ \[\e[0;35m\]|/_/_/ // / / / / / /\n \[\e[1;37m\]/ \[\e[1;36m\]/ /_/ / / /_/ / / / \[\e[1;35m\]/ / /_/ /\[\e[0;35m\]>  </ __// /_/ / /_/ /\[\e[1;37m\]__<\[\e[1;34m\]\t\[\e[1;37m\]>\n\[\e[1;37m\]/  \[\e[1;36m\]\__,_/_/\__,_/_/ /_/\[\e[1;35m\]\ \__,_/\[\e[0;35m\]_/|_/____/\____/\____/\n\[\e[1;37m\]\_______________________\[\e[1;35m\]\____/\[\e[1;37m\]_______________________\[\e[1;36m\]($>\[\e[m\] '
 # }}}
 
-PS1='\[\e[1;37m\]\342\224\214[\[\e[1;36m\]\u@\h\[\e[1;37m\]]\342\224\200(\[\e[1;32m\]\w$(git_branch_prompt.sh)\[\e[1;37m\])\342\224\200($(battery)\[\e[1;37m\])\342\224\200(\[\e[1;34m\]$(date "+%I:%M %P")\[\e[1;37m\])$(need_to_reboot.sh)\n\[\e[1;37m\]\342\224\224\342\224\200(\[\e[1;36m\]$\[\e[1;37m\]> \[\e[m\]'
+#PS1='\[\e[1;32m\]\w\n\[\e[1;37m\]$ \[\e[m\]'
+#PS1='\[\e[1;37m\]\342\224\214[\[\e[1;36m\]\u$(network_status.sh)\[\e[1;36m\]\h\[\e[1;37m\]]\342\224\200(\[\e[1;32m\]\w$(git_branch_prompt.sh)\[\e[1;37m\])\342\224\200($(battery)\[\e[1;37m\])\342\224\200(\[\e[1;34m\]$(date "+%I:%M %P")\[\e[1;37m\])$(need_to_reboot.sh)\n\[\e[1;37m\]\342\224\224\342\224\200(\[\e[1;36m\]$\[\e[1;37m\]> \[\e[m\]'
+
+# PS1 Prompt (execute with . which is POSIX compliant, whereas source is not)
+. ~/bin/bash_prompt/ps1.sh
 
 # quality of life improvements
+alias fls='ft_ls -Gl'
 alias ls='ls --color=auto'
-alias la='ls -a'
+alias la='ls -A'
 alias ll='ls -l'
-alias lla='ls -al'
+alias lla='ls -Al'
 alias mv='mv -iv'
 alias cp='cp -iv'
 alias grep='grep --color=auto'
+alias SS='sudo systemctl'
 
 # shortcut aliases
 alias weather='curl http://wttr.in/94555'

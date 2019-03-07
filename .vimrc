@@ -136,6 +136,40 @@ if $TERM == "linux"
 else
 	colorscheme transparent
 endif
+
+" 15. Highlighting tags					*tag-highlight*
+" 
+" If you want to highlight all the tags in your file, you can use the following
+" mappings.
+"
+" 	<F11>	-- Generate tags.vim file, and highlight tags.
+" 	<F12>	-- Just highlight tags based on existing tags.vim file.
+"
+nnoremap <F11>  :sp tags<CR>:%s/^\([^	:]*:\)\=\([^	]*\).*/syntax keyword Tag \2/<CR>:wq! tags.vim<CR>/^<CR><F12>
+nnoremap <F12>  :so tags.vim<CR>
+" 
+" WARNING: The longer the tags file, the slower this will be, and the more
+" memory Vim will consume.
+"
+" Only highlighting typedefs, unions and structs can be done too.  For this you
+" must use Exuberant ctags (found at http://ctags.sf.net).
+"
+" Put these lines in your Makefile:
+"
+" # Make a highlight file for types.  Requires Exuberant ctags and awk
+" types: types.vim
+" types.vim: *.[ch]
+" 	ctags --c-kinds=gstu -o- *.[ch] |\
+" 		awk 'BEGIN{printf("syntax keyword Type\t")}\
+" 			{printf("%s ", $$1)}END{print ""}' > $@
+"
+" And put these lines in your vimrc: >
+"
+"    " load the types.vim highlighting file, if it exists
+"    autocmd BufRead,BufNewFile *.[ch] let fname = expand('<afile>:p:h') . '/types.vim'
+"    autocmd BufRead,BufNewFile *.[ch] if filereadable(fname)
+"    autocmd BufRead,BufNewFile *.[ch]   exe 'so ' . fname
+"    autocmd BufRead,BufNewFile *.[ch] endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
 " Latex stuff {{{
@@ -303,6 +337,10 @@ nnoremap <Leader>sC $?\/\*<CR>dd/\*\/<CR>dd2<C-o>:noh<CR>
 
 " good for quickly putting a breakpoint-style printing statement
 nnoremap <Leader>wt owrite(1,"t",1);<Esc>
+
+" My standard {} macro adds a newline, which is great, but this macro is for
+" pasting something into one of these blocks, and deleting the newline.
+nnoremap <Leader>i pkdd<Esc>vi{=
 
 " surround current line with {}
 nnoremap <Leader>s{ O{<Esc>jo}<Esc>k==
