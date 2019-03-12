@@ -366,16 +366,47 @@ nnoremap <Del> <C-e>
 """"""""""""""""""""""""""""""""""""""""""}}}
 " Window navigation {{{
 """""""""""""""""""""""""""""""""""""""""""""
-" Changing windows
-nnoremap <A-h> <C-w>h
-nnoremap <A-j> <C-w>j
-nnoremap <A-k> <C-w>k
-nnoremap <A-l> <C-w>l
+" Window navigation
+if has('mac')
+	nnoremap <C-h> <C-w>h
+	nnoremap <C-j> <C-w>j
+	nnoremap <C-k> <C-w>k
+	nnoremap <C-l> <C-w>l
+else
+	nnoremap <A-h> <C-w>h
+	nnoremap <A-j> <C-w>j
+	nnoremap <A-k> <C-w>k
+	nnoremap <A-l> <C-w>l
+endif
+
+" Tab naviaation
+if !has('mac')
+	nnoremap <A-S-h> gT
+	nnoremap <A-S-l> gt
+endif
+
 " Fullscreen window
 nnoremap <C-w>f <C-w>_<C-w><bar>
-" Tab naviaation
-nnoremap <A-S-h> gT
-nnoremap <A-S-l> gt
+""""""""""""""""""""""""""""""""""""""""""}}}
+" Buffer navigation {{{
+"""""""""""""""""""""""""""""""""""""""""""""
+" switches to last buffer
+nnoremap <Leader>bl :buffer #<CR>
+" switches to first terminal buffer
+nnoremap <Leader>bt :buffer term<Tab><CR>
+" switches to next terminal buffer
+nnoremap <Leader>bt :buffer term<Tab><CR>
+
+" TODO improve these (I think bd and bw automatically switch to the previous
+" buffer)
+" deletes buffer and switches to last buffer
+nnoremap <Leader>bd :buffer #<CR>:bdelete #<CR>
+" wipes out buffer and switches to last buffer
+nnoremap <Leader>bw :buffer #<CR>:bwipeout #<CR>
+" Forced bdelete, for deleting a terminal
+nnoremap <Leader>bD :buffer #<CR>:bdelete! #<CR>
+" Forced bwipeout, for deleting a terminal
+nnoremap <Leader>bW :buffer #<CR>:bwipeout! #<CR>
 """"""""""""""""""""""""""""""""""""""""""}}}
 
 " Terminal opening shortcuts
