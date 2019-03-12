@@ -322,19 +322,10 @@ nnoremap <Leader>ev :edit ~/.vimrc<CR>
 nnoremap <Leader>eb :edit ~/.bashrc<CR>
 
 " opens a manpage
-nnoremap <Leader>m <Esc>:Man
+nnoremap <Leader>m <Esc>:Man<Space>
 
 " Edit a file in the home directory
 nnoremap <Leader>eh <Esc>:edit ~/
-
-" switches to last buffer
-nnoremap <Leader>bl :buffer #<CR>
-" switches to first terminal buffer
-nnoremap <Leader>bt :buffer term<Tab><CR>
-" deletes buffer and switches to last buffer
-nnoremap <Leader>bd :buffer #<CR>:bdelete #<CR>
-" switches to next terminal buffer
-nnoremap <Leader>bt :buffer term<Tab><CR>
 
 " Cursor modes {{{
 """""""""""""""""""""""""""""""""""""""""""""
@@ -421,9 +412,6 @@ else
 	nnoremap <Leader>ts :sp term://bash<CR>a
 	nnoremap <Leader>tb :term<CR>a
 endif
-
-" Forced bdelete, for deleting a terminal
-nnoremap <Leader>td :buffer #<CR>:bdelete! #<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
 " Visual mode remaps {{{
@@ -480,14 +468,14 @@ tnoremap <A-l> <C-\><C-N><C-w>l
 tnoremap <A-S-h> <C-\><C-N>gT
 tnoremap <A-S-l> <C-\><C-N>gt
 
-" Shortcut for man
-tnoremap <Leader>m <C-\><C-N>:Man
+" opens a manpage
+tnoremap <Leader>m <C-\><C-N>:Man<Space>
 
 " Edit a file in the home directory
 tnoremap <Leader>eh <C-\><C-N>:edit ~/
 
 " Buffer navigation
-tnoremap <Leader>bl <C-\><C-N>:b #<CR>
+tnoremap <Leader>bl <C-\><C-N>:buffer #<CR>
 
 " Command shortcuts! How fun!
 tnoremap <A-s> <C-\><C-n>:call VisualMapper(g:commander)<cr>
