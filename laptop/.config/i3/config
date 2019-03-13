@@ -183,6 +183,29 @@ bindsym $mod+Mod1+q exec i3lock -c 000000
 bindsym $mod+s scratchpad show
 bindsym $mod+Shift+s move scratchpad
 
+# From Luke Smith's LARBS, used as reference: {{{
+# General dropdown window traits. The order can matter.
+#for_window [instance="dropdown_*"] floating enable
+#for_window [instance="dropdown_*"] move scratchpad
+#for_window [instance="dropdown_*"] sticky enable
+#for_window [instance="dropdown_*"] scratchpad show
+#for_window [instance="dropdown_tmuxdd"] resize set 625 450
+#for_window [instance="dropdown_dropdowncalc"] resize set 800 300
+#for_window [instance="dropdown_tmuxdd"] border pixel 3
+#for_window [instance="dropdown_dropdowncalc"] border pixel 2
+#for_window [instance="dropdown_*"] move position center
+# }}}
+for_window [instance="dropdown_*"] floating enable
+for_window [instance="dropdown_*"] move scratchpad
+for_window [instance="dropdown_*"] sticky enable
+for_window [instance="dropdown_notes"] resize set 580 460
+for_window [instance="dropdown_notes"] border pixel 3
+for_window [instance="dropdown_*"] move position center
+
+exec --no-startup-id $urxvt -name dropdown_notes -e nvim term:///bin/bash -c "colo transparent" -c "start"
+
+bindsym $mod+n exec --no-startup-id ddspawn notes '$urxvt -name dropdown_notes -e nvim term:///bin/bash -c "colo transparent" -c "start"'
+
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +2% | pkill -RTMIN+10 i3blocks
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -2% | pkill -RTMIN+10 i3blocks
