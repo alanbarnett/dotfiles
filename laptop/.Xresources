@@ -5,8 +5,6 @@ xterm*faceSize: 12
 
 URxvt*font: xft:xos4 Terminus:style=Regular:size=12
 URxvt*boldFont: xft:xos4 Terminus:style=Regular:size=12
-!URxvt*font: xft:Misc Tamsyn:style=Regular:size=12
-!URxvt*boldFont: xft:Misc Tamsyn:style=Regular:size=12
 
 Xft.dpi:        72
 Xft.antialias:  true
@@ -17,11 +15,11 @@ Xft.autohint:   false
 Xft.lcdfilter:  lcddefault
 
 ! URxvt Resize Font
-URxvt.perl-ext-common:	resize-font
-URxvt.keysym.C-minus:     resize-font:smaller
-URxvt.keysym.C-plus:      resize-font:bigger
-URxvt.keysym.C-equal:     resize-font:reset
-URxvt.keysym.C-question:  resize-font:show
+URxvt.perl-ext-common:		resize-font
+URxvt.keysym.C-minus:		resize-font:smaller
+URxvt.keysym.C-plus:		resize-font:bigger
+URxvt.keysym.C-equal:		resize-font:reset
+URxvt.keysym.C-question:	resize-font:show
 
 URxvt.scrollBar: false
 
