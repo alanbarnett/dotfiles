@@ -10,6 +10,14 @@ set $mod Mod4
 # Set floating modifier to mod
 floating_modifier $mod
 
+# Make annoying things float
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+
 # options for urxvt
 set $urxvt urxvt -b 15 -perl-lib ~/.config/urxvt/ext
 
