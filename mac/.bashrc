@@ -38,29 +38,29 @@ norminator ()
 	norminette $1 | GREP_COLOR='1;38;5;40' egrep --color=always "^Norme|$" | GREP_COLOR='1;38;5;33' egrep --color=always '^Warning|$' | GREP_COLOR='1;38;5;196' egrep --color=always '^Error|$'
 }
 
-PS1='\[\e[1;37m\]\342\224\214[\[\e[1;36m\]\u@\h\[\e[1;37m\]]\342\224\200(\[\e[1;32m\]\w$(git_branch_prompt.sh)\[\e[1;37m\])\342\224\200(\[\e[1;34m\]$(date "+%I:%M %p")\[\e[1;37m\])\n\[\e[m\]'
+# Script for my prompt
+. $HOME/clones/ptheme/prompt_alan_mac.sh
 
 # quality of life improvements
 alias ls='ls -G'
-alias la='ls -a'
-alias ll='ls -l'
-alias lla='ls -la'
 alias mv='mv -iv'
 alias cp='cp -iv'
 alias gcc='gcc $CFLAGS'
 
 # shortcut aliases
+alias la='ls -a'
+alias ll='ls -l'
+alias lla='ls -la'
 alias proj='cd ~/cadet/projects'
 alias gproj='cd ~/cadet/git'
 alias pdfs='cd /nfs/intrav2cdn/pdf/pdf'
 alias cs='clear; screenfetch 2> /dev/null'
-alias 42fc='bash ~/clones/42FileChecker/42FileChecker.sh'
-alias 42fcnoi='bash ~/clones/42FileChecker/42FileChecker.sh --project "ft_printf" --path "~/cadet/projects/ft_printf"'
 
 # git shortcuts
 alias g='git'
-alias gs='git status'
-alias gl='git log --oneline --graph'
-alias gd='git diff'
+alias ga='git add'
 alias gc='git commit'
+alias gd='git diff'
+alias gl='git log --oneline --graph'
 alias gp='git push'
+alias gs='git status'
