@@ -44,6 +44,9 @@ xterm*eightBitInput: false
 
 ! Colors
 
+URxvt.boldMode: false
+URxvt*colorBDMode: true
+
 ! Text (Normal, Normal, Cursor)
 ! Black (Cursor)
 ! Red (Tag)
@@ -55,8 +58,8 @@ xterm*eightBitInput: false
 ! White (Search)
 ! FMT(?) (Include, StatusLine, ErrorMsg)
 
-! special
-*.foreground:   #a8a8a8
+! text
+*.foreground:   #d0d0d0
 *.background:   #000000
 *.cursorColor:  #a8a8a8
 
@@ -130,11 +133,3 @@ xterm*eightBitInput: false
 ! white
 !*.color7:	#abb2bf
 !*.color15:	#828997
-
-vim: ft=dosini cms=#%s
-
-URxvt.boldMode: false
-URxvt*colorBDMode: true
-
-! Linking
-! xrdb -merge .Xresources
