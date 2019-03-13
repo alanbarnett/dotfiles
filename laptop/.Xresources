@@ -1,7 +1,7 @@
 ! Font
 xterm*font: xft:xos4 Terminus:style=Regular:size=12
 xterm*boldFont: xft:xos4 Terminus:style=Regular:size=12
-xterm*faceSize: 10
+xterm*faceSize: 12
 
 URxvt*font: xft:xos4 Terminus:style=Regular:size=12
 URxvt*boldFont: xft:xos4 Terminus:style=Regular:size=12
@@ -43,7 +43,6 @@ xterm*charClass: 33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
 
 xterm*termName: xterm-256color
 xterm*eightBitInput: false
-
 
 ! Colors
 
