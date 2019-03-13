@@ -16,7 +16,8 @@ mkdir -p /tmp/.abarnett-brew-locks
 export EDITOR='nvim'
 export MAIL=alanbarnett328@gmail.com
 
-PATH=$HOME/clones/valgrind:$HOME/clones/color-scripts/color-scripts:$HOME/bin:$HOME/dotfiles/bin:$HOME/.brew/bin:$HOME/cadet/projects/ft_ls:$PATH
+PATH=$HOME/clones/color-scripts/color-scripts:$HOME/bin:$HOME/dotfiles/bin:$HOME/.brew/bin:$PATH
+
 HISTIGNORE="history:ls:pwd:fg:bg:clear:exit"
 HISTCONTROL=ignoreboth
 
