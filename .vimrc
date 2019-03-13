@@ -359,8 +359,8 @@ nnoremap <Leader>ev :edit ~/.vimrc<CR>
 " edits bashrc
 nnoremap <Leader>eb :edit ~/.bashrc<CR>
 
-" opens a manpage
-nnoremap <Leader>m <Esc>:Man
+" Shortcut for man
+nnoremap <Leader>m <Esc>:Man<Space>
 
 " Edit a file in the home directory
 nnoremap <Leader>eh <Esc>:edit ~/
@@ -488,7 +488,7 @@ tnoremap <A-S-h> <C-\><C-N>gT
 tnoremap <A-S-l> <C-\><C-N>gt
 
 " Shortcut for man
-tnoremap <Leader>m <C-\><C-N>:Man
+tnoremap <Leader>m <C-\><C-N>:Man<Space>
 
 " Edit a file in the home directory
 tnoremap <Leader>eh <C-\><C-N>:edit ~/
