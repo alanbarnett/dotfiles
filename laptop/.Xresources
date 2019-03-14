@@ -1,11 +1,50 @@
-! Font
+! Settings {{{
+
+! xterm terminal name
+xterm*termName: xterm-256color
+
+! Every shell is a login shell
+xterm*loginShell: true
+
+! xterm default size (I think)
+xterm*vt100*geometry: 80x50
+
+! Scrollback
+xterm*saveLines: 2000
+URxvt.saveLines: 16834
+
+! Don't know what these are for
+xterm*charClass: 33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
+xterm*eightBitInput: false
+
+! }}}
+
+! Appearance settings {{{
+
+URxvt.scrollBar: false
+
+! Settings for false transparency
+!urxvt*transparent: true
+!urxvt*shading: 50
+
+! true transparency
+urxvt*depth: 32
+urxvt*background: rgba:0000/0000/0000/6666
+
+! }}}
+
+! Font {{{
+
+! xterm
 xterm*font: xft:xos4 Terminus:style=Regular:size=12
 xterm*boldFont: xft:xos4 Terminus:style=Regular:size=12
 xterm*faceSize: 12
 
+! urxvt
 URxvt*font: xft:xos4 Terminus:style=Regular:size=12
 URxvt*boldFont: xft:xos4 Terminus:style=Regular:size=12
 
+! xft settings
 Xft.dpi:        72
 Xft.antialias:  true
 Xft.rgba:       rgb
@@ -21,28 +60,9 @@ URxvt.keysym.C-plus:		resize-font:bigger
 URxvt.keysym.C-equal:		resize-font:reset
 URxvt.keysym.C-question:	resize-font:show
 
-URxvt.scrollBar: false
+! }}}
 
-!urxvt*transparent: true
-!urxvt*shading: 50
-urxvt*depth: 32
-urxvt*background: rgba:0000/0000/0000/6666
-
-! Every shell is a login shell
-xterm*loginShell: true
-
-xterm*vt100*geometry: 80x50
-
-! Scrollback
-xterm*saveLines: 2000
-URxvt.saveLines: 16834
-
-xterm*charClass: 33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
-
-xterm*termName: xterm-256color
-xterm*eightBitInput: false
-
-! Colors
+! Colors {{{
 
 URxvt.boldMode: false
 URxvt*colorBDMode: true
@@ -138,6 +158,8 @@ URxvt*colorBDMode: true
 !*.color7:	#abb2bf
 !*.color15:	#828997
 !
+! }}}
+
 ! }}}
 
 ! vim: foldmethod=marker foldmarker={{{,}}}
