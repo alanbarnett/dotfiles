@@ -13,6 +13,7 @@ export EDITOR=nvim
 export EMAIL=alanbarnett328@gmail.com
 
 PATH=$PATH:$HOME/bin:$HOME/dotfiles/bin:$HOME/color-scripts/color-scripts
+
 HISTCONTROL=ignoreboth
 HISTIGNORE="history:ls:pwd:fg:bg:clear:exit"
 
@@ -87,6 +88,7 @@ alias n='sudo netctl'
 alias p='sudo pacman'
 
 # cd shortcuts
+alias dots='cd ~/dotfiles'
 alias proj='cd ~/projects'
 
 # }}}
