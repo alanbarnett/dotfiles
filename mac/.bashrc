@@ -53,7 +53,7 @@ norminator ()
 
 # Prompt {{{
 
-# Script for my prompt
+# Use ptheme for my prompt
 . $HOME/clones/ptheme/prompt_alan_mac.sh
 
 # }}}
@@ -83,6 +83,7 @@ alias gp='git push'
 alias gs='git status'
 
 # cd shortcuts
+alias dots='cd ~/dotfiles'
 alias proj='cd ~/cadet/projects'
 alias gproj='cd ~/cadet/git'
 alias pdfs='cd /nfs/intrav2cdn/pdf/pdf'
