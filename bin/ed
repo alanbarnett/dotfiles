@@ -1,3 +1,4 @@
 #!/bin/sh
 
-find $HOME/dotfiles -path "*/.git" -prune -o -print | fzf | xargs -r $EDITOR
+cd $HOME/dotfiles
+find . -path "*/.git" -prune -o -print | fzf | xargs -r $EDITOR
