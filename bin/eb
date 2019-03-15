@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cd $HOME/bin
+find . -path "*/.git" -prune -o -print | fzf | xargs -r $EDITOR
