@@ -353,9 +353,9 @@ nnoremap <Leader>sn :12sp ~/notes<CR>
 " sources current file
 nnoremap <Leader>so :source %<CR>
 " sources vimrc
-nnoremap <Leader>sv :source ~/.vimrc<CR>
+nnoremap <Leader>sv :source ~/.vim/vimrc<CR>
 " edits vimrc
-nnoremap <Leader>ev :edit ~/.vimrc<CR>
+nnoremap <Leader>ev :edit ~/.vim/vimrc<CR>
 " edits bashrc
 nnoremap <Leader>eb :edit ~/.bashrc<CR>
 
