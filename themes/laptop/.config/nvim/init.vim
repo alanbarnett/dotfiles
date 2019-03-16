@@ -26,13 +26,3 @@ source ~/.vim/vimrc
 "
 " " Highlight group for extra spaces (set to green)
 " highlight ExtraWhitespace ctermbg=darkgreen
-"
-" if $TERM == "linux"
-" 	highlight Normal ctermfg=7 ctermbg=8
-" 	highlight Visual ctermbg=magenta
-" 	highlight LineNr ctermfg=darkred ctermbg=magenta
-" 	highlight CursorLine ctermbg=red cterm=bold
-" 	highlight CursorLineNr ctermfg=red ctermbg=darkred
-" 	highlight Folded ctermbg=magenta
-" 	highlight ColorColumn ctermbg=darkred
-" endif
