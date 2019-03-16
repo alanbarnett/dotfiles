@@ -13,7 +13,7 @@ xterm*vt100*geometry: 80x50
 xterm*saveLines: 2000
 URxvt.saveLines: 16834
 
-! Don't know what these are for
+! I do not know what these are for
 xterm*charClass: 33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
 xterm*eightBitInput: false
 
@@ -158,7 +158,48 @@ URxvt*colorBDMode: true
 !*.color7:	#abb2bf
 !*.color15:	#828997
 !
-! }}}
+!! }}}
+
+!! ekomizer bw/dark colors {{{
+!
+!! text
+!*.foreground:   #d0d0d0
+!*.background:   #000000
+!*.cursorColor:  #a8a8a8
+!
+!! black
+!*.color0:		#615454
+!*.color8:		#2b3636
+!
+!! red
+!*.color1:		#7a7a7a
+!*.color9:		#363636
+!
+!! green
+!*.color2:		#9c9187
+!*.color10:		#333333
+!
+!! yellow
+!*.color3:		#998f85
+!*.color11:		#7b6b75
+!
+!! blue
+!*.color4:		#808075
+!*.color12:		#7e6e78
+!
+!! magenta
+!*.color5:		#918686
+!*.color13:		#826a75
+!
+!! cyan
+!*.color6:		#adada1
+!*.color14:		#524747
+!
+!! white
+!*.color7:		#c7c7bb
+!*.color15:		#59fefe
+!
+!! }}}
 
 ! }}}
 
