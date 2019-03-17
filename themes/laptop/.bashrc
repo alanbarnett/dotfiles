@@ -76,10 +76,13 @@ alias setv='pactl set-sink-volume 0'
 # git shortcuts
 alias g='git'
 alias ga='git add'
+alias gb='git branch'
 alias gc='git commit'
+alias gC='git checkout'
 alias gd='git diff'
-alias gl='git log --oneline --graph'
+alias gl='git log --oneline --graph --all'
 alias gp='git push'
+alias gP='git pull'
 alias gs='git status'
 
 # sudo shortcuts
