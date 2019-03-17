@@ -76,10 +76,13 @@ alias fls='ft_ls -Gl'
 # git shortcuts
 alias g='git'
 alias ga='git add'
+alias gb='git branch'
 alias gc='git commit'
+alias gC='git checkout'
 alias gd='git diff'
 alias gl='git log --oneline --graph --all'
 alias gp='git push'
+alias gP='git pull'
 alias gs='git status'
 
 # cd shortcuts
