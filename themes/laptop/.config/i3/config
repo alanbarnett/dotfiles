@@ -57,7 +57,7 @@ bindsym $mod+Shift+b exec iceweasel
 bindsym $mod+b exec qutebrowser
 
 # urxvt
-bindsym $mod+Return exec $urxvt
+bindsym $mod+Return exec termite
 # nvim terminal
 bindsym $mod+Shift+Return exec $urxvt -e nvim term:///bin/bash -c "colo transparent" -c "start"
 
