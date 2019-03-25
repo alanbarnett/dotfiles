@@ -7,6 +7,9 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Starting prompt hello message
+echo -ne "\e[1;34mhello \e[m"
+
 # Variables {{{
 
 export EDITOR=nvim
