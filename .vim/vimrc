@@ -494,7 +494,7 @@ cnoremap <Leader><Leader> <C-c>
 
 " Terminal remaps {{{
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" nice esc shortcut, jk is inconvenient for scrolling and <c-\><c-n> sucks
+" nice esc shortcut, jk is inconvenient when scrolling and <c-\><c-n> sucks
 tnoremap <Leader><Leader> <C-\><C-n>
 
 " Window navigation
@@ -544,59 +544,5 @@ endfunction
  \  ["p > Show processes (ps)",		"ips ux\n"],
  \  ["q > Cancel",					"i"]]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-
-" Things I need to look into still {{{
-"	statusline:
-"		preview marker
-"		buffer number
-"	reading:
-"		object-motions
-"		local-options
-"		setlocal
-"		map-local
-"		autocmd
-"			events
-"		syntax on vs syntax enable
-"		verbose
-"		syntax
-"		default highlights
-"		arglist
-"		modeline
-"		sandbox
-"		preview window
-"		highlight
-"		last-position-jump
-"	read the defaults
-"	read the index
-"		window commands
-"		square bracket commands
-"		g commands
-"	alterate leader possibilities
-"		- is nice
-"		, is useful, but it's functionality can be moved
-"		<CR> would be nice
-"		<Space> seems like it would be weird
-"	colorscheme
-"		t_Co
-"		good 8 color scheme
-"	preview window
-"	path
-"	quickfix
-"	marks
-"	jump list
-"	tabline
-"	fillchars
-"	listchars
-"	making a filetype plugin for normal text files
-"		set textwidth=79 (last column text looks gross)
-"	making a filetype plugin for c files
-"		setting comments
-"			comment wrapping with textwidth, and not source code
-"			comment auto-formatting with fo+=a
-"			set textwidth=79 (last column text looks gross)
-"		setting highlight groups
-"		maybe use syntax highlighting instead of matchadd to allow
-"		buffer-specific highlighting
-" }}}
 
 " vim: foldmethod=marker foldmarker={{{,}}}
