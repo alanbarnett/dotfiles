@@ -1,0 +1,258 @@
+[options]
+# {{{
+allow_bold = false
+audible_bell = false
+bold_is_bright = true
+clickable_url = true
+dynamic_title = true
+#font = Monospace 9
+#font = Gohu 12
+font = xos4 Terminus 12
+#fullscreen = true
+#icon_name = terminal
+mouse_autohide = false
+#scroll_on_output = false
+#scroll_on_keystroke = true
+# Length of the scrollback buffer, 0 disabled the scrollback buffer
+# and setting it to a negative value means "infinite scrollback"
+scrollback_lines = 10000
+#search_wrap = true
+#urgent_on_bell = true
+#hyperlinks = false
+
+# $BROWSER is used by default if set, with xdg-open as a fallback
+#browser = xdg-open
+
+# "system", "on" or "off"
+#cursor_blink = system
+
+# "block", "underline" or "ibeam"
+#cursor_shape = block
+
+# Hide links that are no longer valid in url select overlay mode
+#filter_unmatched_urls = true
+
+# Emit escape sequences for extra modified keys
+#modify_other_keys = false
+
+# set size hints for the window
+size_hints = true
+
+# "off", "left" or "right"
+#scrollbar = off
+# }}}
+
+[colors]
+# {{{
+
+## Default termite colors {{{
+## If both of these are unset, cursor falls back to the foreground color,
+## and cursor_foreground falls back to the background color.
+##cursor = #dcdccc
+##cursor_foreground = #dcdccc
+#
+##foreground = #dcdccc
+##foreground_bold = #ffffff
+##background = #3f3f3f
+#
+## background transparency (requires a compositor)
+#background = rgba(80, 40, 40, 0.5)
+#
+## If unset, will reverse foreground and background
+#highlight = #2f2f2f
+#
+## Colors from color0 to color254 can be set
+#color0 = #3f3f3f
+#color1 = #705050
+#color2 = #60b48a
+#color3 = #dfaf8f
+#color4 = #506070
+#color5 = #dc8cc3
+#color6 = #8cd0d3
+#color7 = #dcdccc
+#color8 = #709080
+#color9 = #dca3a3
+#color10 = #c3bf9f
+#color11 = #f0dfaf
+#color12 = #94bff3
+#color13 = #ec93d3
+#color14 = #93e0e3
+#color15 = #ffffff
+## }}}
+
+## My colors {{{
+#
+## If both of these are unset, cursor falls back to the foreground color,
+## and cursor_foreground falls back to the background color.
+##cursor = #d0d0d0
+##cursor_foreground = #2b2b2b
+#
+#foreground = #d0d0d0
+#foreground_bold = #eeeeee
+#background = #2b2b2b
+#
+## background transparency (requires a compositor)
+##background = rgba(60, 50, 70, 0.25)
+#
+## If unset, will reverse foreground and background
+#highlight = #2f2f2f
+#
+## black
+#color0 = #000000
+#color8 = #545454
+#
+## red
+#color1 = #a80000
+#color9 = #fc5454
+#
+## green
+#color2 = #00a800
+#color10 = #54fc54
+#
+## yellow
+#color3 = #a85400
+#color11 = #fcfc54
+#
+## blue
+#color4 = #0000a8
+#color12 = #5454fc
+#
+## magenta
+#color5 = #a800a8
+#color13 = #fc54fc
+#
+## cyan
+#color6 = #00a8a8
+#color14 = #54fcfc
+#
+## white
+#color7 = #a8a8a8
+#color15 = #fcfcfc
+#
+## }}}
+
+# one dark {{{
+
+# If both of these are unset, cursor falls back to the foreground color,
+# and cursor_foreground falls back to the background color.
+cursor = #a8a8a8
+cursor_foreground = #2b2b2b
+
+foreground = #abb2bf
+foreground_bold = #eeeeee
+background = #282c34
+
+# background transparency (requires a compositor)
+#background = rgba(60, 50, 70, 0.25)
+
+# If unset, will reverse foreground and background
+highlight = #2f2f2f
+
+# black
+color0 = #282c34
+color8 = #5c6370
+
+# red
+color1 = #e06c75
+color9 = #be5046
+
+# green
+color2 = #98c379
+color10 = #7a9f60
+
+# yellow
+color3 = #e5c07b
+color11 = #d19a66
+
+# blue
+color4 = #61afef
+color12 = #3b84c0
+
+# magenta
+color5 = #c678dd
+color13 = #9a52af
+
+# cyan
+color6 = #56b6c2
+color14 = #3c909b
+
+# white
+color7 = #abb2bf
+color15 = #828997
+
+# }}}
+
+## ekomizer bw/dark colors {{{
+#
+## If both of these are unset, cursor falls back to the foreground color,
+## and cursor_foreground falls back to the background color.
+#cursor = #a8a8a8
+##cursor_foreground = #2b2b2b
+#
+#foreground = #d0d0d0
+#foreground_bold = #eeeeee
+#background = #000000
+#
+## background transparency (requires a compositor)
+##background = rgba(60, 50, 70, 0.25)
+#
+## If unset, will reverse foreground and background
+#highlight = #2f2f2f
+#
+## black
+#color0 = #615454
+#color8 = #2b3636
+#
+## red
+#color1 = #7a7a7a
+#color9 = #363636
+#
+## green
+#color2 = #9c9187
+#color10 = #333333
+#
+## yellow
+#color3 = #998f85
+#color11 = #7b6b75
+#
+## blue
+#color4 = #808075
+#color12 = #7e6e78
+#
+## magenta
+#color5 = #918686
+#color13 = #826a75
+#
+## cyan
+#color6 = #adada1
+#color14 = #524747
+#
+## white
+#color7 = #c7c7bb
+#color15 = #59fefe
+#
+## }}}
+
+# }}}
+
+[hints]
+# {{{
+#font = Monospace 12
+#foreground = #dcdccc
+#background = #3f3f3f
+#active_foreground = #e68080
+#active_background = #3f3f3f
+#padding = 2
+#border = #3f3f3f
+#border_width = 0.5
+#roundness = 2.0
+# }}}
+
+# What the last line means {{{
+# ft=dosini: sets filetype to dosini for colors
+# cms=#%s: sets the comment string to #%s, where %s is the string
+# foldmethod=marker: fold with the marker, defined next
+# foldmarker={{{,}}}: sets foldmarker to these characters, which is common
+# }}}
+
+# vim: ft=dosini cms=#%s foldmethod=marker foldmarker={{{,}}}
