@@ -18,7 +18,7 @@ export EMAIL=alanbarnett328@gmail.com
 
 PATH=$PATH:$HOME/bin:$HOME/dotfiles/bin:$HOME/color-scripts/color-scripts
 
-HISTCONTROL=ignoreboth
+HISTCONTROL=ignoreboth:erasedups
 HISTIGNORE="history:ls:pwd:fg:bg:clear:exit"
 
 # For my gcc alias
