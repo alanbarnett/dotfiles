@@ -59,16 +59,17 @@ btc ()
 # Aliases {{{
 
 # default options (add arguments to default commands)
-alias ls='ls --color=auto'			# Add colors
+#alias ls='ls --color=auto'			# Add colors
+alias ls='ft_ls -Gl'				# Use my custom ls instead
 alias grep='grep --color=auto'		# Add colors
 alias cp='cp -iv'					# Ask before overwriting, show copied files
 alias mv='mv -iv'					# Ask before overwriting, show moved files
 alias gcc='gcc $CFLAGS'				# CFLAGS defined at the top, in Variables
 
 # shortcut aliases (save typing)
-alias la='ls -A'					# -A to ignore . and .. folders
+alias la='ls -a'					# -A to ignore . and .. folders
 alias ll='ls -l'
-alias lla='ls -Al'
+alias lla='ls -al'
 alias fls='ft_ls -Gl'
 # TODO make wttr into a script
 # take arg for zip code, other args for style of output
