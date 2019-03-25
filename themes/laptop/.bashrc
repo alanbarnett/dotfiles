@@ -13,6 +13,7 @@ echo -ne "\e[1;34mhello \e[m"
 # Variables {{{
 
 export EDITOR=nvim
+export BROWSER=iceweasel
 export EMAIL=alanbarnett328@gmail.com
 
 PATH=$PATH:$HOME/bin:$HOME/dotfiles/bin:$HOME/color-scripts/color-scripts
