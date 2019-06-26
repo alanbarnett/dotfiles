@@ -7,8 +7,12 @@ Avoid Gnome
 
 Figure out network time
 Make sure to install 'pulseaudio-alsa', 'pulseaudio', 'alsa-plugins'
-Also need acpi for i3blocks stupid battery script
-maybe amixer or pamixer for i3blocks stupid volume script
-	not if using my own volume script, maybe
 Keep the synaptics file with my trackpad configurations
 Remember 'xterm -report-fonts'
+
+Programs for i3blocks
+	acpi for default battery script (plus I use it in my cpu temp script)
+		might not need acpi, can get info in /sys/class instead
+	maybe amixer or pamixer for volume script
+		not if using my own volume script
+	sysstat (brings mpstat, needed by cpu_usage script)
