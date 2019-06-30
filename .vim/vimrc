@@ -123,8 +123,6 @@ set statusline+=\ 			" space separator
 
 " Highlight groups / Colors {{{
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set background=dark			" forcing my terminal to have light colors
-
 " Highlight group for extra spaces
 highlight ExtraWhitespace ctermbg=yellow
 " Highlight group for characters past column 80

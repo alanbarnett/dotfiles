@@ -1,32 +1,33 @@
-highlight Normal ctermbg=232 ctermfg=7
-highlight NormalNC ctermbg=16
-highlight EndOfBuffer ctermbg=234 ctermfg=24
-highlight Folded ctermbg=234 ctermfg=80
-highlight LineNr ctermbg=234 ctermfg=240
-highlight CursorLineNr ctermbg=236 ctermfg=magenta
-highlight CursorLine ctermbg=236 cterm=none
-highlight CursorColumn ctermbg=236 cterm=none
-highlight Visual ctermbg=238
-highlight ColorColumn ctermbg=234
-highlight VertSplit ctermbg=242 ctermfg=236 cterm=none
-highlight MatchParen ctermbg=none ctermfg=green cterm=underline
+" dark_green.vim
+" Alan Barnett
+" Last edit: 6/30 2019
 
+" Reset all highlights to their default
+highlight clear
+set background=dark
+if exists("syntax_on")
+	syntax reset
+endif
+
+" Set colors name variable, so it can be used in scripts
+let g:colors_name = "dark_green"
+
+" Dark background ui
+runtime colors/ui/dark.vim
+" Add in status and tab line layer
+runtime colors/bars/darkgreen.vim
+
+" Match parenthesis with bright red color and underline
+highlight MatchParen ctermbg=none ctermfg=210 cterm=underline
+
+" Other things I might want to color:
 " highlight ModeMsg
 " highlight WildMenu
 " highlight Search
-" highlight Pmenu	  
-" highlight PmenuSel  
-" highlight PmenuSbar 
+" highlight Pmenu
+" highlight PmenuSel
+" highlight PmenuSbar
 " highlight PmenuThumb
 " highlight MatchParen
 " highlight Substitute
 " highlight Incsearch
-
-" Highlight groups for my statusline (TODO make into colorschemes)
-highlight st_filet ctermbg=238 ctermfg=38
-highlight st_modif ctermbg=236 ctermfg=red
-highlight st_norm ctermbg=234 ctermfg=none
-highlight st_ascii ctermbg=236 ctermfg=magenta
-highlight st_ruler ctermbg=238 ctermfg=yellow
-highlight StatusLine ctermbg=green ctermfg=23 cterm=none
-highlight StatusLineNC ctermbg=240 ctermfg=green cterm=none
