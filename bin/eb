@@ -1,4 +1,5 @@
 #!/bin/sh
 
 cd $HOME/bin
-find . -path "*/.git" -prune -o -print | fzf | xargs -r $EDITOR
+FILE=$(find . -path "*/.git" -prune -o -print | fzf)
+[ -n "$FILE" ] && exec "$EDITOR" "$FILE"

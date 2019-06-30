@@ -1,4 +1,6 @@
 #!/bin/sh
 
 cd $HOME/dotfiles
-find . -path "*/.git" -prune -o -print | fzf | xargs -r $EDITOR
+
+FILE=$(find . -path "*/.git" -prune -o -print | fzf)
+[ -n "$FILE" ] && exec "$EDITOR" "$FILE"
