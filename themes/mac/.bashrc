@@ -44,11 +44,6 @@ rm ()
 	mv -iv -- "$@" ~/Trash
 }
 
-norminator ()
-{
-	norminette $1 | GREP_COLOR='1;38;5;40' egrep --color=always "^Norme|$" | GREP_COLOR='1;38;5;33' egrep --color=always '^Warning|$' | GREP_COLOR='1;38;5;196' egrep --color=always '^Error|$'
-}
-
 # }}}
 
 # Prompt {{{
