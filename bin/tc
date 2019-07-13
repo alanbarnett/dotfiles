@@ -1,0 +1,13 @@
+#!/bin/sh
+
+## TODO print usage statement, deal with input management
+## For now, this just does what it does if I use it properly
+
+echo "$@" | tr ' ' '\n' | awk -F '.' '{
+	min += $1;
+	sec += $2;
+} END {
+	min += int(sec / 60);
+	sec = (sec % 60);
+	print min ":" sec;
+}'
