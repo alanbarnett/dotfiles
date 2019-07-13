@@ -60,6 +60,7 @@ alias ls='ls -G'				# Add colors
 alias grep='grep -G'			# Add colors
 alias cp='cp -iv'				# Ask before overwriting, show copied files
 alias mv='mv -iv'				# Ask before overwriting, show moved files
+alias ln='ln -iv'				# Ask before overwriting, show linked files
 alias gcc='gcc $CFLAGS'			# CFLAGS defined at the top, in Variables
 
 # shortcut aliases (save typing)
@@ -76,9 +77,22 @@ alias gc='git commit'
 alias gC='git checkout'
 alias gd='git diff'
 alias gl='git log --oneline --graph --all'
+alias gm='git merge'
 alias gp='git push'
 alias gP='git pull'
 alias gs='git status'
+
+# docker shortcuts
+alias d='docker'
+alias dc='docker container'
+alias di='docker image'
+alias dr='docker run'
+alias drri='docker run --rm -it'
+
+# docker-machine shortcuts
+alias dm='docker-machine'
+alias dms='docker-machine start'
+alias dmS='docker-machine stop'
 
 # cd shortcuts
 alias dots='cd ~/dotfiles'
