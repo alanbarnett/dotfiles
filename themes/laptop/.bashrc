@@ -12,9 +12,16 @@ echo -ne "\e[1;34mhello \e[m"
 
 # Variables {{{
 
+# variables for ibus
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
+
 export EDITOR=nvim
+export MANPAGER='nvim +Man!'
 export BROWSER=iceweasel
 export EMAIL=alanbarnett328@gmail.com
+export TERMINAL=termite
 
 HISTCONTROL=ignoreboth:erasedups
 HISTIGNORE="history:ls:pwd:fg:bg:clear:exit"
