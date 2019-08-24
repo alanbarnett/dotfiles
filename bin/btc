@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# get current value of bitcoin
+# TODO make into a normal python script
+btc ()
+{
+	curl -s http://api.coindesk.com/v1/bpi/currentprice.json | python -c \
+	"import json, sys; value=json.load(sys.stdin)['bpi']['USD']['rate']; print(value.split('.')[0])"
+}

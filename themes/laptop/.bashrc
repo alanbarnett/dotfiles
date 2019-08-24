@@ -45,13 +45,6 @@ rm ()
 	mv -iv -- "$@" ~/Trash
 }
 
-# One-liner to get current value of bitcoin
-# TODO make into a normal python script, I hate oneliners
-btc ()
-{
-	curl -s http://api.coindesk.com/v1/bpi/currentprice.json | python -c "import json, sys; value=json.load(sys.stdin)['bpi']['USD']['rate']; print(value.split('.')[0])"
-}
-
 # }}}
 
 # Prompt {{{
@@ -69,7 +62,9 @@ alias ls='ft_ls -Gl'				# Use my custom ls instead
 alias grep='grep --color=auto'		# Add colors
 alias cp='cp -iv'					# Ask before overwriting, show copied files
 alias mv='mv -iv'					# Ask before overwriting, show moved files
+alias ln='ln -iv'					# Ask before overwriting, show linked files
 alias gcc='gcc $CFLAGS'				# CFLAGS defined at the top, in Variables
+alias less='/usr/share/nvim/runtime/macros/less.sh'
 
 # shortcut aliases (save typing)
 alias la='ls -a'					# -A to ignore . and .. folders
@@ -80,6 +75,8 @@ alias fls='ft_ls -Gl'
 # take arg for zip code, other args for style of output
 # bar vs script vs cli
 alias wttr='curl http://wttr.in/94555'
+alias gpgpx='gpg -aer gpg@sspx-music.org -r alanbarnett328@gmail.com'
+alias btc-graph='curl rate.sx/btc'
 alias cn='clear; neofetch'
 alias setv='pactl set-sink-volume 0'
 
@@ -87,13 +84,19 @@ alias setv='pactl set-sink-volume 0'
 alias g='git'
 alias ga='git add'
 alias gb='git branch'
-alias gc='git commit'
+alias gc='git commit --verbose'
 alias gC='git checkout'
 alias gd='git diff'
 alias gl='git log --oneline --graph --all'
+# Below alias shows full commit hash, which is kinda long
+#alias glp='git log  --graph --all --patch'
+# Below alias shows the short commit hash (oneline), and full commit message
+alias glp='git log  --oneline --pretty=full --graph --all --patch'
 alias gp='git push'
 alias gP='git pull'
+alias gr='git rebase'
 alias gs='git status'
+alias gS='git stash'
 
 # sudo shortcuts
 alias ss='sudo systemctl'
