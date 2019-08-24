@@ -41,8 +41,12 @@ xterm*boldFont: xft:xos4 Terminus:style=Regular:size=12
 xterm*faceSize: 12
 
 ! urxvt
-URxvt*font: xft:xos4 Terminus:style=Regular:size=12
-URxvt*boldFont: xft:xos4 Terminus:style=Regular:size=12
+! Terminus
+!URxvt*font: xft:xos4 Terminus:style=Regular:size=12
+!URxvt*boldFont: xft:xos4 Terminus:style=Regular:size=12
+! Gohufont
+URxvt*font: xft:Gohu GohuFont:style=Regular:size=12
+URxvt*boldFont: xft:Gohu GohuFont:style=Regular:size=12
 
 ! xft settings
 Xft.dpi:        72
@@ -201,6 +205,10 @@ URxvt*colorBDMode: true
 !
 !! }}}
 
+! }}}
+
+! Dzen2 {{{
+dzen2.font:	xos4 Terminus:size=12
 ! }}}
 
 ! vim: foldmethod=marker foldmarker={{{,}}}
