@@ -11,11 +11,14 @@ xterm*vt100*geometry: 80x50
 
 ! Scrollback
 xterm*saveLines: 2000
-URxvt.saveLines: 16834
+URxvt.saveLines: 16384
 
 ! I do not know what these are for
 xterm*charClass: 33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
 xterm*eightBitInput: false
+
+! URxvt disable unicode mode (gets in the way when resizing the font)
+URxvt.iso14755: false
 
 ! }}}
 
