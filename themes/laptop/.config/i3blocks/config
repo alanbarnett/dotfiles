@@ -25,9 +25,14 @@
 # The top properties below are applied to every block, but can be overridden.
 # Each block command defaults to the script name to avoid boilerplate.
 command=/usr/lib/i3blocks/$BLOCK_NAME
-separator_block_width=15
+separator_block_width=12
 markup=none
+color=#DDDDDD
 
+# Button test
+#[button]
+#interval=once
+#command=echo "Click me"; [ -z "${BLOCK_BUTTON}" ] || notify-send "${BLOCK_BUTTON} pressed"
 
 # Generic media player support
 #
@@ -115,7 +120,7 @@ interval=1
 #
 # The battery instance defaults to 0.
 [battery]
-label=BAT
+label=B
 #label=⚡
 #instance=1
 #command=battery
