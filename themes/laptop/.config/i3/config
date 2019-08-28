@@ -35,17 +35,9 @@ font xft:xos4 Terminus 12
 focus_follows_mouse no
 ############################################################################}}}
 
-# autostart {{{
 ###############################################################################
-# Setting background
-exec --no-startup-id feh --bg-scale ~/dotfiles/Pictures/blue.jpg
 
-# Start compton
-exec --no-startup-id compton --shadow-opacity=0.5 --shadow-offset-x=-2 --shadow-offset-y=-2 --fade-in-step=0.025 --fade-out-step=0.025 --fade-delta=4 --no-dock-shadow --inactive-dim 0.15 --blur-background
 
-# Wifi tray app
-#exec --no-startup-id nm-applet
-############################################################################}}}
 
 # Program shortcuts {{{
 ###############################################################################
