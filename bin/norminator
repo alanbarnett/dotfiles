@@ -5,4 +5,4 @@ YELLOW=$(printf "\e[1;33m")
 GREEN=$(printf "\e[1;32m")
 OFF=$(printf "\e[m")
 
-norminette | sed -e "s/^Norme/${GREEN}Norme${OFF}/" -e "s/^Warning/${YELLOW}Warning${OFF}/" -e "s/^Error/${RED}Error${OFF}/"
+norminette $@ | sed -e "s/^Norme/${GREEN}Norme${OFF}/" -e "s/^Warning/${YELLOW}Warning${OFF}/" -e "s/^Error/${RED}Error${OFF}/"
