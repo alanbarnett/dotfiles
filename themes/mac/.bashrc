@@ -20,9 +20,7 @@ mkdir -p /tmp/.abarnett-brew-locks
 # Variables {{{
 
 export EDITOR=nvim
-export MAIL=alanbarnett328@gmail.com
-
-PATH=$HOME/clones/color-scripts/color-scripts:$HOME/bin:$HOME/dotfiles/bin:$HOME/.brew/bin:$PATH
+export EMAIL=alanbarnett328@gmail.com
 
 HISTCONTROL=ignoreboth
 HISTIGNORE="history:ls:pwd:fg:bg:clear:exit"
@@ -49,7 +47,7 @@ rm ()
 # Prompt {{{
 
 # Use ptheme for my prompt
-. $HOME/clones/ptheme/prompt_alan_mac.sh
+. $HOME/bin/ptheme/prompt_alan.sh
 
 # }}}
 
