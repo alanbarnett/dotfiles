@@ -1,0 +1,13 @@
+#!/bin/sh
+
+START=46
+END=226
+
+i="$START"
+
+while [ "$i" -lt "$END" ]; do
+	printf "\e[48;5;${i}m "
+	((i+=6))
+done
+
+printf "\e[0m\n"

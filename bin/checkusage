@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if [ "$#" -eq 0 ]; then
+	FOLDER=$HOME
+else
+	FOLDER="$1"
+fi
+
+du -h -d 1 "$FOLDER" | sort -h > ~/usage.txt && echo "All done!" &

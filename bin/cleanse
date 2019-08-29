@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# Future ideas
+# flag for unicode
+#   needs to divide the columns in half, it's a wide character
+# flag for seconds
+
+cols=$(tput cols)
+seconds=5
+
+time_difference=$(echo "scale=3;$seconds/$cols" | bc)
+
+echo "burning sage..."
+while [ $cols -ge 1 ]; do
+	#printf "🌿"
+	printf "-"
+	sleep $time_difference
+	((--cols))
+done
+echo "computer cleansed"

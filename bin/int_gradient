@@ -1,0 +1,93 @@
+#!/bin/sh
+
+# Takes 3 arguments
+# Starting index, ending index, total steps
+# Returns a floating point number that represents the "gradient" between the
+# indexes with the amount of steps
+function int_gradient()
+{
+	START="$1"
+	END="$2"
+	STEPS="$3"
+
+	CHANGE=$(echo "scale=2; (($END - $START) / $STEPS)" | bc)
+	echo "$CHANGE"
+}
+
+function get_red()
+{
+	COLOR_INDEX="$1"
+
+	RED="$(echo "($COLOR_INDEX - 16) / 36" | bc)"
+	if [ "$RED" -gt "0" ]; then
+		RED="$(echo "55 + ($RED * 40)" | bc)"
+	else
+		RED="0"
+	fi
+	echo "$RED"
+}
+
+function get_green()
+{
+	COLOR_INDEX="$1"
+
+	GREEN="$(echo "(($COLOR_INDEX - 16) % 36) / 6" | bc)"
+	if [ "$GREEN" -gt "0" ]; then
+		GREEN="$(echo "55 + ($GREEN * 40)" | bc)"
+	else
+		GREEN="0"
+	fi
+	echo "$GREEN"
+}
+
+function get_blue()
+{
+	COLOR_INDEX="$1"
+
+	BLUE="$(echo "($COLOR_INDEX - 16) % 6" | bc)"
+	if [ "$BLUE" -gt "0" ]; then
+		BLUE="$(echo "55 + ($BLUE * 40)" | bc)"
+	else
+		BLUE="0"
+	fi
+	echo "$BLUE"
+}
+
+function make_index()
+{
+	RGB_VALUE="$1"
+	echo "($RGB_VALUE - 55) / 40" | bc
+}
+
+if [ "$#" != "3" ]; then
+	COLOR_START=137
+	COLOR_END=127
+	STEPS=10
+else
+	COLOR_START="$1"
+	COLOR_END="$2"
+	STEPS="$3"
+fi
+
+RED_COLOR=$(get_red $COLOR_START)
+GREEN_COLOR=$(get_green $COLOR_START)
+BLUE_COLOR=$(get_blue $COLOR_START)
+
+COLOR_GRADIENT_RED=$(int_gradient $RED_COLOR $(get_red $COLOR_END) $STEPS)
+COLOR_GRADIENT_GREEN=$(int_gradient $GREEN_COLOR $(get_green $COLOR_END) $STEPS)
+COLOR_GRADIENT_BLUE=$(int_gradient $BLUE_COLOR $(get_blue $COLOR_END) $STEPS)
+
+echo "$COLOR_GRADIENT_RED" "$COLOR_GRADIENT_GREEN" "$COLOR_GRADIENT_BLUE"
+
+NEW_COLOR_INDEX="$COLOR_START"
+
+while [ "$STEPS" -gt "0" ]; do
+	printf "\e[48;5;${NEW_COLOR_INDEX}m%s\e[m\n" $NEW_COLOR_INDEX
+	RED_COLOR=$(echo "$RED_COLOR + $COLOR_GRADIENT_RED" | bc)
+	GREEN_COLOR=$(echo "$GREEN_COLOR + $COLOR_GRADIENT_GREEN" | bc)
+	BLUE_COLOR=$(echo "$BLUE_COLOR + $COLOR_GRADIENT_BLUE" | bc)
+	NEW_COLOR_INDEX=$(echo "16 + (36 * $(make_index $RED_COLOR)) + (6 * $(make_index $GREEN_COLOR)) + $(make_index $BLUE_COLOR)" | bc)
+	((--STEPS))
+done
+
+printf "\e[m\n"
