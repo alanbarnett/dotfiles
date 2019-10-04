@@ -1,0 +1,14 @@
+#!/bin/sh
+
+PASS_DIR="$HOME/.password-store"
+
+cd "$PASS_DIR"
+
+# find all files, trim the ./ and .gpg, remove hidden files
+PASSWDS=$(find . -type f | sed -e "s/^\.\///" -e "s/\.gpg$//" -e "/^\./d")
+
+PASS=$(printf "$PASSWDS\n" | sort | my_dmenu -p "pass:" "$@")
+
+if [ -n "$PASS" ]; then
+	pass show --clip "$PASS"
+fi

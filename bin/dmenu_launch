@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# Nearly a direct copy of dmenu_run, except I use "my_dmenu" instead, which
+# still calls normal dmenu, but has my default options set.
+
+dmenu_path | my_dmenu -p "launch:" "$@" | ${SHELL-:"/bin/sh"} &

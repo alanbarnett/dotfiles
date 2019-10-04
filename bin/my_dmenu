@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# A wrapper around dmenu with my default options
+
+#FONT="xos4 Terminus:size-12"
+FONT="Misc Tamsyn:size=8"
+
+dmenu -fn "$FONT" -b "$@"

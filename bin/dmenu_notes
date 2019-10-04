@@ -1,0 +1,9 @@
+#!/bin/sh
+
+NOTES_DIR="$HOME/notes"
+
+FILE=$(ls "$NOTES_DIR" | my_dmenu -p "notes:" "$@")
+
+if [ -n "$FILE" ]; then
+	i3-msg exec "myterm -n "floating_note" -e nvim ~/notes/$FILE" &
+fi

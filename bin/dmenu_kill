@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Takes a list of processes, ignoring the first line (just says COMMAND)
+PROC=$(ps axo comm | tail -n +2 | my_dmenu -p "kill:" "$@")
+
+if [ -n "$PROC" ]; then
+	pkill "$PROC" &
+fi

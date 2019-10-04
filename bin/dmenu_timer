@@ -1,0 +1,10 @@
+#!/bin/sh
+
+TIMES_FILE="$HOME/Documents/alarms/timer_times"
+DURATION=$(cat "$TIMES_FILE" | sort -h | uniq | my_dmenu -p "timer:" "$@")
+
+if [ -n "$DURATION" ]; then
+	echo "$DURATION" | cat "$TIMES_FILE" - | sort -h | \
+		uniq > "$TIMES_FILE.tmp" && mv "$TIMES_FILE.tmp" "$TIMES_FILE"
+	ring_alarm in "$DURATION" &
+fi
