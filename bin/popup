@@ -1,0 +1,18 @@
+#!/bin/sh
+# From Luke Smith's LARBS, modified slightly
+
+# Toggle floating popup terminal in i3, or start if non-existing.
+# parameter: name of popup window (prefix popup_ applied automatically)
+# If the window doesn't exist, it calls a script (with the first parameter's
+# name) that makes the window.
+
+# Use positional parameter to check if we have enough arguments
+[ "$#" -lt 1 ] && exit
+
+if xwininfo -tree -root | grep "(\"popup_$1\" "; then
+	echo "Window detected."
+	i3 "[instance=\"popup_$1\"] scratchpad show; [instance=\"popup_$1\"] move position center"
+else
+	echo "Window not detected... spawning."
+	popup_"$1"
+fi

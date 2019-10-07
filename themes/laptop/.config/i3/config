@@ -10,6 +10,9 @@ set $mod Mod4
 # Set floating modifier to mod
 floating_modifier $mod
 
+# border pixel size
+set $popup_bordersize 4
+
 # Make annoying things float
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="bubble"] floating enable
@@ -157,34 +160,6 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 ############################################################################}}}
 
-# scratchpad
-bindsym $mod+s scratchpad show
-bindsym $mod+Shift+s move scratchpad
-
-# From Luke Smith's LARBS, used as reference: {{{
-# General dropdown window traits. The order can matter.
-#for_window [instance="dropdown_*"] floating enable
-#for_window [instance="dropdown_*"] move scratchpad
-#for_window [instance="dropdown_*"] sticky enable
-#for_window [instance="dropdown_*"] scratchpad show
-#for_window [instance="dropdown_tmuxdd"] resize set 625 450
-#for_window [instance="dropdown_dropdowncalc"] resize set 800 300
-#for_window [instance="dropdown_tmuxdd"] border pixel 3
-#for_window [instance="dropdown_dropdowncalc"] border pixel 2
-#for_window [instance="dropdown_*"] move position center
-# }}}
-for_window [instance="dropdown_*"] floating enable
-for_window [instance="dropdown_*"] move scratchpad
-for_window [instance="dropdown_*"] sticky enable
-for_window [instance="dropdown_notes"] resize set 580 460
-for_window [instance="dropdown_notes"] border pixel 3
-for_window [instance="dropdown_*"] move position center
-
-exec --no-startup-id $urxvt -name dropdown_notes -e nvim term:///bin/bash -c "colo transparent" -c "start"
-
-bindsym $mod+n exec --no-startup-id ddspawn notes '$urxvt -name dropdown_notes -e nvim term:///bin/bash -c "colo transparent" -c "start"'
-
-
 # workspaces {{{
 ###############################################################################
 set $w1 1
@@ -264,6 +239,40 @@ mode $gaps_mode
 
 bindsym $mod+g mode $gaps_mode
 ############################################################################}}}
+
+# popup windows {{{
+#
+# Credit to Luke Smith and his "dropdown" terminal settings, which is where
+# most of this idea came from
+#
+# window position and size settings {{{
+########################################
+#
+for_window [instance="popup_*"] floating enable
+for_window [instance="popup_*"] move scratchpad
+for_window [instance="popup_*"] sticky enable
+for_window [instance="popup_*"] border pixel $popup_bordersize
+for_window [instance="popup_*"] scratchpad show
+for_window [instance="popup_term"] resize set 580 460
+for_window [instance="popup_notes"] resize set 550 600
+for_window [instance="popup_telegram"] resize set 680 560
+for_window [instance="popup_ncmpcpp"] resize set 680 560
+for_window [instance="popup_neomutt"] resize set 1000 700
+for_window [instance="popup_*"] move position center
+#
+#####################################}}}
+# keybindings {{{
+########################################
+#
+bindsym Mod1+bar exec --no-startup-id popup term
+bindsym Mod1+F12 exec --no-startup-id popup telegram
+bindsym Mod1+F11 exec --no-startup-id popup ncmpcpp
+bindsym Mod1+F10 exec --no-startup-id popup neomutt
+bindsym $mod+n exec --no-startup-id popup notes
+#
+#####################################}}}
+#
+# }}}
 
 # Colors {{{
 ###############################################################################

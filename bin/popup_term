@@ -1,0 +1,3 @@
+#!/bin/sh
+
+myterm -n popup_term -e nvim -c terminal -c "start"

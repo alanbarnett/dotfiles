@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [ -n "$(xdotool search --name "^Telegram$")" ]; then
+	xdotool search --name "^Telegram$" set_window --classname "popup_telegram"
+fi
+
+telegram-desktop
