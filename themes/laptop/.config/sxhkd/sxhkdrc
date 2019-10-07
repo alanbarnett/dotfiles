@@ -35,7 +35,7 @@ ctrl + {XF86AudioStop, XF86AudioPlay}
 # }}}
 
 # mpc controls
-{XF86AudioPlay, XF86AudioStop
+{XF86AudioPlay, XF86AudioStop}
 	mpc {toggle, stop}; pkill -RTMIN+1 i3blocks
 {XF86AudioNext, XF86AudioPrev}
 	mpc {next, prev}
