@@ -14,7 +14,7 @@ ibus-daemon -drx	# keyboard layout switching program
 dunst &				# notification daemon
 sxhkd &				# hotkey configuration daemon
 unclutter &			# hide mouse when not moving it
-#nm-applet			# wifi panel
+#nm-applet &		# wifi panel
 
 # Hot corners
 xdotool behave_screen_edge bottom-right exec notify_date.sh &
