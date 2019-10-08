@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Like dmenu_launch, except it runs the program in a floating terminal instead
+
+program="$(dmenu_path | my_dmenu -p "float:" "$@")"
+
+[ -n "$program" ] && float $program &
