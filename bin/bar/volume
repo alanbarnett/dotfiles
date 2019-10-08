@@ -1,0 +1,34 @@
+#!/bin/sh
+
+mute=$(pactl list sinks | grep Mute | grep -o yes)
+volume=$(pactl list sinks | grep -o '[0-9]\+%' | head -n 1 | head -c -2)
+
+function get_slider()
+{
+	volume="$1"
+	if [ "$volume" == "0" ]; then
+		echo "|-----------"
+	elif [ "$volume" -lt "100" ]; then
+		printf "%*c|%*c\n" \
+			$(( ($volume / 10) + 1 )) ' ' $(( 10 - ($volume / 10) )) ' ' \
+			| tr ' ' '-'
+	else
+		echo "-----------|"
+	fi
+}
+
+if [ "$style" == "slider" ]; then
+	printf "%3d%%:%s\n" $volume $(get_slider $volume)
+else
+	printf "Vol: %d%%\n" $volume
+fi
+
+if [ -n "$mute" ]; then
+	#echo "V: ($volume)"
+	echo "M $volume"
+	echo "$color_bad"
+else
+	#echo "Vol: $volume"
+	echo "V $volume"
+	echo "$color_good"
+fi

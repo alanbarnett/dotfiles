@@ -24,157 +24,136 @@
 #
 # The top properties below are applied to every block, but can be overridden.
 # Each block command defaults to the script name to avoid boilerplate.
-command=/usr/lib/i3blocks/$BLOCK_NAME
+command=~/dotfiles/bin/bar/$BLOCK_NAME
 separator_block_width=12
 markup=none
 color=#DDDDDD
 
-# Button test
+## Testing various blocks and buttons {{{
+## Button test
 #[button]
 #interval=once
-#command=echo "Click me"; [ -z "${BLOCK_BUTTON}" ] || notify-send "${BLOCK_BUTTON} pressed"
-
-# Generic media player support
+#command=echo "Click me ${BLOCK_BUTTON}"; [ -z "${BLOCK_BUTTON}" ] || notify-send "${BLOCK_BUTTON} pressed"
 #
-# This displays "ARTIST - SONG" if a music is playing.
-# Supported players are: spotify, vlc, audacious, xmms2, mplayer, and others.
-#[mediaplayer]
-#instance=spotify
+#[funky]
+#full_text=<span foreground="red" size="x-large">Roses</span> and <i><span color="#EE37B8">violets</span></i>!
+#markup=pango
+#
+#[exit_test]
+#full_text=testing
+#command=exit 33
+#
+#[pacman]
+#full_text=c ·
+#command=echo "· ${full_text~~}"
+#color=#FFFF00
+#
+#[window]
+#command=/home/alan/clones/xtitle/xtitle -s
+#interval=persist
+#
+## Print click data
+#[clickme]
+#align=center
+#full_text=Click me!
+#min_width=Button=? x=? y=?
+#command=echo "Button=$button x=$x y=$y"
+# }}}
+
+# Old blocks that don't work anymore {{{
+## Memory usage
+##
+## The type defaults to "mem" if the instance is not specified.
+#[memory]
+##label=MEM
+#label=R
+#separator=false
+#interval=30
+#
+#[memory]
+##label=SWAP
+#label=S
+#instance=swap
+#separator=false
+#interval=30
+#
+## Disk usage
+##
+## The directory defaults to $HOME if the instance is not specified.
+## The script may be called with a optional argument to set the alert
+## (defaults to 10 for 10%).
+#[disk]
+##label=HOME
+#label=~
+##instance=/mnt/data
+#interval=30
+#
+## CPU usage
+##
+## The script may be called with -w and -c switches to specify thresholds,
+## see the script for details.
+#[cpu_usage]
+#label=CPU
 #interval=5
-#signal=10
+#min_width=CPU 99.00%
+#separator=false
+#
+#[load_average]
+#interval=10
+# }}}
 
 # MPD playing song
 # uses mpc to get the current song
-[music_ticker]
-#command=/home/alan/bin/ticker "$(now_playing)"
-#interval=persistent
+#
+[music]
 command=mpc current
 interval=once
 signal=1
 
-# Memory usage
+# Processor core temperatures
 #
-# The type defaults to "mem" if the instance is not specified.
-[memory]
-#label=MEM
-label=R
-separator=false
-interval=30
-
-[memory]
-#label=SWAP
-label=S
-instance=swap
-separator=false
-interval=30
-
-# Disk usage
-#
-# The directory defaults to $HOME if the instance is not specified.
-# The script may be called with a optional argument to set the alert
-# (defaults to 10 for 10%).
-[disk]
-#label=HOME
-label=~
-#instance=/mnt/data
-interval=30
-
-# CPU usage
-#
-# The script may be called with -w and -c switches to specify thresholds,
-# see the script for details.
-[cpu_usage]
-label=CPU
-interval=5
-min_width=CPU 99.00%
-separator=false
-
 [cpu_temp]
-command=cpu_temp
 interval=5
 min_width=0: xx.x 1: xx.x
 
-#[load_average]
-#interval=10
-
-# Network interface monitoring
+# Network status
+# shows ip address of interface
 #
-# If the instance is not specified, use the interface used for default route.
-# The address can be forced to IPv4 or IPv6 with -4 or -6 switches.
-[iface]
-#instance=wlan0
-color=#00FF00
+[network]
+interface=wlp2s0
 interval=10
-separator=false
-
-[wifi]
-#instance=wlp3s0
-interval=10
-separator=false
-
-[bandwidth]
-#instance=eth0
-interval=1
 
 # Battery indicator
 #
-# The battery instance defaults to 0.
 [battery]
-label=B
-#label=⚡
-#instance=1
-#command=battery
-interval=30
+interval=10
 
 # Volume indicator
 #
-# The first parameter sets the step (and units to display)
-# The second parameter overrides the mixer selection
-# See the script for details.
 [volume]
-#label=VOL
-command=myvolume.sh
-#label=♪
-instance=Master
-#instance=PCM
+color_good=#4ad850
+color_bad=#346a42
+style=normal
 interval=10
 signal=2
+
+## Date block
+##
+#[date]
+#color=#3456ac
+#command=date +"%-m/%d"
+#separator=false
+#interval=10
 
 # Date Time
 #
 [time]
-#command=date '+%Y-%m-%d %H:%M:%S'
-#command=date '+%a, %b %d, %r'
-command=decimaltime.sh
+color=#7478a6
+# string for the date portion (no + necessary at the beginning)
+date_string=%-m/%d
+# style can be either normal, or decimal
+# the style can be overridden in the time_style file in this directory
+style=normal
 interval=1
 
-# OpenVPN support
-#
-# Support multiple VPN, with colors.
-#[openvpn]
-#interval=20
-
-# Temperature
-#
-# Support multiple chips, though lm-sensors.
-# The script may be called with -w and -c switches to specify thresholds,
-# see the script for details.
-#[temperature]
-#label=TEMP
-#interval=10
-
-# Key indicators
-#
-# Add the following bindings to i3 config file:
-#
-# bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
-# bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
-#[keyindicator]
-#instance=CAPS
-#interval=once
-#signal=11
-
-#[keyindicator]
-#instance=NUM
-#interval=once
-#signal=11
+# vim: foldmethod=marker foldmarker={{{,}}}

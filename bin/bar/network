@@ -1,0 +1,25 @@
+#!/bin/sh
+
+# Default value for the interface
+[ -z "$interface" ] && interface=wlp2s0
+
+# Don't overwrite passed in color variables
+[ -z "$color_bad" ] && color_bad="#e24242"
+[ -z "$color_good" ] && color_good="#4ad850"
+
+if [ "$BLOCK_BUTTON" == "1" ]; then
+	profile="$(netctl list | cut -d ' ' -f 3 | my_dmenu -p "restart profile:")"
+	float sudo netctl restart "$profile"
+fi
+
+ip_address="$(ip -br addr show dev "$interface" | awk '{ print $3 }')"
+
+if [ -z "$ip_address" ]; then
+	echo "$interface down"
+	echo "down"
+	echo "$color_bad"
+else
+	echo "$ip_address"
+	echo "$ip_address"
+	echo "$color_good"
+fi

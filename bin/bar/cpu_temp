@@ -1,0 +1,3 @@
+#!/bin/sh
+
+acpi -t | awk '{ printf $2 " " $4 " " }' | head -c -1; printf "\n"
