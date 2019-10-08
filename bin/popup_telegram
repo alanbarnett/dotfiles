@@ -1,7 +1,12 @@
 #!/bin/sh
 
-if [ -n "$(xdotool search --name "^Telegram$")" ]; then
-	xdotool search --name "^Telegram$" set_window --classname "popup_telegram"
-fi
+# Launch telegram in the background
+telegram-desktop &
 
-telegram-desktop
+# Wait for it's window to appear
+while [ -z "$(xdotool search --name "^Telegram$")" ]; do
+	sleep 0.05
+done
+
+# Set the classname to popup
+xdotool search --name "^Telegram$" set_window --classname "popup_telegram"
