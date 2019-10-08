@@ -4,6 +4,7 @@
 # Starting index, ending index, total steps
 # Returns a floating point number that represents the "gradient" between the
 # indexes with the amount of steps
+
 function int_gradient()
 {
 	START="$1"
@@ -55,39 +56,75 @@ function get_blue()
 
 function make_index()
 {
-	RGB_VALUE="$1"
-	echo "($RGB_VALUE - 55) / 40" | bc
+	index="$(echo "($1 - 55) / 40" | bc)"
+	if [ "$index" == "-1" ]; then
+		echo "0";
+	else
+		echo "$index"
+	fi
 }
 
-if [ "$#" != "3" ]; then
-	COLOR_START=137
-	COLOR_END=127
-	STEPS=10
-else
-	COLOR_START="$1"
-	COLOR_END="$2"
+# Takes the green index to determine bright or dark text
+function get_contrast_color()
+{
+	if [ "$1" -lt "3" ]; then
+		echo "254"
+	else
+		echo "16"
+	fi
+}
+
+NUM_COLORS="2"
+
+if [ "$1" == "-n" ]; then
+	NUM_COLORS="$2"
 	STEPS="$3"
+	shift 3
+elif [ "$#" -lt "2" ]; then
+	echo "Needs at least the starting and ending color index" 1>&2
+	exit
+elif [ "$#" == "2" ]; then
+	STEPS="10"
+elif [ "$#" == "3" ]; then
+	STEPS="$3"
+else
+	echo "Takes maximum 3 arguments: staring color, ending color, steps" 1>&2
+	exit
 fi
 
-RED_COLOR=$(get_red $COLOR_START)
-GREEN_COLOR=$(get_green $COLOR_START)
-BLUE_COLOR=$(get_blue $COLOR_START)
+OLD_COLOR_INDEX=""
+while [ "$NUM_COLORS" -gt 1 ]; do
+	COLOR_START="$1"
+	COLOR_END="$2"
 
-COLOR_GRADIENT_RED=$(int_gradient $RED_COLOR $(get_red $COLOR_END) $STEPS)
-COLOR_GRADIENT_GREEN=$(int_gradient $GREEN_COLOR $(get_green $COLOR_END) $STEPS)
-COLOR_GRADIENT_BLUE=$(int_gradient $BLUE_COLOR $(get_blue $COLOR_END) $STEPS)
+	RED_COLOR=$(get_red $COLOR_START)
+	GREEN_COLOR=$(get_green $COLOR_START)
+	BLUE_COLOR=$(get_blue $COLOR_START)
 
-echo "$COLOR_GRADIENT_RED" "$COLOR_GRADIENT_GREEN" "$COLOR_GRADIENT_BLUE"
+	COLOR_GRADIENT_RED=$(int_gradient $RED_COLOR $(get_red $COLOR_END) $STEPS)
+	COLOR_GRADIENT_GREEN=$(int_gradient $GREEN_COLOR $(get_green $COLOR_END) $STEPS)
+	COLOR_GRADIENT_BLUE=$(int_gradient $BLUE_COLOR $(get_blue $COLOR_END) $STEPS)
 
-NEW_COLOR_INDEX="$COLOR_START"
+	((--NUM_COLORS))
+	shift
 
-while [ "$STEPS" -gt "0" ]; do
-	printf "\e[48;5;${NEW_COLOR_INDEX}m%s\e[m\n" $NEW_COLOR_INDEX
-	RED_COLOR=$(echo "$RED_COLOR + $COLOR_GRADIENT_RED" | bc)
-	GREEN_COLOR=$(echo "$GREEN_COLOR + $COLOR_GRADIENT_GREEN" | bc)
-	BLUE_COLOR=$(echo "$BLUE_COLOR + $COLOR_GRADIENT_BLUE" | bc)
-	NEW_COLOR_INDEX=$(echo "16 + (36 * $(make_index $RED_COLOR)) + (6 * $(make_index $GREEN_COLOR)) + $(make_index $BLUE_COLOR)" | bc)
-	((--STEPS))
+	NEW_COLOR_INDEX="$COLOR_START"
+	CONTRAST_COLOR="$(get_contrast_color $(make_index $GREEN_COLOR))"
+
+	STEPS_COUNTER="$STEPS"
+	while [ "$STEPS_COUNTER" -ge "0" ]; do
+		if [ "$NEW_COLOR_INDEX" != "$OLD_COLOR_INDEX" ]; then
+			printf "\e[48;5;${NEW_COLOR_INDEX}m"
+			printf "\e[38;5;${CONTRAST_COLOR}m%3s\e[m - #%02x%02x%02x\n" \
+				$NEW_COLOR_INDEX \
+				$(printf "%.0f %.0f %.0f" $RED_COLOR $GREEN_COLOR $BLUE_COLOR)
+		fi
+		RED_COLOR=$(echo "$RED_COLOR + $COLOR_GRADIENT_RED" | bc)
+		GREEN_COLOR=$(echo "$GREEN_COLOR + $COLOR_GRADIENT_GREEN" | bc)
+		BLUE_COLOR=$(echo "$BLUE_COLOR + $COLOR_GRADIENT_BLUE" | bc)
+		OLD_COLOR_INDEX="$NEW_COLOR_INDEX"
+		NEW_COLOR_INDEX=$(echo "16 + (36 * $(make_index $RED_COLOR)) + (6 * $(make_index $GREEN_COLOR)) + $(make_index $BLUE_COLOR)" | bc)
+		CONTRAST_COLOR="$(get_contrast_color $(make_index $GREEN_COLOR))"
+		((--STEPS_COUNTER))
+	done
 done
-
-printf "\e[m\n"
