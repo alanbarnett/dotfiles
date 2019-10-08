@@ -101,7 +101,7 @@ alias gs='git status'
 alias gS='git stash'
 
 # sudo shortcuts
-alias ss='sudo systemctl'
+alias s='sudo systemctl'
 alias n='sudo netctl'
 alias p='sudo pacman'
 
