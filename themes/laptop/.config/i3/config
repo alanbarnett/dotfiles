@@ -315,20 +315,22 @@ bar {
 	#status_command i3status
 	status_command i3blocks
 	i3bar_command i3bar -t
-	mode hide
+	mode dock
+	#mode hide
 	hidden_state hide
-	modifier $mod
-	height 14
+	modifier $mod+Ctrl
+	height 12
 	colors {
-		# Whole color settings
+		# whole color settings
+		# uses variables defined in the appearance/colors settings
 		background $transparent
-		statusline #dadada
-		separator #888888
+		statusline $text-color
+		separator $inactive-text-color
 		# Type				border			background		font
-		focused_workspace	$transparent	$transparent	#ffffff
+		focused_workspace	$transparent	$transparent	$text-color
 		active_workspace	$transparent	$transparent	#cf6a4c
-		inactive_workspace	$transparent	$transparent	#444444
-		urgent_workspace	$transparent	$transparent	#ec1616
+		inactive_workspace	$transparent	$transparent	$inactive-text-color
+		urgent_workspace	$transparent	$transparent	$urgent-bg-color
 	}
 }
 ############################################################################}}}
