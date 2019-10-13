@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Use dmenu and a history file to search duck duck go with Surf.
+
+HIST_FILE="$HOME/Documents/browser/search_history"
+SEARCH="$(cat "$HIST_FILE" | my_dmenu -p "search:" "$@")"
+
+if [ -n "$SEARCH" ]; then
+	echo "$SEARCH" | cat "$HIST_FILE" - | \
+		uniq | sort | > "$HIST_FILE.tmp" && mv "$HIST_FILE.tmp" "$HIST_FILE"
+	surf "https://duck.com/?q=$(echo "$SEARCH" | tr ' ' '+')" &
+fi

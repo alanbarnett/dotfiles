@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# File which contains bookmarks
+BOOKMARKS_FILE="$HOME/Documents/browser/bookmarks"
+
+# Quit if there are no bookmarks
+[ ! -f "$BOOKMARKS_FILE" ] && exit
+
+WEBSITE="$(cat "$BOOKMARKS_FILE" | uniq | sort | my_dmenu -p "url:" "$@")"
+
+if [ -n "$WEBSITE" ]; then
+	surf "$WEBSITE"
+fi

@@ -70,6 +70,22 @@ mode $dmenu_mode
 }
 ############################################################################}}}
 
+# surf {{{
+###############################################################################
+set $surf_mode "surf: [u]rl, [s]earch"
+bindsym $mod+s mode $surf_mode
+
+mode $surf_mode
+{
+	bindsym u mode "default"; exec dmenu_surf_bookmarks
+	bindsym s mode "default"; exec dmenu_search
+
+	# back to normal: Enter or Escape
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+############################################################################}}}
+
 # window manager commands {{{
 ###############################################################################
 # change focus
