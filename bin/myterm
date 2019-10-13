@@ -1,0 +1,65 @@
+#!/bin/sh
+
+# Uses $TERMINAL environment variable to launch the terminal of your choice.
+# It supports 4 generic options:
+#	-t	force specific terminal
+#	-d	starting directory
+#	-n	terminal name
+#	-e	command
+#		If you use the -e option, it must be last.
+# Each supporting terminal must be configured to handle it's options correctly.
+
+TERM_DIR=""
+TERM_NAME=""
+TERM_COMMAND=""
+
+# File which holds an optional terminal override
+TERMINAL_FILE="$HOME/.local/share/myterm/terminal"
+[ -f "$TERMINAL_FILE" ] && TERMINAL="$(cat "$TERMINAL_FILE")"
+
+# TODO use getopts (NOT getopt, which is not posix)
+while [ -n "$1" ]; do
+	case "$1" in
+		-t)
+			shift
+			TERMINAL="$1"
+			;;
+		-d)
+			shift
+			TERM_DIR="$1"
+			;;
+		-n)
+			shift
+			TERM_NAME="$1"
+			;;
+		-e)
+			shift
+			TERM_COMMAND="$@"
+			break
+			;;
+	esac
+	shift
+done
+
+case "$TERMINAL" in
+	termite)
+		[ -n "$TERM_DIR" ] && TERM_DIR="--directory=$TERM_DIR"
+		[ -n "$TERM_NAME" ] && TERM_NAME="--name=$TERM_NAME"
+		[ -n "$TERM_COMMAND" ] && TERM_COMMAND="--exec=$TERM_COMMAND"
+		$TERMINAL "$TERM_DIR" "$TERM_NAME" "$TERM_COMMAND"
+		;;
+	urxvt | my_urxvt)
+		[ -n "$TERM_DIR" ] && TERM_DIR="-cd $TERM_DIR"
+		[ -n "$TERM_NAME" ] && TERM_NAME="-name $TERM_NAME"
+		[ -n "$TERM_COMMAND" ] && TERM_COMMAND="-e $TERM_COMMAND"
+		$TERMINAL $TERM_DIR $TERM_NAME $TERM_COMMAND
+		;;
+	st)	# Doesn't support directory
+		[ -n "$TERM_NAME" ] && TERM_NAME="-n $TERM_NAME"
+		[ -n "$TERM_COMMAND" ] && TERM_COMMAND="-e $TERM_COMMAND"
+		$TERMINAL $TERM_NAME $TERM_COMMAND
+		;;
+	*)
+		echo "Not a supported terminal!" 1>&2
+		;;
+esac

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+urxvt -b 15 -perl-lib ~/.config/urxvt/ext "$@"
+#urxvt -b 15 -perl-lib ~/.config/urxvt/ext -fn "xft:xos4 Terminus:size=12,xft:Droid Sans Japanese" -fb "xft:xos4 Terminus:size=12,xft:Droid Sans Japanese" "$@"
