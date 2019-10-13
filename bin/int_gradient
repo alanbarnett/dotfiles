@@ -115,7 +115,7 @@ while [ "$NUM_COLORS" -gt 1 ]; do
 	while [ "$STEPS_COUNTER" -ge "0" ]; do
 		if [ "$NEW_COLOR_INDEX" != "$OLD_COLOR_INDEX" ]; then
 			printf "\e[48;5;${NEW_COLOR_INDEX}m"
-			printf "\e[38;5;${CONTRAST_COLOR}m%3s\e[m - #%02x%02x%02x\n" \
+			printf "\e[38;5;${CONTRAST_COLOR}m%3s\e[m - \e[38;5;${NEW_COLOR_INDEX}m#%02x%02x%02x\e[m\n" \
 				$NEW_COLOR_INDEX \
 				$(printf "%.0f %.0f %.0f" $RED_COLOR $GREEN_COLOR $BLUE_COLOR)
 		fi
