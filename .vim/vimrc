@@ -1,3 +1,7 @@
+" Alan Barnett
+" My personal vimrc file
+" If opened from within vim, type "za" (without quotes) to open and close folds
+
 " General settings {{{
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader='\'			" setting a leader key for custom key shortcuts
