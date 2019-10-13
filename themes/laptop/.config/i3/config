@@ -1,27 +1,28 @@
 # i3 config file
+# Alan Barnett
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-# Settings {{{
+# general {{{
 ###############################################################################
-# Set windows key to modifier
+#
+# variables {{{
+########################################
+#
+# set windows key to modifier
 set $mod Mod4
-
-# Set floating modifier to mod
+# set floating modifier to mod
 floating_modifier $mod
 
 # border pixel size
+set $bordersize 3
 set $popup_bordersize 4
 
-# Make annoying things float
-for_window [window_role="pop-up"] floating enable
-for_window [window_role="bubble"] floating enable
-for_window [window_role="task_dialog"] floating enable
-for_window [window_role="Preferences"] floating enable
-for_window [window_type="dialog"] floating enable
-for_window [window_type="menu"] floating enable
+# default gaps settings
+set $inner_gaps 10
+set $outer_gaps 10
 
-# Workspaces
+# workspace name variables
 set $w1 1
 set $w2 2
 set $w3 3
@@ -32,22 +33,197 @@ set $w7 7
 set $w8 8
 set $w9 9
 set $w10 10
+#
+#####################################}}}
 
+# font {{{
+########################################
+#
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-#font pango:monospace 11
-font xft:xos4 Terminus 12
+# Currently due to pango dropping support for bitmap fonts, none of these
+# work, except for the gross antialiased monospace font from pango.
+
+# Terminus, a lovely monospace bitmap font that looks great on my small screen
+#font xft:xos4 Terminus 12
+
+# Gohufont, another nice bitmap monospace font
+#font xft:Gohu GohuFont
+
+# Tamsyn, a bitmap font that can get very small
+#font xft:Misc Tamsyn 10
+
+# A monospace font from pango
+font pango:monospace 12
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
+#
+#####################################}}}
 
-# only change focus with the keyboard
-focus_follows_mouse no
+# window settings {{{
+########################################
+#
+# make certain windows float
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+#
+#####################################}}}
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 in-place (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+#
 ############################################################################}}}
 
-# dmenu {{{
+# appearance {{{
 ###############################################################################
+#
+# style of borders on newly created windows
+new_window pixel $bordersize
+new_float pixel $bordersize
+
+# gaps settings
+gaps inner $inner_gaps
+gaps outer $outer_gaps
+
+# TODO make into a mode
+# changing border style
+bindsym $mod+t border normal
+bindsym $mod+y border pixel $bordersize
+bindsym $mod+u border none
+
+# colors {{{
+########################################
+#
+# border means the title border, child_border means the window border
+
+# default colors {{{
+# class						border	backgr.	text	indic.	child_border
+#client.focused				#4c7899	#285577	#ffffff	#2e9ef4	#285577
+#client.focused_inactive	#333333	#5f676a	#ffffff	#484e50	#5f676a
+#client.unfocused			#333333	#222222	#888888	#292d2e	#222222
+#client.urgent				#2f343a	#900000	#ffffff	#900000	#900000
+#client.placeholder			#000000	#0c0c0c	#ffffff	#000000	#0c0c0c
+#
+#client.background		#ffffff
+# }}}
+
+# backup of gray colors for when termite works with monospace fonts again {{{
+# nice dark gray
+#set $bg-color				#2f343f
+# nice light gray text
+#set $inactive-text-color	#676E7D
+## main color variables
+#set $bg-color					#303540
+#set $inactive-bg-color			#202530
+#set $text-color					#DDDDDD
+#set $inactive-text-color		#888888
+#set $urgent-bg-color			#E53935
+#set $split-indicator			#455060
+#set $inactive-split-indicator	#354045
+#
+## window colors
+##						border				background			text					indicator
+#client.focused			$bg-color			$bg-color			$text-color				$split-indicator
+#client.unfocused		$inactive-bg-color	$inactive-bg-color	$inactive-text-color	$inactive-split-indicator
+#client.focused_inactive	$inactive-bg-color	$inactive-bg-color	$inactive-text-color	$inactive-split-indicator
+#client.urgent			$urgent-bg-color	$urgent-bg-color	$text-color				$split-indicator
+# }}}
+
+# main color variables
+#set $bg-color					#523284
+#set $bg-color					#503850
+#set $bg-color					#483552
+set $bg-color					#502852
+set $inactive-bg-color			#202530
+set $focused-inactive			#502852
+set $text-color					#DDDDDD
+set $inactive-text-color		#888888
+set $urgent-bg-color			#E53935
+set $split-indicator			#625464
+set $inactive-split-indicator	#354045
+
+# window colors
+#						border				background			text					indicator
+client.focused			$bg-color			$bg-color			$text-color				$split-indicator
+client.unfocused		$inactive-bg-color	$inactive-bg-color	$inactive-text-color	$inactive-split-indicator
+client.focused_inactive	$focused-inactive	$focused-inactive	$inactive-text-color	$inactive-split-indicator
+client.urgent			$urgent-bg-color	$urgent-bg-color	$text-color				$split-indicator
+#
+#####################################}}}
+#
+############################################################################}}}
+
+# modes {{{
+###############################################################################
+#
+# gaps {{{
+########################################
+#
+set $gaps_all_mode "all gaps: +[i]nner, -[I]nner, +[o]uter, -[O]uter, [c]lear, [r]eset"
+mode $gaps_all_mode
+{
+	# adjust gaps
+	bindsym i gaps inner all plus 2
+	bindsym Shift+i gaps inner all minus 2
+	bindsym o gaps outer all plus 2
+	bindsym Shift+o gaps outer all minus 2
+
+	# turning gaps on and off
+	bindsym c gaps inner all set 0; gaps outer all set 0
+	bindsym r gaps inner all set $inner_gaps; gaps outer all set $outer_gaps
+
+	# back to normal: Enter or Escape
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+
+set $gaps_workspace_mode "workspace gaps: +[i]nner, -[I]nner, +[o]uter, -[O]uter, [c]lear, [r]eset"
+mode $gaps_workspace_mode
+{
+	# adjust gaps
+	bindsym i gaps inner current plus 2
+	bindsym Shift+i gaps inner current minus 2
+	bindsym o gaps outer current plus 2
+	bindsym Shift+o gaps outer current minus 2
+
+	# turning gaps on and off
+	bindsym c gaps inner current set 0; gaps outer current set 0
+	bindsym r gaps inner current set $inner_gaps; gaps outer current set $outer_gaps
+
+	# back to normal: Enter or Escape
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+
+set $gaps_mode "gaps: [a]ll, [w]orkspace"
+mode $gaps_mode
+{
+	# other modes
+	bindsym a mode $gaps_all_mode
+	bindsym w mode $gaps_workspace_mode
+
+	# back to normal: Enter or Escape
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+
+bindsym $mod+g mode $gaps_mode
+#
+#####################################}}}
+
+# dmenu {{{
+########################################
+#
 # This uses the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -68,10 +244,12 @@ mode $dmenu_mode
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
 }
-############################################################################}}}
+#
+#####################################}}}
 
 # surf {{{
-###############################################################################
+########################################
+#
 set $surf_mode "surf: [u]rl, [s]earch"
 bindsym $mod+s mode $surf_mode
 
@@ -84,11 +262,21 @@ mode $surf_mode
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
 }
+#
+#####################################}}}
+#
 ############################################################################}}}
 
-# window manager commands {{{
+# container management {{{
 ###############################################################################
-# change focus
+#
+# focus containers {{{
+########################################
+#
+# move window focus with the cursor
+focus_follows_mouse no
+
+# focus containers
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
@@ -99,87 +287,18 @@ bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-# move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
-# alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
-
-# resize windows {{{
-###############################################################################
-bindsym $mod+r mode "resize"
-mode "resize"
-{
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
-
-        # finer controls for the arrow keys
-        bindsym Left resize shrink width 1 px or 1 ppt
-        bindsym Down resize grow height 1 px or 1 ppt
-        bindsym Up resize shrink height 1 px or 1 ppt
-        bindsym Right resize grow width 1 px or 1 ppt
-
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-############################################################################}}}
-
-# split container in horizontal orientation
-bindsym $mod+Shift+v split h
-# split container in vertical orientation
-bindsym $mod+v split v
-
-# enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
-
-# change container layout (stacked, tabbed, toggle split)
-#bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
-
-# toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
-
 # focus the parent container
 bindsym $mod+a focus parent
 # focus the child container
 bindsym $mod+Shift+a focus child
 
-# kill focused window
-bindsym $mod+Shift+q kill
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
 
-# hide bar
-bindsym $mod+F11 bar hidden_state hide
-# show bar
-bindsym $mod+F10 bar hidden_state show
+# toggle scratchpad
+bindsym $mod+ctrl+Shift+s scratchpad show
 
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 in-place (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-############################################################################}}}
-
-# workspaces {{{
-###############################################################################
-# switch to workspace
+# focus workspaces
 bindsym $mod+1 workspace $w1
 bindsym $mod+2 workspace $w2
 bindsym $mod+3 workspace $w3
@@ -190,6 +309,32 @@ bindsym $mod+7 workspace $w7
 bindsym $mod+8 workspace $w8
 bindsym $mod+9 workspace $w9
 bindsym $mod+0 workspace $w10
+
+# focus next and previous workspace
+bindsym $mod+Tab workspace next_on_output
+bindsym $mod+Shift+Tab workspace prev_on_output
+#
+#####################################}}}
+
+# move containers {{{
+########################################
+#
+# move focused container
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# make container fullscreen
+bindsym $mod+f fullscreen toggle
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $w1
@@ -202,48 +347,52 @@ bindsym $mod+Shift+7 move container to workspace $w7
 bindsym $mod+Shift+8 move container to workspace $w8
 bindsym $mod+Shift+9 move container to workspace $w9
 bindsym $mod+Shift+0 move container to workspace $w10
-############################################################################}}}
 
-# Window settings {{{
-###############################################################################
-# Window borders
-new_window pixel 2
-new_float pixel 2
-# only draw boarders if there's more than one window
-smart_borders on
+# close focused container
+bindsym $mod+Shift+q kill
+#
+#####################################}}}
 
-# TODO make into a mode
-# Changing border style
-bindsym $mod+t border normal
-bindsym $mod+y border pixel 2
-bindsym $mod+u border none
-
-# Gaps {{{
-###############################################################################
-gaps inner 15
-gaps outer 15
-
-# TODO window, workspace, global settings
-# full-control over all gaps (needs lots of modes)
-set $gaps_mode "gaps: +[i]nner, -[I]nner, +[o]uter, -[O]uter, [n]ormal, [c]lear"
-mode $gaps_mode
+# resize containers {{{
+########################################
+#
+bindsym $mod+r mode "resize"
+mode "resize"
 {
-	# Adjust gaps
-	bindsym i gaps inner all plus 2
-	bindsym Shift+i gaps inner all minus 2
-	bindsym o gaps outer all plus 2
-	bindsym Shift+o gaps outer all minus 2
+		# Pressing h, j, k, l changes window dimensions by 10 px (or 10 ppt)
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
-	# Turning gaps on and off
-	bindsym n gaps inner all set 15; gaps outer all set 15
-	bindsym c gaps inner all set 0; gaps outer all set 0
+		# Pressing arrow keys changes window dimensions by 1 px (or 1 ppt)
+        bindsym Left resize shrink width 1 px or 1 ppt
+        bindsym Down resize grow height 1 px or 1 ppt
+        bindsym Up resize shrink height 1 px or 1 ppt
+        bindsym Right resize grow width 1 px or 1 ppt
 
-	# back to normal: Enter or Escape
-	bindsym Return mode "default"
-	bindsym Escape mode "default"
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
 }
+#
+#####################################}}}
 
-bindsym $mod+g mode $gaps_mode
+# container layouts {{{
+########################################
+#
+# split container in horizontal orientation
+bindsym $mod+Shift+v split h
+# split container in vertical orientation
+bindsym $mod+v split v
+
+# change container layout (stacked, tabbed, toggle split)
+#bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+#
+#####################################}}}
+#
 ############################################################################}}}
 
 # popup windows {{{
@@ -268,7 +417,7 @@ for_window [instance="popup_neomutt"] resize set 1000 700
 for_window [instance="popup_*"] move position center
 #
 #####################################}}}
-#
+
 # keybindings {{{
 ########################################
 #
@@ -295,7 +444,7 @@ for_window [instance="floating_sudo"] resize set 200 50
 for_window [instance="floating_*"] move position center
 #
 #####################################}}}
-#
+
 # keybindings {{{
 ########################################
 #
@@ -304,27 +453,16 @@ bindsym $mod+Shift+n exec --no-startup-id float notes edit
 #####################################}}}
 #
 ############################################################################}}}
-############################################################################}}}
-
-# Colors {{{
-###############################################################################
-set $bg-color			#2f343f00
-set $inactive-bg-color		#ffffffff
-set $text-color			#f3f4f5
-set $inactive-text-color	#676E7D
-set $urgent-bg-color		#E53935
-
-# window colors
-#				border			background		text			indicator
-#client.focused			$bg-color		$bg-color		$text-color		#00ff00
-#client.unfocused		$inactive-bg-color	$inactive-bg-color	$inactive-text-color	#00ff00
-#client.focused_inactive	$inactive-bg-color	$inactive-bg-color	$inactive-text-color	#00ff00
-#client.urgent			$urgent-bg-color	$urgent-bg-color	$text-color		#00ff00
-############################################################################}}}
 
 # bar {{{
 ###############################################################################
+#
 set $transparent	#00000000
+
+# hide bar
+bindsym $mod+F11 bar hidden_state hide
+# show bar
+bindsym $mod+F10 bar hidden_state show
 
 bar {
 	#status_command i3status
@@ -341,13 +479,14 @@ bar {
 		background $transparent
 		statusline $text-color
 		separator $inactive-text-color
-		# Type				border			background		font
+		# type				border			background		font
 		focused_workspace	$transparent	$transparent	$text-color
 		active_workspace	$transparent	$transparent	#cf6a4c
 		inactive_workspace	$transparent	$transparent	$inactive-text-color
 		urgent_workspace	$transparent	$transparent	$urgent-bg-color
 	}
 }
+#
 ############################################################################}}}
 
 # vim: foldmethod=marker foldmarker={{{,}}}
