@@ -1,5 +1,4 @@
 #!/bin/sh
-#!/bin/sh
 
 if [ "$BLOCK_BUTTON" == "1" ]; then
 	output="$(acpi -b)"
@@ -15,25 +14,21 @@ fi
 ([ ! -f "$battery_file" ] || [ ! -f "$status_file" ]) && exit
 
 # Gets battery percent and status from files
-percent="$(cat "$battery_file")"
-status="$(cat "$status_file")"
-
-# Bounds checking
-[ "$percent" -lt "0" ] && percent="0"
-[ "$percent" -gt "100" ] && percent="100"
+battery_percent="$(cat "$battery_file")"
+battery_status="$(cat "$status_file")"
 
 # Define default color variables, if they aren't already set
 [ -z "$colors" ] && \
 	colors=("#ff0000" "#ff6600" "#ff9900" "#ffb200" "#ffe600" \
 			"#ffff00" "#e6ff00" "#ccff00" "#99ff00" "#80ff00" "#4cff00")
-[ -z "$charging_color" ] && charging_color="201"
+[ -z "$charging_color" ] && charging_color="#dc54bc"
 
-if [ "$status" == "Charging" ] || [ "$status" == "Unknown" ]; then
+if [ "$battery_status" == "Charging" ] || [ "$battery_status" == "Unknown" ]; then
 	color="$charging_color"
 else
-	color="${colors[$(( $percent / 10 ))]}"
+	color="${colors[$(( $battery_percent / 10 ))]}"
 fi
 
-echo "Bat: $percent%"
-echo "B $percent%"
+echo "Bat: $battery_percent%"
+echo "B $battery_percent%"
 echo "$color"
