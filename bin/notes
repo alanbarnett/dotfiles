@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# Directory for notes
+notes_dir="$HOME/notes"
+
+case "$1" in
+	l | list)
+		if [ "$2" != "--" ] && [ -d "$notes_dir/$2" ]; then
+			ls -F -1 "$notes_dir/$2" | less
+		else
+			ls -F -1 "$notes_dir" | less
+		fi
+		;;
+	e | edit)
+		cd "$notes_dir"
+		$EDITOR "./$2"
+		;;
+esac
