@@ -37,6 +37,10 @@ set undofile				" keep a persistent history of changes
 set undodir=~/.vim/undodir	" keep those files here, instead of next to the
 							" normal file
 
+set path=.,,/usr/include,**	" Include the current folder, the folder of the
+							" file I'm currently editing, the system include
+							" folder, and all subdirectories.
+
 set wildmenu				" menu for tabbing
 set wildmode=longest,full	" don't automatically complete a match
 set wildignore=*.o,*.swp	" files to ignore with the wildmenu
