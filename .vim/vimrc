@@ -12,6 +12,7 @@ syntax enable				" syntax highlighting
 
 set number					" line numbering
 set scrolloff=6				" space around the cursor when scrolling
+set sidescrolloff=6			" space around the cursor when scrolling sideways
 set colorcolumn=80			" a big column at column 80
 set noruler					" disables the ruler, so <C-g> has useful info
 
