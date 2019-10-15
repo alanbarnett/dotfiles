@@ -45,6 +45,14 @@ set wildmenu				" menu for tabbing
 set wildmode=longest,full	" don't automatically complete a match
 set wildignore=*.o,*.swp	" files to ignore with the wildmenu
 
+" menu: popup menu with all completion options
+" noinsert: don't immediately insert new text, but highlight first selection
+" noselect: bring up the menu, but don't select anything
+" longest: only complete the longest match from the beginning
+" All those other options are annoying, if you don't want the completion
+" anymore just hit <C-e>
+set completeopt=menu
+
 " Nice searching
 set ignorecase				" ignore case while searching a file,
 set smartcase				" unless capital letters are used in the pattern.
