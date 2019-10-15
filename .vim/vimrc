@@ -33,6 +33,10 @@ set splitbelow splitright	" sensible split directions
 
 set hidden					" allow buffers to exist if they aren't visible
 
+set undofile				" keep a persistent history of changes
+set undodir=~/.vim/undodir	" keep those files here, instead of next to the
+							" normal file
+
 set wildmenu				" menu for tabbing
 set wildmode=longest,full	" don't automatically complete a match
 set wildignore=*.o,*.swp	" files to ignore with the wildmenu
