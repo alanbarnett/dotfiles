@@ -58,6 +58,9 @@ set ignorecase				" ignore case while searching a file,
 set smartcase				" unless capital letters are used in the pattern.
 set incsearch				" move the cursor to the first match while typing
 set hlsearch				" highlight all search matches
+
+" List characters, for list mode (displays whitespace as actual characters)
+set listchars=tab:>\ ,space:-,trail:-,nbsp:+,precedes:«,extends:»
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
 " Programming settings {{{
