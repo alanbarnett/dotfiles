@@ -8,6 +8,22 @@ if [ "$BLOCK_BUTTON" == "1" ]; then
 	fi
 fi
 
+if [ "$BLOCK_BUTTON" == "4" ]; then
+	if [ -n "$signal" ]; then
+		pactl set-sink-volume 0 +2% | pkill "-RTMIN+$signal" i3blocks
+	else
+		pactl set-sink-volume 0 +2%
+	fi
+fi
+
+if [ "$BLOCK_BUTTON" == "5" ]; then
+	if [ -n "$signal" ]; then
+		pactl set-sink-volume 0 -2% | pkill "-RTMIN+$signal" i3blocks
+	else
+		pactl set-sink-volume 0 -2%
+	fi
+fi
+
 mute=$(pactl list sinks | grep Mute | grep -o yes)
 volume=$(pactl list sinks | grep -o '[0-9]\+%' | head -n 1 | head -c -2)
 
