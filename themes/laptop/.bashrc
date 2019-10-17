@@ -34,13 +34,13 @@ CFLAGS='-Wall -Wextra -Werror'
 # Functions {{{
 
 # Make directory, cd into it
-mkcd ()
+function mkcd ()
 {
 	mkdir -p -- "$@" && cd -- "$@"
 }
 
 # Move a file to ~/Trash instead of deleting it
-rm ()
+function rm ()
 {
 	mv -iv -- "$@" ~/Trash
 }
