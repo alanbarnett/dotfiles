@@ -32,12 +32,12 @@ CFLAGS='-Wall -Wextra -Werror'
 
 # Functions {{{
 
-mkcd ()
+function mkcd()
 {
 	mkdir -p -- "$@" && cd -- "$@"
 }
 
-rm ()
+function rm()
 {
 	mv -iv -- "$@" ~/Trash
 }
@@ -74,6 +74,7 @@ alias gb='git branch'
 alias gc='git commit'
 alias gC='git checkout'
 alias gd='git diff'
+alias gdc='git diff --cached'
 alias gl='git log --oneline --graph --all'
 alias gm='git merge'
 alias gp='git push'
