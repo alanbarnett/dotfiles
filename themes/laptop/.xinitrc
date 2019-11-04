@@ -17,7 +17,7 @@ unclutter &			# hide mouse when not moving it
 #nm-applet &		# wifi panel
 
 # Hot corners
-xdotool behave_screen_edge bottom-right exec notify_date.sh &
+xdotool behave_screen_edge bottom-right exec --sync notify_date.sh &
 
 # Keyboard layout settings
 # caps:ctrl_modifier			make caps act like control
