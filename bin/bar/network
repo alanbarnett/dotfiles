@@ -8,8 +8,7 @@
 [ -z "$color_good" ] && color_good="#4ad850"
 
 if [ "$BLOCK_BUTTON" == "1" ]; then
-	profile="$(netctl list | sed "s/^..//" | my_dmenu -p "restart profile:")"
-	[ -n "$profile" ] && float sudo netctl restart "$profile"
+	dmenu_network
 fi
 
 ip_address="$(ip -br addr show dev "$interface" | awk '{ print $3 }')"

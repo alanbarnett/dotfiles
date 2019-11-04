@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# sed removes the first two characters from netctl, which are "  " or "* "
+profile="$(netctl list | sed "s/^..//" | my_dmenu -p "restart profile:")"
+[ -n "$profile" ] && float sudo netctl restart "$profile"
