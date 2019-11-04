@@ -2,7 +2,7 @@
 xrdb .Xresources
 
 # Set desktop background
-~/.fehbg
+~/.fehbg &
 
 # Set keyboard repeat rate and delay
 xset r rate 200 25
