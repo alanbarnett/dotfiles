@@ -1,0 +1,65 @@
+Video: https://www.youtube.com/watch?v=ANZjUPUYE7s
+
+
+Comment I replied to:
+Just got this to work on an X200. Here's exactly what I did.
+
+1. Power on laptop.
+
+2. When display comes on, short SDA and SCL just a little before pressing F1 to
+access the BIOS. The timing here was tricky and took me many tries. When I got
+it correct, the computer would display errors like "EAIA access failed" and
+"security: invalid remote change requested" (didn't write down the exact
+messages)
+
+3. After these errors, it would enter the BIOS. Keep the pins shorted. If the
+timing was correct, when you access the Security->Password menu, the supervisor
+password should say "disabled" IT IS NOT YET DISABLED
+
+4. Keep the pins shorted, and open the change supervisor password box
+
+5. Release the pins once the "enter new password" dialog appears. You must
+release the pins for the changes you are about to make can be written to the
+chip.
+
+6. Enter a blank password in both boxes in the "change supervisor password"
+menu.
+
+7. Disable all over security options.
+
+If you did it correctly, you can scroll around the menu and the supervisor
+password will stay "disabled." The BIOS consults that chip when you move the
+cursor, and if you didn't get it right, the setting will return to "enabled"
+Save an exit, and the supervisor password should be cleared. The above took me
+many tries, but with patience I got it.
+
+
+My comment:
+Dude, thank you so much. I almost just spent $40 on the stupid KeyMaker thing
+to fix this. My process was a bit different from yours, so I'll explain what I
+did (also on x200)
+
+1) Power on laptop.
+
+2) As soon as the display turns on, short the SDA and SCL pins, and then I
+waited about half a second before hitting F1 to go into bios.
+
+3) Two errors popped up, that said the same as yours. But also, it didn't go
+into bios immediately. I had to hit F1 again. Before I did this, I took off the
+jumper I had between the two, took a quick breath (as I've been mucking around
+with this for the past two days), placed the jumper back on and very quickly
+hit F1 to "enter setup".
+
+4) It entered just fine. I held the jumper on until I got to the supervisor
+password section, which said disabled.
+
+5) Removed the jumper and pressed enter to change the password.
+
+6) Entered both passwords empty, to clear it.
+
+7) Pressed F10 to save and exit, and it rebooted perfectly fine, supervisor
+password cleared.
+
+Thanks for saving me from building an eeprom reader or buying an unnecessary
+arduino mod to solve a problem that took a couple minutes and a lot of stress
+:)
