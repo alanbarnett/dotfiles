@@ -418,23 +418,14 @@ nnoremap <Del> <C-e>
 " Window navigation {{{
 """""""""""""""""""""""""""""""""""""""""""""
 " Window navigation
-if has('mac')
-	nnoremap <C-h> <C-w>h
-	nnoremap <C-j> <C-w>j
-	nnoremap <C-k> <C-w>k
-	nnoremap <C-l> <C-w>l
-else
-	nnoremap <A-h> <C-w>h
-	nnoremap <A-j> <C-w>j
-	nnoremap <A-k> <C-w>k
-	nnoremap <A-l> <C-w>l
-endif
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
 
 " Tab naviaation
-if !has('mac')
-	nnoremap <A-S-h> gT
-	nnoremap <A-S-l> gt
-endif
+nnoremap <A-S-h> gT
+nnoremap <A-S-l> gt
 
 " Fullscreen window
 nnoremap <C-w>f <C-w>_<C-w><bar>
