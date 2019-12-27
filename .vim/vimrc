@@ -7,6 +7,9 @@
 let mapleader='\'			" setting a leader key for custom key shortcuts
 let maplocalleader=','		" setting a local leader key for filetype plugins
 
+let g:sh_no_error=1			" don't cause an error when using $() in sh scripts
+							" for some reason this only happens on the macs
+
 filetype plugin indent on	" filetype plugins and indentation
 syntax enable				" syntax highlighting
 
