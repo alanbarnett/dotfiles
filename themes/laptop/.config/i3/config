@@ -23,16 +23,16 @@ set $inner_gaps 10
 set $outer_gaps 10
 
 # workspace name variables
-set $w1 1
-set $w2 2
-set $w3 3
-set $w4 4
-set $w5 5
-set $w6 6
-set $w7 7
-set $w8 8
-set $w9 9
-set $w10 10
+set $w1 1:一
+set $w2 2:二
+set $w3 3:三
+set $w4 4:四
+set $w5 5:五
+set $w6 6:六
+set $w7 7:七
+set $w8 8:八
+set $w9 9:九
+set $w10 10:十
 #
 #####################################}}}
 
@@ -468,6 +468,8 @@ bar {
 	#status_command i3status
 	status_command i3blocks
 	i3bar_command i3bar -t
+	# Hide the workspace numbers (in the form 1:name)
+	strip_workspace_numbers yes
 	mode dock
 	#mode hide
 	hidden_state hide
