@@ -87,9 +87,9 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 # appearance {{{
 ###############################################################################
 #
-# style of borders on newly created windows
-new_window pixel $bordersize
-new_float pixel $bordersize
+# style of borders
+default_border pixel $bordersize
+default_floating_border pixel $bordersize
 
 # gaps settings
 gaps inner $inner_gaps
