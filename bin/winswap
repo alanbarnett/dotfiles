@@ -1,0 +1,18 @@
+#!/bin/sh
+
+function show_usage()
+{
+	echo "winswap (left|down|up|right)"
+}
+
+case "$1" in
+	left | down | up | right)
+		;;
+	*)
+		show_usage >&2; exit
+		;;
+esac
+
+cur_id="$(xdotool getwindowfocus)"
+
+i3-msg "focus "$1"; swap with id "$cur_id""
