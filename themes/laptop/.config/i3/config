@@ -333,6 +333,17 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
+# swap focused container with adjacent container
+bindsym $mod+Mod1+h exec --no-startup-id winswap left
+bindsym $mod+Mod1+j exec --no-startup-id winswap down
+bindsym $mod+Mod1+k exec --no-startup-id winswap up
+bindsym $mod+Mod1+l exec --no-startup-id winswap right
+# alternatively, you can use the cursor keys:
+bindsym $mod+Mod1+Left exec --no-startup-id winswap left
+bindsym $mod+Mod1+Down exec --no-startup-id winswap down
+bindsym $mod+Mod1+Up exec --no-startup-id winswap up
+bindsym $mod+Mod1+Right exec --no-startup-id winswap right
+
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
