@@ -486,13 +486,14 @@ bar {
 	i3bar_command i3bar -t
 	#status_command i3status
 	status_command i3blocks
-	# Hide the workspace numbers (in the form 1:name)
-	strip_workspace_numbers yes
+	position top
 	mode dock
 	#mode hide
 	hidden_state hide
 	# Hold to show dock if it is hidden
 	modifier $mod+Ctrl
+	# Hide the workspace numbers (in the form 1:name)
+	strip_workspace_numbers yes
 	height 12
 	colors {
 		# whole color settings
