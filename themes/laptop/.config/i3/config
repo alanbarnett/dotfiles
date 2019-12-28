@@ -101,6 +101,9 @@ bindsym $mod+t border normal
 bindsym $mod+y border pixel $bordersize
 bindsym $mod+u border none
 
+# only show borders if there is one window with no gaps
+hide_edge_borders smart_no_gaps
+
 # colors {{{
 ########################################
 #
