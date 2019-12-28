@@ -466,6 +466,8 @@ set $transparent	#00000000
 bindsym $mod+F11 bar hidden_state hide
 # show bar
 bindsym $mod+F10 bar hidden_state show
+# dock/undock bar
+bindsym $mod+F12 bar mode toggle
 
 bar {
 	#status_command i3status
