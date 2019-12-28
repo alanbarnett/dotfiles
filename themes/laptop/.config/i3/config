@@ -470,14 +470,16 @@ bindsym $mod+F10 bar hidden_state show
 bindsym $mod+F12 bar mode toggle
 
 bar {
+	# Launch bar with transparency
+	i3bar_command i3bar -t
 	#status_command i3status
 	status_command i3blocks
-	i3bar_command i3bar -t
 	# Hide the workspace numbers (in the form 1:name)
 	strip_workspace_numbers yes
 	mode dock
 	#mode hide
 	hidden_state hide
+	# Hold to show dock if it is hidden
 	modifier $mod+Ctrl
 	height 12
 	colors {
