@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# Simple pidof script to fill the whole in MacOS
+
+function show_usage()
+{
+	echo "usage: pidof (process)
+Takes exactly one argument, the name of the executable who's pid you'd like."
+}
+
+[ "$#" != "1" ] && show_usage 1>&2 && exit
+
+pid="$(ps -c | awk '/'"$1"'/{ print $1 }')"
+[ -n "$pid" ] && echo "$pid"

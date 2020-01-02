@@ -1,0 +1,25 @@
+#!/bin/sh
+
+# Make sure all the numbers are 3 digits to make the math work
+# Write the color code 46 as 046, even though that looks like octal
+color_bar="\e[48;5;196m       \e[48;5;208m       \e[48;5;220m       \e[48;5;190m       \e[48;5;118m       "
+color_done="\e[48;5;46m"
+open_bar="\e[1;37m["
+close_bar="\e[1;37m]\e[m"
+
+# Get current hours value
+[ -z "$hours" ] && hours="$(hours --no-color)"
+# Trim off decimal places
+hours="${hours%%.*}"
+
+# Full green, full width bar for over 35 hours
+[ "${hours:-0}" -ge "35" ] \
+	&& printf "${open_bar}${color_done}%35s${close_bar}\n" "" && exit
+
+hours_chunks="$(dc -e "$hours 7 /p")"
+hours_overflow="$(dc -e "$hours 7 %p")"
+
+bar_length="$(( ($hours_chunks * 19) + 12 + $hours_overflow ))"
+bar_remainder="$(( 35 - $hours ))"
+
+printf "${open_bar}${color_bar:0:$bar_length}\e[m%${bar_remainder}s${close_bar}" ""

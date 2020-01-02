@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# Script for turning my roger skyline vm on and off
+
+function show_usage(){
+	echo "usage: roger (start | stop)"
+}
+
+case "$1" in
+	start)
+		VBoxManage startvm "rogerskyline" --type headless
+		;;
+	stop)
+		VBoxManage controlvm "rogerskyline" poweroff
+		;;
+	*)
+		show_usage 1>&2
+		;;
+esac

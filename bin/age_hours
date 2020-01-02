@@ -1,0 +1,33 @@
+#!/bin/sh
+
+# Scale for bc's decimal places, defaults to 6
+[ -z "$scale" ] && scale=6
+
+function show_usage()
+{
+echo "usage: age_hours filename
+
+This function returns a floating point number that represents the age of a
+file in hours. The file you wish to get the age of should be passed as a
+parameter, and you should have rights to it."
+}
+
+# Show usage if we don't have a parameter
+[ "$#" != "1" ] && show_usage 1>&2 && exit
+
+# Get the file we're checking from the first argument, if it exists
+if [ -f "$1" ]; then
+	file="$1"
+else
+	show_usage 1>&2
+	exit
+fi
+
+# Check the modified time (m) of the file, so that way the time is shown from
+# the last change, instead of the last access (a) or file creation (c).
+age_seconds="$(( $(date +%s) - $(stat -f %m "$file") ))"
+
+# Divide seconds by 3600 to get a floating point number for hours
+age_hours="$(echo "scale=$scale; $age_seconds / 3600" | bc)"
+
+echo "$age_hours"

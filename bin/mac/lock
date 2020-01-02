@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# no arguments to lock and put display to sleep
+# -s to lock and launch screensaver
+# -l to logout
+
+# Save the hours file
+
+case "$1" in
+	-s)
+		hours --lock-screen
+		exec open -a ScreenSaverEngine
+		;;
+	-l)
+		hours --logout
+		exec osascript -e 'tell application "System Events" to log out'
+		;;
+	*)
+		hours --lock-screen
+		exec pmset displaysleepnow
+		;;
+esac

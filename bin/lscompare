@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# This script assumes both ft_ls and ls are in your path
+
+ft_ls $@ > /tmp/my_ls 2>&1
+ls $@ > /tmp/their_ls 2>&1
+
+nvim -d /tmp/my_ls /tmp/their_ls

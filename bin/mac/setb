@@ -1,0 +1,5 @@
+#!/usr/bin/osascript
+
+#set bg_file to "/Library/Desktop Pictures/Solid Colors/Solid Kelp.png"
+set bg_file to "/nfs/2017/a/abarnett/dotfiles/Pictures/blue.jpg"
+tell application "Finder" to set desktop picture to POSIX file bg_file

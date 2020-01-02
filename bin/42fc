@@ -1,0 +1,35 @@
+#!/bin/sh
+# 42fc wrapper script, written by abarnett
+
+# usage: 42fc [project [project-dir]]
+# With no arguments, it runs 42FileChecker normally, using this path:
+FCPATH=$HOME/clones/42FileChecker/42FileChecker.sh
+# project: The name of the project to send to 42FileChecker. If the project-dir
+#	argument is not provided, the variable here will be used as the directory
+#	to search for your project, assuming you have all your projects in one root
+#	directory somewhere. Note that the script adds a / at the end automatically
+#	when looking for your project.
+PROJECTS=$HOME/cadet/projects
+# project-dir: If provided, use this as the path to the project folder, but
+#	still use project argument as the name of the project for 42FileChecker.
+#	ex. you can type "42fc ft_ls /tmp/correction" and it'll run the ft_ls
+#	checker with that folder as the project location.
+
+# more info on non-interactive mode:
+# https://github.com/jgigault/42FileChecker#non-interactive-mode
+
+if [ "$#" -eq 0 ]; then
+	bash "$FCPATH"
+elif [ "$#" -eq 1 ]; then
+	if [ -d "$PROJECTS/$1" ]; then
+		bash "$FCPATH" --project "$1" --path "$PROJECTS/$1"
+	else
+		echo "Folder $PROJECTS/$1 does not exist"
+	fi
+elif [ "$#" -eq 2 ]; then
+	if [ -d "$2" ]; then
+		bash "$FCPATH" --project "$1" --path "$2"
+	else
+		echo "Folder $2 does not exist"
+	fi
+fi

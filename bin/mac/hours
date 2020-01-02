@@ -1,0 +1,46 @@
+#!/bin/sh
+
+# Gradient colors for the hours, which go from red to green.
+# The hours color from 0-35, in 5 chunks of 7.
+# The last color is for anything >=35
+# HOUR  0-6  7-13  14-20  21-27  28-34  35+
+colour=(196  208   220    190    118    46)
+
+# File where the hours are saved for a session
+hours_tmpfile="/tmp/hours"
+# File where hours are cached in between sessions
+hours_backup="$HOME/.local/share/hours.backup"
+
+# Create empty backup if it doesn't exist
+[ ! -f "$hours_backup" ] \
+	&& echo "Creating empty hours file" \
+	&& echo "0.00" > "$hours_backup"
+# Grab the backup if there is no tmpfile
+[ ! -f "$hours_tmpfile" ] && cp "$hours_backup" "$hours_tmpfile"
+
+# Calculate hours by adding the tmpfile's saved time, and the amount of seconds
+# since its last modification.
+hours="$(dc -e "$(cat "$hours_tmpfile") $(age_hours "$hours_tmpfile") +p")"
+
+case "$1" in
+	--lock-screen)
+		dc -e "$hours 0.4 +p" > $hours_backup
+		exit
+		;;
+	--logout)
+		echo "$hours" > $hours_backup
+		exit
+		;;
+	--no-color)
+		printf "%.2f\n" "$hours"
+		exit
+		;;
+esac
+
+# Get the color by dividing hours by 7
+index="$(echo "$hours / 7" | bc)"
+# Cap the index at 5
+[ "$index" -gt 5 ] && index=5
+
+# Print the hours with a color based on it's value
+printf "\e[38;5;${colour[$index]}m%.2f\e[m\n" "$hours"
