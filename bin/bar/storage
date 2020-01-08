@@ -1,0 +1,32 @@
+#!/bin/sh
+
+#
+# Alan Barnett
+# Uses a partition variable to get size information for my bar
+# Prints it's use and colors it based on percentage
+#
+
+# Quit if no partition variable
+[ -z "$partition" ] && echo "Must supply \$partition" && exit
+# Use partition as label if one isn't provided
+[ -z "$label" ] && label="$partition: "
+
+# Define default color variables, if they aren't already set
+# 10 color gradient, red to green, for percentages
+[ -z "$colors" ] && \
+	colors=("#ff0000" "#ff6600" "#ff9900" "#ffb200" "#ffe600" \
+			"#ffff00" "#e6ff00" "#ccff00" "#99ff00" "#80ff00" "#4cff00")
+
+# Grep for partition because awk was having issues with /'s
+partition_info="$(df -h --output=source,avail,size,pcent | grep "^$partition")"
+[ -z "$partition_info" ] && echo "No partition $partition" && exit
+
+# Use awk and eval to create variables out of the chunks
+eval "$(echo "$partition_info" | awk '{ print "use="$2 "; total="$3 "; pcent="$4 }')"
+
+# Set color using pcent variable, without the % at the end
+color="${colors[$(( ${pcent%%\%} / 10 ))]}"
+
+echo "$label$use/$total"
+echo "$label$use/$total"
+echo "$color"
