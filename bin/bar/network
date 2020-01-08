@@ -1,22 +1,38 @@
 #!/bin/sh
 
+#
+# Alan Barnett
+# Network block for my i3 bar and i3blocks
+# You must set the interface variable to the interface you would like to use
+# If you set the variable $hide_if_down to true, the block will be hidden when
+# the interface isn't connected
+# You can change its up and down colors with color_good and color_bad
+#
+
 # Restart network using dmenu when clicked
 [ "$BLOCK_BUTTON" == "1" ] && dmenu_network
 
-# Default value for the interface
-[ -z "$interface" ] && interface=wlp2s0
+# Require interface to be set
+[ -z "$interface" ] && echo "Must supply \$interface" && exit
+# Use the first character for the short value, if not otherwise set
+[ -z "$interface_short" ] && interface_short="${interface:0:1}"
 
-# Don't overwrite passed in color variables
-[ -z "$color_bad" ] && color_bad="#e24242"
+# Default color values
+# color_good means connected, color_bad means disconnected
 [ -z "$color_good" ] && color_good="#4ad850"
+[ -z "$color_bad" ] && color_bad="#e24242"
 
+# Get ip address with $interface, grab just the third column with awk
 ip_address="$(ip -br addr show dev "$interface" | awk '{ print $3 }')"
 
 if [ -z "$ip_address" ]; then
-	echo "$interface down"
-	echo "down"
+	# Print network down messaegs
+	[ "$hide_if_down" = "true" ] && exit # Quit if we don't want to see output
+	echo "$interface: down"
+	echo "$interface_short down"
 	echo "$color_bad"
 else
+	# Print network up messaegs
 	echo "$ip_address"
 	echo "$ip_address"
 	echo "$color_good"
