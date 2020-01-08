@@ -47,19 +47,19 @@ function rm ()
 
 # default options (add arguments to default commands)
 #alias ls='ls --color=auto'			# Add colors
-alias ls='ft_ls -Gl'				# Use my custom ls instead
+alias ls='ft_ls -cl'				# Use my custom ls instead
 alias grep='grep --color=auto'		# Add colors
 alias cp='cp -iv'					# Ask before overwriting, show copied files
 alias mv='mv -iv'					# Ask before overwriting, show moved files
 alias ln='ln -iv'					# Ask before overwriting, show linked files
 alias gcc='gcc $CFLAGS'				# CFLAGS defined at the top, in Variables
-alias less='/usr/share/nvim/runtime/macros/less.sh'
+alias less='/usr/share/nvim/runtime/macros/less.sh'	# Use nvim plugin for less
 
 # shortcut aliases (save typing)
 alias la='ls -a'					# -A to ignore . and .. folders
 alias ll='ls -l'
 alias lla='ls -al'
-alias fls='ft_ls -Gl'
+alias fls='ft_ls -cl'
 # TODO make wttr into a script
 # take arg for zip code, other args for style of output
 # bar vs script vs cli
@@ -67,7 +67,6 @@ alias wttr='curl http://wttr.in/94555'
 alias gpgpx='gpg -aer gpg@sspx-music.org -r alanbarnett328@gmail.com'
 alias btc-graph='curl rate.sx/btc'
 alias cn='clear; neofetch'
-alias setv='pactl set-sink-volume 0'
 
 # git shortcuts
 alias g='git'
@@ -82,6 +81,7 @@ alias gl='git log --oneline --graph --all'
 #alias glp='git log --graph --all --patch'
 # Below alias shows the short commit hash (oneline), and full commit message
 alias glp='git log --oneline --pretty=full --graph --all --patch'
+alias gm='git merge'
 alias gp='git push'
 alias gP='git pull'
 alias gr='git reset'
