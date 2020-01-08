@@ -1,5 +1,25 @@
 #!/bin/sh
 
+#
+# Alan Barnett
+# Use dmenu to select a netctl profile to restart
+#
+# My scripts used:
+#   my_dmenu
+#     my wrapper of dmenu, with my default position/color/font options
+#   float
+#     opens a program in a terminal that has specific i3 window floating rules
+#     in this case, sudo opens up really small in the center
+# Other programs used:
+#   netctl
+#     simple command line network manager
+#     used for getting network names, and restarting the selected profile
+#   sed
+#     stream editor, can change/delete/insert text into pipes
+#     used to drop the first two characters from each line of netctl list
+#     they are "* " for the selected network, and "  " for everything else
+#
+
 # sed removes the first two characters from netctl, which are "  " or "* "
 profile="$(netctl list | sed "s/^..//" | my_dmenu -p "restart profile:")"
 [ -n "$profile" ] && float sudo netctl restart "$profile"
