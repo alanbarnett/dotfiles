@@ -13,6 +13,6 @@ case "$1" in
 		;;
 	e | edit)
 		cd "$notes_dir"
-		$EDITOR "./$2"
+		$EDITOR "$2"
 		;;
 esac
