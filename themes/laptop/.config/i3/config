@@ -279,6 +279,9 @@ mode $surf_mode
 # move window focus with the cursor
 focus_follows_mouse no
 
+# don't wrap focus around the screen
+focus_wrapping no
+
 # focus containers
 bindsym $mod+h focus left
 bindsym $mod+j focus down
