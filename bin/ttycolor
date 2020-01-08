@@ -1,0 +1,18 @@
+#!/bin/sh
+
+#
+# Alan Barnett
+# This script loads a tty "colorscheme", and prints the termcaps to set the
+# colors for the tty.
+#
+
+[ -z "$TTY_COLORSCHEME" ] && TTY_COLORSCHEME=solarized
+
+source "$HOME/dotfiles/documents/ttycolors/$TTY_COLORSCHEME"
+
+printf "
+\e]P0$COLOR0 \e]P1$COLOR1 \e]P2$COLOR2 \e]P3$COLOR3
+\e]P4$COLOR4 \e]P5$COLOR5 \e]P6$COLOR6 \e]P7$COLOR7
+\e]P8$COLOR8 \e]P9$COLOR9 \e]PA$COLOR10 \e]PB$COLOR11
+\e]PC$COLOR12 \e]PD$COLOR13 \e]PE$COLOR14 \e]PF$COLOR15
+"
