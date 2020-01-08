@@ -472,7 +472,7 @@ bindsym $mod+Shift+n exec --no-startup-id float notes edit
 # bar {{{
 ###############################################################################
 #
-set $transparent	#00000000
+set $transparent	#222432
 
 # hide bar
 bindsym $mod+F11 bar hidden_state hide
@@ -483,9 +483,10 @@ bindsym $mod+F12 bar mode toggle
 
 bar {
 	# Launch bar with transparency
-	i3bar_command i3bar -t
+	i3bar_command i3bar
 	#status_command i3status
 	status_command i3blocks
+	separator_symbol "]["
 	position top
 	mode dock
 	#mode hide
@@ -494,7 +495,7 @@ bar {
 	modifier $mod+Ctrl
 	# Hide the workspace numbers (in the form 1:name)
 	strip_workspace_numbers yes
-	height 12
+	height 14
 	colors {
 		# whole color settings
 		# uses variables defined in the appearance/colors settings
@@ -502,7 +503,7 @@ bar {
 		statusline $text-color
 		separator $inactive-text-color
 		# type				border			background		font
-		focused_workspace	$transparent	$transparent	$text-color
+		focused_workspace	#622458			#824674			#b4aca2
 		active_workspace	$transparent	$transparent	#cf6a4c
 		inactive_workspace	$transparent	$transparent	$inactive-text-color
 		urgent_workspace	$transparent	$transparent	$urgent-bg-color
