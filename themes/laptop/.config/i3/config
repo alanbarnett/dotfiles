@@ -91,9 +91,9 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 default_border pixel $bordersize
 default_floating_border pixel $bordersize
 
-# gaps settings
-gaps inner $inner_gaps
-gaps outer $outer_gaps
+# gaps settings (disabled for now by default, can always be added with mod-g)
+#gaps inner $inner_gaps
+#gaps outer $outer_gaps
 
 # TODO make into a mode
 # changing border style
