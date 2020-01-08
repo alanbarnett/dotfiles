@@ -1,0 +1,43 @@
+#!/bin/sh
+
+#
+# Alan Barnett
+# Print the current time, in decimal*
+# This script is still being worked on, for now all it does is show decimal time
+#
+# usage: decimaltime [option]
+#   option:
+#     -o:  output style
+#     -s:  custom separator 
+#          only valid in standard output mode, of course
+#   separator_char: the string used to separate the hours, minutes, and seconds
+#                   for example, ":"   would be 5:55:55 (default)
+#                                " "   would be 5 55 55
+#                                ""    would be 55555
+#                                ")-(" would be 5)-(55)-(55
+#                                
+# 
+# * - Decimal time:
+# The time if there were 10 hours/day, 100 minutes/hour, and 100 seconds/minute
+# The day starts at 0:00:00, and ends at 9:99:99
+# It effectively counts from 0 to 100,000 seconds throughout the day
+# 
+
+function get_decimal_time()
+{
+	seconds_of_today=$(( $(date '+(%-H * 3600) + (%-M * 60) + %-S') ))
+
+	decimal_seconds=$(( $seconds_of_today * 100000 / 86400 ));
+
+	seconds=$(( $decimal_seconds % 100 ))
+	decimal_seconds=$(( $decimal_seconds  / 100 ))
+
+	minutes=$(( $decimal_seconds % 100 ))
+	decimal_seconds=$(( $decimal_seconds / 100 ))
+
+	hours=$decimal_seconds
+
+	printf "%d:%02d:%02d\n" $hours $minutes $seconds
+}
+
+get_decimal_time
