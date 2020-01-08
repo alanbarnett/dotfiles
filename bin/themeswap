@@ -1,0 +1,116 @@
+#!/bin/sh
+
+#
+# Alan Barnett - 1/7/2020
+# This tool swaps themes for my dotfiles
+# I may have different colors or things in the future
+# For now its main purpose is to load my theme on new installs
+# Themes should be laid out exactly like a home directory
+# Prints errors on files who don't have folders already, so respect this!
+# It moves files that are already present to a backup directory
+# You are expected to clean it manually if you use this tool often
+#
+
+# TODO cleanup functionality
+# remove empty backup dirs
+# combine backup dirs with files that symlink to the same thing
+# get rid of dirs with symlinks to entirely the same thing?
+# If an an existing file is a symlink, maybe copy the symlink's contents?
+
+# Directory to look for themes
+# I assume themes are stored in a subdirectory of this folder
+themedir="$HOME/dotfiles/themes"
+# Backup directory to save files that the theme files would overwrite
+backupdir="$HOME/.local/share/themeswap/backups/"$(date "+%F-%T")""
+if ! mkdir -p "$backupdir"; then
+	echo "Couldn't make backupdir, exiting"; exit
+fi
+
+# Help function
+function show_help()
+{
+echo "usage: themeswap options
+options:
+    -h
+        Displays this help
+    -l [theme]
+        Lists themes, or lists files of a specified theme
+    -t theme
+        Links a theme's files to your home directory
+    -f theme/file
+        Links a specific file in your home directory
+examples:
+    To link the .xinitrc file from the laptop theme:
+        themeswap -f laptop/.xinitrc
+    To link every file from the desktop theme:
+   	    themeswap -t desktop
+considerations:
+    All conflicting files are put into a backup directory
+    Backup directories are stored in $HOME/.local/share/themeswap/backup
+    It is your responsibility to manage this folder!"
+}
+
+function list_theme_files()
+{
+	find "$themedir/$1" -type f
+}
+
+# copy old file to backup dir
+function save_old_file()
+{
+	# Trim everything up to the last */ to get just the filename
+	filename="${1##*/}"
+	echo "BACKING UP '$1' -> '$backupdir/$filename'"
+	mv -i "$1" "$backupdir/$filename"
+}
+
+# Link theme file to spot on home directory
+# Save home file in backup directory
+function link_file()
+{
+	themefile="$1"
+	homefile="${themefile/#$themedir\/*\//$HOME\/}"
+	[ -f "$homefile" ] && save_old_file "$homefile"
+	[ ! -d "${homefile%/*}" ] && echo "No directory for $homefile!" && exit
+	printf "LINKING "
+	ln -sv "$themefile" "$homefile"
+}
+
+# Takes a theme argument, uses it as a directory name on $themedir
+function link_theme()
+{
+	list_theme_files "$1" | while read file_name; do
+		link_file "$file_name"
+	done
+}
+
+case "$1" in
+	# Help flag, shows options
+	-h)
+		show_help
+		;;
+	# List flag, lists themes or (with an argument) files in a theme
+	-l)
+		if [ -n "$2" ]; then
+			list_theme_files "$2"
+		else
+			ls "$themedir"
+		fi
+		;;
+	# Theme flag, for specifying a theme to install
+	-t)
+		[ -n "$2" ] && [ -d "$themedir/$2" ] && link_theme "$2"
+		;;
+	# File flag, for specifying a file to install
+	-f)
+		[ -n "$2" ] && [ -f "$themedir/$2" ] && link_file "$themedir/$2"
+		;;
+	*)
+		echo "invalid argument, try -h"
+		;;
+esac
+
+# Remove backupdir if there was nothing put in it
+if [ -n "$(ls "$backupdir")" ]; then
+	rmdir "$backupdir"
+fi
