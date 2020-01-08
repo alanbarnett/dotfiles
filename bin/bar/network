@@ -1,15 +1,14 @@
 #!/bin/sh
 
+# Restart network using dmenu when clicked
+[ "$BLOCK_BUTTON" == "1" ] && dmenu_network
+
 # Default value for the interface
 [ -z "$interface" ] && interface=wlp2s0
 
 # Don't overwrite passed in color variables
 [ -z "$color_bad" ] && color_bad="#e24242"
 [ -z "$color_good" ] && color_good="#4ad850"
-
-if [ "$BLOCK_BUTTON" == "1" ]; then
-	dmenu_network
-fi
 
 ip_address="$(ip -br addr show dev "$interface" | awk '{ print $3 }')"
 
