@@ -1,0 +1,29 @@
+#!/bin/sh
+
+#
+# Alan Barnett
+# Uses pactl to get the volume. Echo is used to add a newline
+# Useful for scripts
+#
+
+function getvol()
+{
+	pactl list sinks | grep -o '[0-9]\+%' | head -n 1 | head -c -2
+}
+
+function getmute()
+{
+	[  -n "$(pactl list sinks | grep Mute | grep -o yes)" ]
+}
+
+case "$1" in
+	vol|v)
+		getvol
+		;;
+	mute|m)
+		getmute
+		;;
+	*)
+		echo "$(getvol)%" $(getmute && echo " (mute)")
+		;;
+esac

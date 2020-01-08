@@ -1,0 +1,50 @@
+#!/bin/sh
+
+#
+# Alan Barnett
+# This script was written so I could make all my various methods of controlling
+# the volume have a centralized interface. It updates my volume block in i3 and
+# sends a notification.
+#
+
+# Signal for the volume block in i3blocks
+vol_block_signal=2
+
+function show_usage()
+{
+echo "usage: setv ([-|+]percent|mute|unmute|toggle)
+setv will handle updating your i3blocks volume block, as well as
+sending a notification with your new volume.
+
+examples:
+setv +5      # turn up volume by 5 percent
+setv -12     # turn down volume by 12 percent
+setv 1000    # set volume to 1000
+setv mute    # mute volume
+setv unmute  # unmute volume
+setv toggle  # toggle mute"
+}
+
+# Require one argument
+[ "$#" != "1" ] && show_usage >&2 && exit
+
+case "$1" in
+	m|mute)
+		pactl set-sink-mute @DEFAULT_SINK@ 1
+		;;
+	u|unmute)
+		pactl set-sink-mute @DEFAULT_SINK@ 0
+		;;
+	t|toggle)
+		pactl set-sink-mute @DEFAULT_SINK@ toggle
+		;;
+	*)
+		pactl set-sink-volume @DEFAULT_SINK@ "$1%"
+		;;
+esac
+
+# update volume indicator in i3blocks
+pkill -RTMIN+"$vol_block_signal" i3blocks
+
+# send notification with new volume
+notify-send "Vol:" "$(getv)"
