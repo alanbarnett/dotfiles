@@ -61,7 +61,7 @@ interval=5
 # Hard drive use
 [storage]
 partition=/dev/sda4
-label="/: "
+label=/: 
 interval=60
 
 # Ethernet status
