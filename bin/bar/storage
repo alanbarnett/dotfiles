@@ -8,8 +8,6 @@
 
 # Quit if no partition variable
 [ -z "$partition" ] && echo "Must supply \$partition" && exit
-# Use partition as label if one isn't provided
-[ -z "$label" ] && label="$partition: "
 
 # Define default color variables, if they aren't already set
 # 10 color gradient, red to green, for percentages
@@ -27,6 +25,6 @@ eval "$(echo "$partition_info" | awk '{ print "use="$2 "; total="$3 "; pcent="$4
 # Set color using pcent variable, without the % at the end
 color="${colors[$(( ${pcent%%\%} / 10 ))]}"
 
-echo "$label$use/$total"
-echo "$label$use/$total"
+echo "$use"
+echo "$use"
 echo "$color"
