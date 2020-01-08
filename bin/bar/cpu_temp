@@ -1,3 +1,9 @@
 #!/bin/sh
 
-acpi -t | awk '{ printf $2 " " $4 " " }' | head -c -1; printf "\n"
+#
+# Alan Barnett
+# Show core temperatures in my i3 bar
+# All it does is print core0/core1 temperatures in degrees C from acpi
+#
+
+acpi -t | awk '{ printf $4 "/" }' | head -c -1; printf "\n"
