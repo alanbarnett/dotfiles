@@ -143,9 +143,9 @@ set statusline+=\ 			" space separator
 " Ruler block
 set statusline+=%#st_ruler#	" ruler color
 set statusline+=\ 			" space separator
-set statusline+=%2v,
-set statusline+=\ 			" space separator
-set statusline+=%-2l		" line number, total lines in file
+set statusline+=c\ %2v		" virtual column; tabs are wirth their space count
+set statusline+=\ \|\ 		" bar separator
+set statusline+=l\ %2l		" line number, total lines in file
 set statusline+=\ 			" space separator
 
 " Position block
