@@ -6,7 +6,8 @@
 # List of valid properties:
 #
 # align
-# color
+# color (fg color)
+# background (bg color)
 # command
 # full_text
 # instance
@@ -24,10 +25,76 @@
 #
 # The top properties below are applied to every block, but can be overridden.
 # Each block command defaults to the script name to avoid boilerplate.
-command=~/dotfiles/bin/bar/$BLOCK_NAME
-separator_block_width=12
+# Set the default color up here, all the scripts will print it.
+# If it doesn't exist (or if you print a newline as the color in a script),
+# then it picks a value close to a8a8a8.
+# The color tag will be overwritten if the scripts print colors (lines three
+# and four), which should only be if they use color to show status.
+# You don't need to print them at all for static colors, you just use the color
+# and background variables in the blocks, then it will work out automatically!
+command=$HOME/dotfiles/bin/bar/$BLOCK_NAME
+separator_block_width=16
 markup=none
 color=#DDDDDD
+
+# The color and background properties should be used for fg and bg colors
+# My scripts sometimes have color variables for events
+# i.e. the music block has a color_playing variable, the network block has
+# color_down, etc
+# The scripts don't print colors unless they change them
+# All of the scripts in use here are written by Alan Barnett (me)
+# All them have descriptions in them about what their variables are
+# I try to keep them as simple, light and fast as possible
+
+# Current song with MPD
+# ncmpcpp uses the signal to reload the block when the song changes
+# I also call that signal with my media keys
+[music]
+interval=once
+signal=1
+
+# Processor core temperatures
+[cpu_temp]
+color=#685692
+interval=5
+
+# Hard drive use
+[storage]
+partition=/dev/sda4
+label="/: "
+interval=60
+
+# Ethernet status
+# Only displayed when connected
+[network]
+interface=enp0s25
+interval=10
+hide_if_down=true
+
+# Wifi status
+[network]
+interface=wlp2s0
+interval=10
+
+# Battery indicator
+# Has an internal color gradient based on the percentage
+[battery]
+interval=10
+
+# Volume indicator
+# The signal is updated by my volume keys using the command `setv`
+[volume]
+color_good=#4ad850
+color_bad=#346a42
+interval=10
+signal=2
+
+# Date Time
+# It's style can be overridden with time_string and short_time_string
+[time]
+color=#7478a6
+time_string="%-m/%d %H:%M:%S"
+interval=1
 
 ## Testing various blocks and buttons {{{
 ## Button test
@@ -101,59 +168,5 @@ color=#DDDDDD
 #[load_average]
 #interval=10
 # }}}
-
-# MPD playing song
-# uses mpc to get the current song
-#
-[music]
-command=mpc current
-interval=once
-signal=1
-
-# Processor core temperatures
-#
-[cpu_temp]
-interval=5
-min_width=0: xx.x 1: xx.x
-
-# Network status
-# shows ip address of interface
-#
-[network]
-interface=wlp2s0
-interval=10
-
-# Battery indicator
-#
-[battery]
-interval=10
-
-# Volume indicator
-#
-[volume]
-color_good=#4ad850
-color_bad=#346a42
-style=normal
-interval=10
-signal=2
-
-## Date block
-##
-#[date]
-#color=#3456ac
-#command=date +"%-m/%d"
-#separator=false
-#interval=10
-
-# Date Time
-#
-[time]
-color=#7478a6
-# string for the date portion (no + necessary at the beginning)
-date_string=%-m/%d
-# style can be either normal, or decimal
-# the style can be overridden in the time_style file in this directory
-style=normal
-interval=1
 
 # vim: foldmethod=marker foldmarker={{{,}}}
