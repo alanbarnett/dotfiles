@@ -1,0 +1,37 @@
+#!/bin/sh
+
+#
+# Alan Barnett
+# This block shows me the current song, and has some click actions
+# It toggles play/pause with right click, and shows more info with left click
+# The variables color_playing and color_paused control it's color
+#
+
+
+[ "$BLOCK_BUTTON" == "1" ] && notify-send "$(mpc current)" "$(mpc status | tail -n 2)"
+# mpc toggle sends output which tricks i3blocks, send it to /dev/null
+[ "$BLOCK_BUTTON" == "3" ] && mpc toggle >/dev/null
+
+# Default color settings for playing and paused
+[ -z "$color_playing" ] && color_playing="#a06294"
+[ -z "$color_paused" ] && color_paused="#924664"
+
+# Cache the status to use it multiple times
+mpc_status="$(mpc status)"
+
+# Status is one line when nothing is playing, so quit
+[ "$(echo "$mpc_status" | wc -l)" == "1" ] && exit
+
+# paraniod tail to prevent songs called "[playing]" from triggering this
+playing="$(echo "$mpc_status" | tail -n 2 | grep "^\[playing\]")"
+
+# Pick color from playing status
+[ -n "$playing" ] && color="$color_playing" || color="$color_paused"
+
+# This is just the first line of status
+output="$(echo "$mpc_status" | head -n 1)"
+
+echo "$output"
+# Trim the output for the shortened version
+echo "${output:0:22}..."
+echo "$color"
