@@ -1,36 +1,20 @@
 #!/bin/sh
 
-# Default string for the date portion
-[ -z "$date_string" ] && date_string="%a, %b %d,"
-[ -z "$short_date_string" ] && short_date_string="%-m/%d"
+#
+# Alan Barnett
+# Script for the date and time block of my status bar
+#
+# Outputs two lines:
+#   Full date and time string
+#   Short date and time string
+#
+# The variables for the format of the date commands are:
+#   time_string and short_time_string
+# They have default values to revert to if they aren't set to anything
+# The values are passed on to the date command like this:
+#   date +"$time_string"
+#
 
-# Check if there is an override for the style
-[ -f "time_style" ] && style="$(cat time_style)"
-# Assume style is normal if it isn't decimal
-[ "$style" != "decimal" ] && style=normal
-
-# Calculate decimal time if style is decimal
-if [ "$style" == "decimal" ]; then
-	seconds_of_today=$(( $(date '+(%-H * 3600) + (%-M * 60) + %-S') ))
-
-	decimal_seconds=$(( $seconds_of_today * 100000 / 86400 ));
-
-	seconds=$(( $decimal_seconds % 100 ))
-	decimal_seconds=$(( $decimal_seconds  / 100 ))
-
-	minutes=$(( $decimal_seconds % 100 ))
-	decimal_seconds=$(( $decimal_seconds / 100 ))
-
-	hours=$decimal_seconds
-
-	time_string="$(printf "%d:%02d:%02d" $hours $minutes $seconds)"
-else
-	time_string="%H:%M:%S"
-fi
-
-full_time="$(date +"$date_string $time_string")"
-short_time="$(date +"$short_date_string $time_string")"
-
-echo "$full_time"
-echo "$short_time"
-echo "$color"
+# Get the date, using the passed string if the variable is unset
+date +"${time_string:-"%a, %b %d, %I:%M:%S %p"}"
+date +"${short_time_string:-"%-m/%d %H:%M"}"
