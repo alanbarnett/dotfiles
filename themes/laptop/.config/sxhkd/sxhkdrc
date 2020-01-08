@@ -13,7 +13,7 @@ super + Return
 
 # my default terminal with nvim term started
 super + shift + Return
-	myterm -e nvim term:///bin/bash -c "start"
+	myterm -e nvim -c term -c "start"
 
 # qutebrowser
 super + b
