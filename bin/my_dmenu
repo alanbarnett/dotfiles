@@ -2,7 +2,12 @@
 
 # A wrapper around dmenu with my default options
 
-#FONT="xos4 Terminus:size-12"
-FONT="Misc Tamsyn:size=8"
+# Purple theme dmenu at the top
+# Good with height 14 i3bar
+FONT="xos4 Terminus:size=12"
+dmenu -fn "$FONT" "$@"
 
-dmenu -fn "$FONT" -b "$@"
+# Tiny dmenu at the bottom
+# Good with height 12 i3bar
+#FONT="Misc Tamsyn:size=8"
+#dmenu -fn "$FONT" -b "$@"
