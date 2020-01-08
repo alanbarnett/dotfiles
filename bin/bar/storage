@@ -6,6 +6,10 @@
 # Prints it's use and colors it based on percentage
 #
 
+# Handle click event first
+[ "$BLOCK_BUTTON" == "1" ] && \
+	notify-send "$(df -h --output=source,avail,size,pcent)"
+
 # Quit if no partition variable
 [ -z "$partition" ] && echo "Must supply \$partition" && exit
 
