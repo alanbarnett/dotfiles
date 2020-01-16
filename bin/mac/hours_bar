@@ -14,7 +14,7 @@ hours="${hours%%.*}"
 
 # Full green, full width bar for over 35 hours
 [ "${hours:-0}" -ge "35" ] \
-	&& printf "${open_bar}${color_done}%35s${close_bar}\n" "" && exit
+	&& printf "${open_bar}${color_done}%35s\e[m${close_bar}\n" "" && exit
 
 hours_chunks="$(dc -e "$hours 7 /p")"
 hours_overflow="$(dc -e "$hours 7 %p")"
