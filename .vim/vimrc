@@ -255,9 +255,10 @@ augroup END
 
 augroup filetype_helpers
 	autocmd!
+	" show whitespace characters in c and cpp files
+	autocmd Filetype c,cpp setlocal list
 	" better norm comments for c files
-	autocmd Filetype c setlocal comments=s:/*,mb:**,ex:*/,://
-	autocmd Filetype cpp setlocal comments=s:/*,mb:**,ex:*/,://
+	autocmd Filetype c,cpp setlocal comments=s:/*,mb:**,ex:*/,://
 	" fold comments in c files
 	autocmd Filetype c setlocal foldmethod=marker foldmarker=/*,*/
 	" turn off automatic folding on Makefiles
