@@ -6,7 +6,8 @@
 #	-d	starting directory
 #	-n	terminal name
 #	-e	command
-#		If you use the -e option, it must be last.
+#		If you use the -e option, it must be last. The command will be
+#		everything after the flag.
 # Each supporting terminal must be configured to handle it's options correctly.
 
 TERM_DIR=""
@@ -34,7 +35,7 @@ while [ -n "$1" ]; do
 			;;
 		-e)
 			shift
-			TERM_COMMAND="$@"
+			TERM_COMMAND=1
 			break
 			;;
 	esac
@@ -43,21 +44,21 @@ done
 
 case "$TERMINAL" in
 	termite)
-		[ -n "$TERM_DIR" ] && TERM_DIR="--directory=$TERM_DIR"
-		[ -n "$TERM_NAME" ] && TERM_NAME="--name=$TERM_NAME"
-		[ -n "$TERM_COMMAND" ] && TERM_COMMAND="--exec=$TERM_COMMAND"
-		$TERMINAL "$TERM_DIR" "$TERM_NAME" "$TERM_COMMAND"
+		$TERMINAL \
+			${TERM_DIR:+--directory="$TERM_DIR"} \
+			${TERM_NAME:+--name="$TERM_NAME"} \
+			${TERM_COMMAND:+--exec="$@"}
 		;;
 	urxvt | my_urxvt)
-		[ -n "$TERM_DIR" ] && TERM_DIR="-cd $TERM_DIR"
-		[ -n "$TERM_NAME" ] && TERM_NAME="-name $TERM_NAME"
-		[ -n "$TERM_COMMAND" ] && TERM_COMMAND="-e $TERM_COMMAND"
-		$TERMINAL $TERM_DIR $TERM_NAME $TERM_COMMAND
+		$TERMINAL \
+			${TERM_DIR:+-cd "$TERM_DIR"} \
+			${TERM_NAME:+-name "$TERM_NAME"} \
+			${TERM_COMMAND:+-e "$@"}
 		;;
 	st)	# Doesn't support directory
-		[ -n "$TERM_NAME" ] && TERM_NAME="-n $TERM_NAME"
-		[ -n "$TERM_COMMAND" ] && TERM_COMMAND="-e $TERM_COMMAND"
-		$TERMINAL $TERM_NAME $TERM_COMMAND
+		$TERMINAL \
+			${TERM_NAME:+-n "$TERM_NAME"} \
+			${TERM_COMMAND:+-e "$@"}
 		;;
 	*)
 		echo "Not a supported terminal!" 1>&2
