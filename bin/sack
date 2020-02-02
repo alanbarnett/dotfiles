@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Screengrab AppliCation, K?
+
+cd ~/Pictures/scrots
+
+scrot "$@"
