@@ -1,3 +1,3 @@
 #!/bin/sh
 
-myterm -n popup_term -e nvim -c terminal -c "start"
+myterm -t urxvt -n "popup_term" -e nvim -c "color dark_green" -c "term" -c "start"
