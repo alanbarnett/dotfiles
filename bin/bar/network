@@ -2,38 +2,83 @@
 
 #
 # Alan Barnett
-# Network block for my i3 bar and i3blocks
-# You must set the interface variable to the interface you would like to use
-# If you set the variable $hide_if_down to true, the block will be hidden when
-# the interface isn't connected
-# You can change its up and down colors with color_good and color_bad
+# Output network information for an i3blocks module
+# Prints three lines:
+#   Full message ($name: ip_address/down)
+#   Short message ($name_short: ip_address/down)
+#   Color
+#
+# Variables used:
+#   name	     : set by the [block_name] in i3blocks
+#			       sets the $interface to use
+#			       also used in the output
+#   name_short   : the name to use when printing short output (second line)
+#			       defaults to the first character of $name
+#   interface    : defines the network interface
+#			       overrides $name for determining interface
+#   color_good   : color printed when connected
+#   color_bad    : color printed when not connected
+#   hide_if_down : set to "true" to disable output when interface is down
+#
+# Define the interface with the interface variable. If it is not set, the
+# [name] will be used instead. This allows you to use the name field as a
+# descriptive tag, while defining an interface variable. Or, just use the name
+# to set the interface and don't use an additional variable at all. You must
+# set the command to this script inside the block section explicitly though,
+# because if you have multiple blocks with the same name, the variables sent in
+# when you click the module will be the ones defined in the first module with
+# that name. The reason for putting the descriptive name in the name field and
+# making an extra variable for the interface is because the names of those
+# variables already makes sense - for example I could have made an extra
+# variable "title" and just used the [name] to define the interface, but then
+# they would all have confusing names.
+#
+# Dependencies:
+#  dmenu_network (dotfiles/bin)
+#  float (dotfiles/bin)
+#  sudo/systemctl
+#    changing network status
+#  ip & awk
+#    for getting the ip address, could be a better way
 #
 
-# Restart network using dmenu when clicked
-[ "$BLOCK_BUTTON" == "1" ] && dmenu_network
+# Use name for interface if not provided
+[ -z "$interface" ] && interface="$name"
 
-# Require interface to be set
-[ -z "$interface" ] && echo "Must supply \$interface" && exit
-# Use the first character for the short value, if not otherwise set
-[ -z "$interface_short" ] && interface_short="${interface:0:1}"
+# React to click
+# If interface is ethernet, restart it with dhcpcd
+# Otherwise, start a wifi network with dmenu_network
+if [ "$BLOCK_BUTTON" == "1" ]; then
+	if [ "${interface:0:1}" = 'e' ]; then
+		float sudo systemctl restart "dhcpcd@$interface"
+	else
+		dmenu_network
+	fi
+fi
 
-# Default color values
+# Default values
 # color_good means connected, color_bad means disconnected
 [ -z "$color_good" ] && color_good="#4ad850"
 [ -z "$color_bad" ] && color_bad="#e24242"
+# Use the first character of name for the short value, if not otherwise set
+[ -z "$name_short" ] && name_short="${name:0:1}"
 
 # Get ip address with $interface, grab just the third column with awk
 ip_address="$(ip -br addr show dev "$interface" | awk '{ print $3 }')"
 
+# Define output variables based on connection
 if [ -z "$ip_address" ]; then
-	# Print network down messaegs
 	[ "$hide_if_down" = "true" ] && exit # Quit if we don't want to see output
-	echo "$interface: down"
-	echo "$interface_short down"
-	echo "$color_bad"
+	full_message="$name: down"
+	short_message="$name_short: down"
+	color="$color_bad"
 else
-	# Print network up messaegs
-	echo "$ip_address"
-	echo "$ip_address"
-	echo "$color_good"
+	full_message="$name: $ip_address"
+	short_message="$name_short: $ip_address"
+	color="$color_good"
 fi
+
+# Do output
+echo "$full_message"
+echo "$short_message"
+echo "$color"
