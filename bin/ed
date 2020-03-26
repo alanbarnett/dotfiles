@@ -2,5 +2,5 @@
 
 cd $HOME/dotfiles
 
-FILE=$(find . -path "*/.git" -prune -o -print | fzf)
+FILE=$(find . -path "*/.git" -prune -o -path "*/.vim/undodir" -prune -o -print | fzf)
 [ -n "$FILE" ] && exec "$EDITOR" "$FILE"
