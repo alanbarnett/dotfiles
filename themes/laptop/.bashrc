@@ -54,6 +54,7 @@ alias mv='mv -iv'					# Ask before overwriting, show moved files
 alias ln='ln -iv'					# Ask before overwriting, show linked files
 alias gcc='gcc $CFLAGS'				# CFLAGS defined at the top, in Variables
 alias less='/usr/share/nvim/runtime/macros/less.sh'	# Use nvim plugin for less
+alias bc='bc -l'					# Always run with math library
 
 # shortcut aliases (save typing)
 alias la='ls -a'					# -A to ignore . and .. folders
@@ -80,7 +81,7 @@ alias gl='git log --oneline --graph --all'
 # Below alias shows full commit hash, which is kinda long
 #alias glp='git log --graph --all --patch'
 # Below alias shows the short commit hash (oneline), and full commit message
-alias glp='git log --oneline --pretty=full --graph --all --patch'
+alias glp='git log --oneline --pretty --graph --all --patch'
 alias gm='git merge'
 alias gp='git push'
 alias gP='git pull'
