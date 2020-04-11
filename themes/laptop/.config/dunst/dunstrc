@@ -428,5 +428,11 @@
 	timeout = 2
 	set_stack_tag = "volume"
 
+[nowplaying]
+	summary = "Now Playing:"
+    format = "<b>%s</b>\n%b"
+	timeout = 5
+	set_stack_tag = "nowplaying"
+
 
 # vim: ft=cfg foldmethod=marker foldmarker={{{,}}}
