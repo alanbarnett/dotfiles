@@ -39,6 +39,4 @@ picom	\
 	--blur-background &
 
 # Start a window manager
-exec i3
-#exec dwm
-#exec openbox
+exec $WM
