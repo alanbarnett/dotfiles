@@ -19,11 +19,12 @@ export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
 
 # Session settings variables
-export EDITOR=nvim
-export MANPAGER='nvim +Man!'
-export BROWSER=iceweasel
-export EMAIL=alanbarnett328@gmail.com
+export WM=i3
 export TERMINAL=my_urxvt
+export EDITOR=nvim
+export BROWSER=iceweasel
+export MANPAGER='nvim +Man!'
+export EMAIL=alanbarnett328@gmail.com
 
 # Source my bashrc, if it exists
 [[ -f ~/.bashrc ]] && . ~/.bashrc
