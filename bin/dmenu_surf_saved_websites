@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# Folder which contains saved websites
+sites_folder="$HOME/Documents/browser/websites"
+
+# Quit if there are no websites
+[ ! -d "$sites_folder" ] && exit
+
+cd "$sites_folder"
+
+site="$(ls *.html | uniq | sort | my_dmenu -l 10 -p "url:" "$@")"
+
+if [ -n "$site" ]; then
+	surf "$site"
+fi
