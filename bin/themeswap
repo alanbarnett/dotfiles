@@ -1,29 +1,38 @@
 #!/bin/sh
 
 #
-# Alan Barnett - 1/7/2020
+# Alan Barnett - 2/13/2020
 # This tool swaps themes for my dotfiles
 # I may have different colors or things in the future
 # For now its main purpose is to load my theme on new installs
 # Themes should be laid out exactly like a home directory
 # Prints errors on files who don't have folders already, so respect this!
 # It moves files that are already present to a backup directory
-# You are expected to clean it manually if you use this tool often
+# You are expected to clean it manually if you use this tool often (for now)
 #
 
 # TODO cleanup functionality
 # remove empty backup dirs
+# 	rmdir backupdir/*
 # combine backup dirs with files that symlink to the same thing
 # get rid of dirs with symlinks to entirely the same thing?
 # If an an existing file is a symlink, maybe copy the symlink's contents?
+# 	this would backup the file at the time of the use, which may be neat
+# 	this wasn't intended to be a backup tool though, so I'll leave this out
+# maybe keep track of the installed theme, so you can uninstall it?
+#   really all it's doing is symlinking to a directory, so it could:
+#     get all the files/folders of a theme, and delete them in the home
+#     directory if they're there as symlinks to the theme
+#   also it could link new files added to a theme without removing all the old
+#   symlinks maybe
 
 # Directory to look for themes
-# I assume themes are stored in a subdirectory of this folder
+# Each theme is a subdirectory of this folder
 themedir="$HOME/dotfiles/themes"
 # Backup directory to save files that the theme files would overwrite
 backupdir="$HOME/.local/share/themeswap/backups/"$(date "+%F-%T")""
 if ! mkdir -p "$backupdir"; then
-	echo "Couldn't make backupdir, exiting"; exit
+	echo "Couldn't make backup directory, exiting"; exit
 fi
 
 # Help function
@@ -34,33 +43,53 @@ options:
     -h
         Displays this help
     -l [theme]
-        Lists themes, or lists files of a specified theme
+		Displays theme files with tree
+		With no arguments, prints available theme names
+    -L [theme]
+		Prints the full path of each file in a theme, one per line
+		With no arguments, prints available theme names one per line
     -t theme
         Links a theme's files to your home directory
     -f theme/file
-        Links a specific file in your home directory
+        Links a specific file to your home directory
 examples:
     To link the .xinitrc file from the laptop theme:
         themeswap -f laptop/.xinitrc
     To link every file from the desktop theme:
    	    themeswap -t desktop
+	Pick a theme with dmenu, show files in a notification
+		notify-send \"\$(themeswap -l \"\$(themeswap -l | dmenu)\")\"
+
 considerations:
     All conflicting files are put into a backup directory
     Backup directories are stored in $HOME/.local/share/themeswap/backup
     It is your responsibility to manage this folder!"
 }
 
+# Prints the full path to each file in a theme. Used as a utility function, or
+# for scripts.
 function list_theme_files()
 {
 	find "$themedir/$1" -type f
 }
 
+# Pretty list of a theme with tree
+function list_theme_files_tree()
+{
+	tree -a "$themedir/$1"
+}
+
 # copy old file to backup dir
 function save_old_file()
 {
-	# Trim everything up to the last */ to get just the filename
-	filename="${1##*/}"
+	# Trim home directory prefix to get relative location
+	filename="${1#$HOME/}"
 	echo "BACKING UP '$1' -> '$backupdir/$filename'"
+	# Make directory if it doesn't exist
+	echo "$filename" | grep '/' 1>/dev/null 2>&1 && \
+		[ ! -d "$backupdir/${filename%/*}" ] && mkdir -p "$backupdir/${filename%/*}"
+	# Move, asking before overwriting (which shouldn't be necessary since
+	# backup directories are created at a second precision)
 	mv -i "$1" "$backupdir/$filename"
 }
 
@@ -69,7 +98,8 @@ function save_old_file()
 function link_file()
 {
 	themefile="$1"
-	homefile="${themefile/#$themedir\/*\//$HOME\/}"
+	file="${themefile#$themedir/*/}"
+	homefile="$HOME/$file"
 	[ -f "$homefile" ] && save_old_file "$homefile"
 	[ ! -d "${homefile%/*}" ] && echo "No directory for $homefile!" && exit
 	printf "LINKING "
@@ -89,12 +119,20 @@ case "$1" in
 	-h)
 		show_help
 		;;
-	# List flag, lists themes or (with an argument) files in a theme
+	# Tree list flag, lists themes or (with an argument) files in a theme
 	-l)
+		if [ -n "$2" ]; then
+			list_theme_files_tree "$2"
+		else
+			ls "$themedir"
+		fi
+		;;
+	# List flag, lists themes or (with an argument) files in a theme
+	-L)
 		if [ -n "$2" ]; then
 			list_theme_files "$2"
 		else
-			ls "$themedir"
+			ls -1 "$themedir"
 		fi
 		;;
 	# Theme flag, for specifying a theme to install
@@ -111,6 +149,5 @@ case "$1" in
 esac
 
 # Remove backupdir if there was nothing put in it
-if [ -n "$(ls "$backupdir")" ]; then
-	rmdir "$backupdir"
-fi
+# rmdir will fail if the directory isn't empty, so we silence the error output
+rmdir "$backupdir" 2> /dev/null
