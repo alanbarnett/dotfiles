@@ -298,6 +298,9 @@ bindsym $mod+a focus parent
 # focus the child container
 bindsym $mod+Shift+a focus child
 
+# toggle window sticky
+bindsym $mod+Shift+s sticky toggle
+
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
@@ -319,6 +322,9 @@ bindsym $mod+0 workspace $w10
 # focus next and previous workspace
 bindsym $mod+Tab workspace next_on_output
 bindsym $mod+Shift+Tab workspace prev_on_output
+
+# focus last focused workspace
+bindsym Mod1+Tab workspace back_and_forth
 #
 #####################################}}}
 
