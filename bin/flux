@@ -1,0 +1,13 @@
+#!/bin/sh
+
+function on()
+{
+	xrandr --output LVDS-1 --gamma 3:1.1:1
+}
+
+function off()
+{
+	xrandr --output LVDS-1 --gamma 1
+}
+
+"$1"
