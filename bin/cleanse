@@ -17,4 +17,5 @@ while [ $cols -ge 1 ]; do
 	sleep $time_difference
 	((--cols))
 done
+clear
 echo "computer cleansed"
