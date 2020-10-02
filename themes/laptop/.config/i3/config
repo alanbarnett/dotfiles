@@ -36,32 +36,6 @@ set $w10 10:十
 #
 #####################################}}}
 
-# font {{{
-########################################
-#
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-# Currently due to pango dropping support for bitmap fonts, none of these
-# work, except for the gross antialiased monospace font from pango.
-
-# Terminus, a lovely monospace bitmap font that looks great on my small screen
-#font xft:xos4 Terminus 12
-
-# Gohufont, another nice bitmap monospace font
-#font xft:Gohu GohuFont
-
-# Tamsyn, a bitmap font that can get very small
-#font xft:Misc Tamsyn 10
-
-# A monospace font from pango
-font pango:monospace 12
-
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
-#
-#####################################}}}
-
 # window settings {{{
 ########################################
 #
@@ -103,6 +77,32 @@ bindsym $mod+u border none
 
 # only show borders if there is one window with no gaps
 hide_edge_borders smart_no_gaps
+
+# font {{{
+########################################
+#
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+# Currently due to pango dropping support for bitmap fonts, none of these
+# work, except for the gross antialiased monospace font from pango.
+
+# Terminus, a lovely monospace bitmap font that looks great on my small screen
+#font xft:xos4 Terminus 12
+
+# Gohufont, another nice bitmap monospace font
+#font xft:Gohu GohuFont
+
+# Tamsyn, a bitmap font that can get very small
+#font xft:Misc Tamsyn 10
+
+# A monospace font from pango
+font pango:monospace 8
+
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+#font pango:DejaVu Sans Mono 8
+#
+#####################################}}}
 
 # colors {{{
 ########################################
