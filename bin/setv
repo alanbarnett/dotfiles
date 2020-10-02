@@ -44,7 +44,8 @@ case "$1" in
 esac
 
 # update volume indicator in i3blocks
-pkill -RTMIN+"$vol_block_signal" i3blocks
+# this will slow the computer to a crawl if you hold the button
+#pkill -RTMIN+"$vol_block_signal" i3blocks
 
 # send notification with new volume
 notify-send "Vol:" "$(getv)"
