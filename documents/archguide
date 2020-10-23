@@ -51,10 +51,13 @@ Mounting
 	swapon /dev/sdaY
 
 pacstrap [-i] /mnt base base-devel vim git iw wpa_supplicant dialog
+	throw in netctl and dhcpcd
+	don't forget linux and linux-firmware
+	also manpages aren't in base anymore
 	i -- asks you for confirmation.
 	If this fails due to keyring related issues, run these commands
 		[sudo] pacman -Scc
-		[sudo] pacman -Syy archlinux-eyrig archlinux32-keyring archlinuxarm-keyring [parabola-keyring]
+		[sudo] pacman -Syy archlinux-keyring archlinux32-keyring [archlinuxarm-keyring] [parabola-keyring]
 		[sudo] pacman-key --init
 		[sudo] pacman-key --populate archlinux archlinux32 archlinuxarm [parabola]
 		[sudo] pacman-key --refresh-keys
@@ -132,7 +135,8 @@ Install things
 	mesa bash-completion openssh
 	xorg-server xorg-server-utils xorg-xinit
 	Once you've got an AUR helper (pacaur script in bin folder), install these as well
-		i3-gaps-next-git (if it doesn't come with i3status, i3bar, and dmenu, get those as well)
+		i3-gaps-next-git
+			(if it doesn't come with i3blocks, i3bar, and dmenu, get those as well)
 		urxvt
 		neofetch/screenfetch (whichever)
 		compton

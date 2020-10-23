@@ -16,3 +16,68 @@ Programs for i3blocks
 	maybe amixer or pamixer for volume script
 		not if using my own volume script
 	sysstat (brings mpstat, needed by cpu_usage script)
+
+programs
+	man-pages
+
+Things I downloaded on fresh install (desktop arch linux, installed 3/13/2020)
+	pacstrap (base + useful to have for install in chroot)
+		base
+		base-devel
+		neovim
+		git
+	after chroot (get to bootloader)
+		linux
+		linux-firmware
+		intel-ucode
+		netctl
+		dhcpcd
+		iw
+		wpa_supplicant
+		dialog
+	after reboot
+		aur
+			pacaur
+				clone aur.archlinux.org/pacaur, makepkg -si in directory
+				it will tell you what dependencies it needs
+		terminal programs
+			neofetch (system info display)
+			asciiquarium (cute aquarium)
+			cmatrix (matrix falling text)
+			mpc (command based music client to mpd)
+			ncmpcpp (ncurses music client to mpd)
+			notify-send (send notifications to a notification daemon)
+		daemons
+			dunst (notifications)
+			mpd (music)
+			sxhkd (keyboard shortcuts)
+			unclutter (hide mouse cursor)
+		X things
+			xorg-server (necessary for X)
+			xorg-xinit (necessary for startx)
+			xorg-xprop (convenient window properties display)
+			xorg-xrandr (change screen/monitor properties)
+			xclip (clipboard utility, needed by neovim + register)
+		Things that use X
+			i3-gaps (window manager)
+				picom (compositor: transparency, reduce screen tearing)
+				pango (font renderer)
+				terminus-font (font)
+				libnotify (notification library, gives notify-send)
+			i3blocks (status bar program)
+			dmenu (program launcher)
+			feh (image viewer)
+			rxvt-unicode (terminal emulator)
+			qutebrowser (browser-lite)
+				segfaults still, removed temporarily (or forever who knows)
+			firefox (browser)
+		dotfiles dependencies
+			xdotool (X automation tool)
+				date/time hot corner script
+				change name of telegram window in popup_telegram script
+			xorg-xset (set user preferences in X)
+				sets key repeat and mouse acceleration in xinitrc
+			xorg-xwininfo (window information utility)
+				used in popup script to get active windows
+			fzf (fuzzy finder that uses stdin/stdout, versatile like dmenu)
+				used to find config files in ed and eb
