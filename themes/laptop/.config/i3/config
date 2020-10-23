@@ -17,6 +17,12 @@ floating_modifier $mod
 # border pixel size
 set $bordersize 3
 set $popup_bordersize 4
+# border style
+# I found out that i3-gaps doesn't actually care if you have title bars on -
+# the compositor does. If you disable shadows for the "normal" EWMH type (I did
+# this with picom), then the title bars don't give off shadows anymore, which
+# solves the problem... so long as all your (tiled) windows have them on.
+set $border_style normal
 
 # default gaps settings
 set $inner_gaps 10
@@ -62,8 +68,8 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 ###############################################################################
 #
 # style of borders
-default_border pixel $bordersize
-default_floating_border pixel $bordersize
+default_border $border_style $bordersize
+default_floating_border $border_style $bordersize
 
 # gaps settings (disabled for now by default, can always be added with mod-g)
 #gaps inner $inner_gaps
@@ -430,7 +436,7 @@ bindsym $mod+e layout toggle split
 for_window [instance="popup_*"] floating enable
 for_window [instance="popup_*"] move scratchpad
 for_window [instance="popup_*"] sticky enable
-for_window [instance="popup_*"] border pixel $popup_bordersize
+for_window [instance="popup_*"] border $border_style $popup_bordersize
 # This causes the popup window to show when creating it.
 for_window [instance="popup_*"] scratchpad show
 for_window [instance="popup_term"] resize set 580 460
@@ -462,7 +468,7 @@ bindsym $mod+n exec --no-startup-id popup notes
 ########################################
 #
 for_window [instance="floating_*"] floating enable
-for_window [instance="floating_*"] border pixel $popup_bordersize
+for_window [instance="floating_*"] border $border_style $popup_bordersize
 for_window [instance="floating_notes"] resize set 550 600
 for_window [instance="floating_sudo"] resize set 200 50
 for_window [instance="floating_*"] move position center
