@@ -9,6 +9,8 @@
 
 
 [ "$BLOCK_BUTTON" == "1" ] && notify-send "$(mpc current)" "$(mpc status | tail -n 2)"
+# popup gives output about what it's done, which confuses i3blocks
+[ "$BLOCK_BUTTON" == "2" ] && popup ncmpcpp >/dev/null
 # mpc toggle sends output which tricks i3blocks, send it to /dev/null
 [ "$BLOCK_BUTTON" == "3" ] && mpc toggle >/dev/null
 
