@@ -339,7 +339,7 @@ nnoremap <Leader>o o<Esc>
 nnoremap <Leader>O O<Esc>
 
 " disables last highlight
-nnoremap <CR> :noh<CR>
+nnoremap <Leader><CR> :noh<CR>
 
 
 " highlight a commented block
