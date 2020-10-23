@@ -34,8 +34,8 @@
 # they would all have confusing names.
 #
 # Dependencies:
-#  dmenu_network (dotfiles/bin)
-#  float (dotfiles/bin)
+#  dmenu_ethernet & dmenu_wifi (dotfiles/bin)
+#    using dmenu to start profile/change interface settings
 #  sudo/systemctl
 #    changing network status
 #  ip & awk
@@ -50,9 +50,9 @@
 # Otherwise, start a wifi network with dmenu_network
 if [ "$BLOCK_BUTTON" == "1" ]; then
 	if [ "${interface:0:1}" = 'e' ]; then
-		float sudo systemctl restart "dhcpcd@$interface"
+		dmenu_ethernet "$interface"
 	else
-		dmenu_network
+		dmenu_wifi
 	fi
 fi
 

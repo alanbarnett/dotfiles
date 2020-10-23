@@ -18,8 +18,10 @@
 #     stream editor, can change/delete/insert text into pipes
 #     used to drop the first two characters from each line of netctl list
 #     they are "* " for the selected network, and "  " for everything else
+#   sudo
+#     permissions granter
 #
 
 # sed removes the first two characters from netctl, which are "  " or "* "
-profile="$(netctl list | sed "s/^..//" | my_dmenu -p "restart profile:")"
-[ -n "$profile" ] && float sudo netctl restart "$profile"
+profile="$(netctl list | sed "s/^..//" | my_dmenu -p "profile:")"
+[ -n "$profile" ] && float sudo netctl switch-to "$profile"

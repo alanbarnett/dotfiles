@@ -1,0 +1,36 @@
+#!/bin/sh
+
+#
+# Alan Barnett
+# Uses dmenu to display ethernet interfaces, and offers controls for them
+# It can stop, start, or restart dhcpcd on the selected device
+#
+# Dependencies
+# My scripts used:
+#   my_dmenu
+#     my wrapper of dmenu, with my default position/color/font options
+#   float
+#     opens a program in a terminal that has specific i3 window floating rules
+#     in this case, sudo opens up really small in the center
+# Other programs used:
+#   sudo
+#     permissions granter
+#   systemctl
+#     systemd tool, used to start/stop/restart network interface
+#   dhcpcd
+#     used to start ethernet
+#   printf
+#     send input to dmenu
+#
+
+if [ -n "$1" ]; then
+	interface="$1"
+else
+	interfaces="$(ip -br link | awk '/^e/{ print $1 }')"
+	interface="$(printf "$interfaces\n" | my_dmenu -p "choose interface:")"
+fi
+# Quit if no interface was selected
+[ -z "$interface" ] && exit
+
+action="$(printf "restart\nstart\nstop\n" | my_dmenu -p "$interface")"
+[ -n "$action" ] && float sudo systemctl "$action" "dhcpcd@$interface"
