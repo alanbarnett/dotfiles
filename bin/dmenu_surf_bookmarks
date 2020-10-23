@@ -4,7 +4,8 @@
 BOOKMARKS_FILE="$HOME/Documents/browser/bookmarks"
 
 # Quit if there are no bookmarks
-[ ! -f "$BOOKMARKS_FILE" ] && exit
+# This isn't actually necessary, since if it isn't there then there's no output
+#[ ! -f "$BOOKMARKS_FILE" ] && exit
 
 WEBSITE="$(cat "$BOOKMARKS_FILE" | uniq | sort | my_dmenu -p "url:" "$@")"
 
