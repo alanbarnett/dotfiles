@@ -1,3 +1,7 @@
 #TabsToolbar {
 	visibility: collapse;
 }
+
+#sidebar-box #sidebar-header {
+	visibility: collapse;
+}
