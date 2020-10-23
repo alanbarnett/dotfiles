@@ -31,7 +31,7 @@ function mkcd ()
 # Move a file to ~/Trash instead of deleting it
 function rm ()
 {
-	mv -iv -- "$@" ~/Trash
+	mv -iv -- "$@" ~/trash
 }
 
 # }}}
