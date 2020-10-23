@@ -46,7 +46,7 @@ function rm ()
 # Aliases {{{
 
 # default options (add arguments to default commands)
-#alias ls='ls --color=auto'			# Add colors
+#alias ls='ls --color=auto -F'		# Add colors and */=>@| classifier
 alias ls='ft_ls -cl'				# Use my custom ls instead
 alias grep='grep --color=auto'		# Add colors
 alias cp='cp -iv'					# Ask before overwriting, show copied files
@@ -54,7 +54,8 @@ alias mv='mv -iv'					# Ask before overwriting, show moved files
 alias ln='ln -iv'					# Ask before overwriting, show linked files
 alias gcc='gcc $CFLAGS'				# CFLAGS defined at the top, in Variables
 alias less='/usr/share/nvim/runtime/macros/less.sh'	# Use nvim plugin for less
-alias bc='bc -l'					# Always run with math library
+alias bat='bat --theme=zenburn'		# Use my favorite bat theme (cat clone)
+alias bc='bc -l'					# Use the advanced math library
 
 # shortcut aliases (save typing)
 alias la='ls -a'					# -A to ignore . and .. folders
@@ -65,9 +66,14 @@ alias fls='ft_ls -cl'
 # take arg for zip code, other args for style of output
 # bar vs script vs cli
 alias wttr='curl http://wttr.in/94555'
-alias gpgpx='gpg -aer gpg@sspx-music.org -r alanbarnett328@gmail.com'
-alias btc-graph='curl rate.sx/btc'
+alias btcg='curl rate.sx/btc'
 alias cn='clear; neofetch'
+alias pa='pacaur'
+
+# sudo shortcuts
+alias s='sudo systemctl'
+alias n='sudo netctl'
+alias p='sudo pacman'
 
 # git shortcuts
 alias g='git'
@@ -81,7 +87,9 @@ alias gl='git log --oneline --graph --all'
 # Below alias shows full commit hash, which is kinda long
 #alias glp='git log --graph --all --patch'
 # Below alias shows the short commit hash (oneline), and full commit message
-alias glp='git log --oneline --pretty --graph --all --patch'
+alias glf='git log --oneline --graph --all --pretty'
+# Below alias adds the patch of changes to the last alias
+alias glp='git log --oneline --graph --all --pretty --patch'
 alias gm='git merge'
 alias gp='git push'
 alias gP='git pull'
@@ -90,10 +98,9 @@ alias gR='git rebase'
 alias gs='git status'
 alias gS='git stash'
 
-# sudo shortcuts
-alias s='sudo systemctl'
-alias n='sudo netctl'
-alias p='sudo pacman'
+# task shortcuts
+alias t='task'
+alias ta='task add'
 
 # cd shortcuts
 alias dots='cd ~/dotfiles'
