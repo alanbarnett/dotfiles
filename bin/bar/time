@@ -15,6 +15,11 @@
 #   date +"$time_string"
 #
 
+# Left click
+if [ "$BLOCK_BUTTON" == "1" ]; then
+	notify-send "$(cal)"
+fi
+
 # Get the date, using the passed string if the variable is unset
 date +"${time_string:-"%a, %b %d, %I:%M:%S %p"}"
 date +"${short_time_string:-"%-m/%d %H:%M"}"
