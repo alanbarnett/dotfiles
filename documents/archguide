@@ -1,7 +1,7 @@
 Burning
 	Windows = Rufus
 	Linux = "sudo dd if=/path_to_arch_.iso of=/dev/sdX"
-	
+
 Check if UEFI Mode
 	ls /sys/firmware/efi/efivars
 
@@ -43,7 +43,7 @@ Partitioning
 Formatting
 	Format boot partition with "mkfs.fat -F32 /dev/sdxY"
 	Root partition with "mkfs.ext4 /dev/sdxY"
-	
+
 Mounting
 	Root to /mnt
 	EFI (only for UEFI) to /mnt/boot (may have to mkdir -p /mnt/boot first)
@@ -75,7 +75,7 @@ Locale
 	then type "locale-gen"
 	"echo LANG=en_US.UTF-8 > /etc/locale.conf"
 	"export LANG=en_US.UTF-8"
-	
+
 Time
 	"ln -s /usr/share/zoneinfo/America/New_York /etc/localtime"
 	"hwclock --systohc --utc"
