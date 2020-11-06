@@ -83,13 +83,14 @@ alias gc='git commit --verbose'
 alias gC='git checkout'
 alias gd='git diff'
 alias gdc='git diff --cached'
+alias gf='git fetch'
 alias gl='git log --oneline --graph --all'
 # Below alias shows full commit hash, which is kinda long
-#alias glp='git log --graph --all --patch'
+#alias glf='git log --graph --all'
 # Below alias shows the short commit hash (oneline), and full commit message
-alias glf='git log --oneline --graph --all --pretty'
+alias glf='git log --oneline --pretty --graph --all'
 # Below alias adds the patch of changes to the last alias
-alias glp='git log --oneline --graph --all --pretty --patch'
+alias glp='git log --oneline --pretty --graph --all --patch'
 alias gm='git merge'
 alias gp='git push'
 alias gP='git pull'
