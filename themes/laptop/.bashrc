@@ -102,6 +102,8 @@ alias gS='git stash'
 # task shortcuts
 alias t='task'
 alias ta='task add'
+alias te='task edit'
+alias tm='task modify'
 
 # cd shortcuts
 alias dots='cd ~/dotfiles'
