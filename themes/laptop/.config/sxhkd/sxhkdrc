@@ -1,6 +1,6 @@
 # Lock screen
 super + alt + q
-	i3lock -c 000000
+	i3lock -c 000000; systemctl suspend
 
 # Programs {{{
 # floating termite
@@ -21,7 +21,7 @@ super + b
 
 # iceweasel
 super + shift + b
-	iceweasel
+	firefox
 # }}}
 
 # volume controls {{{

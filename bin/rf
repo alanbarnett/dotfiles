@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Fuzzy find a directory, open it with ranger
+
+dir="$(find "${1:-$HOME}" -type d | fzf)"
+
+[ -n "$dir" ] && ranger "$dir"

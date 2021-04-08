@@ -32,7 +32,7 @@ URxvt.scrollBar: false
 
 ! true transparency
 urxvt*depth: 32
-urxvt*background: rgba:0000/0000/0000/6666
+urxvt*background: rgba:0000/0000/0000/aaaa
 
 ! }}}
 
@@ -45,11 +45,11 @@ xterm*faceSize: 12
 
 ! urxvt
 ! Terminus
-!URxvt*font: xft:xos4 Terminus:style=Regular:size=12
-!URxvt*boldFont: xft:xos4 Terminus:style=Regular:size=12
+URxvt*font: xft:xos4 Terminus:style=Regular:size=12
+URxvt*boldFont: xft:xos4 Terminus:style=Regular:size=12
 ! Gohufont
-URxvt*font: xft:Gohu GohuFont:style=Regular:size=12
-URxvt*boldFont: xft:Gohu GohuFont:style=Regular:size=12
+!URxvt*font: xft:Gohu GohuFont:style=Regular:size=12
+!URxvt*boldFont: xft:Gohu GohuFont:style=Regular:size=12
 
 ! xft settings
 Xft.dpi:        72

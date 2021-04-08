@@ -33,7 +33,7 @@
 # You don't need to print them at all for static colors, you just use the color
 # and background variables in the blocks, then it will work out automatically!
 command=$HOME/dotfiles/bin/bar/$BLOCK_NAME
-separator_block_width=16
+separator_block_width=14
 markup=none
 color=#DDDDDD
 
@@ -45,6 +45,13 @@ color=#DDDDDD
 # All of the scripts in use here are written by Alan Barnett (me)
 # All them have descriptions in them about what their variables are
 # I try to keep them as simple, light and fast as possible
+
+[start]
+color=#888888
+command=echo '['
+interval=once
+separator=false
+separator_block_width=1
 
 # Current song with MPD
 # ncmpcpp uses the signal to reload the block when the song changes
@@ -58,27 +65,43 @@ signal=1
 color=#685692
 interval=5
 
-# Hard drive use
+# Root drive use
 [storage]
-partition=/dev/sda4
+mount_point=/
 label=/: 
 interval=60
 
+# Storage drive use
+[storage]
+hide_if_error=true
+mount_point=/mnt
+label=/mnt: 
+interval=60
+
+# Local storage drive use
+[storage]
+hide_if_error=true
+mount_point=/home/alan/mnt
+label=~/mnt: 
+interval=60
+
 # Ethernet status
-# Only displayed when connected
-[network]
-interface=enp0s25
+[ethernet]
+command=$HOME/dotfiles/bin/bar/network
+interface=enp0s31f6
 interval=10
+
+# Phone tether status
+[phone]
+command=$HOME/dotfiles/bin/bar/network
 hide_if_down=true
+interface=enp0s20f0u2
+interval=10
 
 # Wifi status
-[network]
-interface=wlp2s0
-interval=10
-
-# Battery indicator
-# Has an internal color gradient based on the percentage
-[battery]
+[wifi]
+command=$HOME/dotfiles/bin/bar/network
+interface=wlp4s0
 interval=10
 
 # Volume indicator
@@ -86,15 +109,22 @@ interval=10
 [volume]
 color_good=#4ad850
 color_bad=#346a42
-interval=10
+interval=5
 signal=2
 
 # Date Time
 # It's style can be overridden with time_string and short_time_string
 [time]
 color=#7478a6
-time_string="%-m/%d %H:%M:%S"
+time_string="%A, %B %-d, %T"
 interval=1
+separator=false
+separator_block_width=1
+
+[end]
+color=#888888
+command=echo '] '
+interval=once
 
 ## Testing various blocks and buttons {{{
 ## Button test

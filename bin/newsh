@@ -6,3 +6,5 @@ if [[ ! -f $1 ]]; then
 else
 	echo newsh: "$1" already exists
 fi
+
+[ -n "$EDITOR" ] && $EDITOR "$1"

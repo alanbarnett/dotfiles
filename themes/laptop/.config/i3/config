@@ -29,29 +29,43 @@ set $inner_gaps 10
 set $outer_gaps 10
 
 # workspace name variables
-set $w1 1:一
-set $w2 2:二
-set $w3 3:三
-set $w4 4:四
-set $w5 5:五
-set $w6 6:六
-set $w7 7:七
-set $w8 8:八
-set $w9 9:九
-set $w10 10:十
+set $w1 1:I
+set $w2 2:II
+set $w3 3:III
+set $w4 4:IV
+set $w5 5:V
+set $w6 6:VI
+set $w7 7:VII
+set $w8 8:VIII
+set $w9 9:IX
+set $w10 10:X
+#set $w1 1:一
+#set $w2 2:二
+#set $w3 3:三
+#set $w4 4:四
+#set $w5 5:五
+#set $w6 6:六
+#set $w7 7:七
+#set $w8 8:八
+#set $w9 9:九
+#set $w10 10:十
 #
 #####################################}}}
 
 # window settings {{{
 ########################################
 #
-# make certain windows float
+# In EWMH, there are 15 base window types
+# This makes certain window types float by default
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="bubble"] floating enable
 for_window [window_role="task_dialog"] floating enable
 for_window [window_role="Preferences"] floating enable
 for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
+
+# These are my specific window overrides
+for_window [instance="BakkesModInjectorCpp"] floating enable
 #
 #####################################}}}
 
@@ -94,6 +108,8 @@ hide_edge_borders smart_no_gaps
 
 # Terminus, a lovely monospace bitmap font that looks great on my small screen
 #font xft:xos4 Terminus 12
+# OTB version of Terminus for new pango
+font xft:Terminus 12
 
 # Gohufont, another nice bitmap monospace font
 #font xft:Gohu GohuFont
@@ -102,7 +118,7 @@ hide_edge_borders smart_no_gaps
 #font xft:Misc Tamsyn 10
 
 # A monospace font from pango
-font pango:monospace 8
+#font pango:monospace 8
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -439,7 +455,7 @@ for_window [instance="popup_*"] sticky enable
 for_window [instance="popup_*"] border $border_style $popup_bordersize
 # This causes the popup window to show when creating it.
 for_window [instance="popup_*"] scratchpad show
-for_window [instance="popup_term"] resize set 580 460
+for_window [instance="popup_term"] resize set 760 580
 for_window [instance="popup_notes"] resize set 550 600
 for_window [instance="popup_telegram"] resize set 680 560
 for_window [instance="popup_ncmpcpp"] resize set 680 560
@@ -451,7 +467,7 @@ for_window [instance="popup_*"] move position center
 # keybindings {{{
 ########################################
 #
-bindsym Mod1+bar exec --no-startup-id popup term
+bindsym $mod+bar exec --no-startup-id popup term
 bindsym Mod1+F12 exec --no-startup-id popup telegram
 bindsym Mod1+F11 exec --no-startup-id popup ncmpcpp
 bindsym Mod1+F10 exec --no-startup-id popup neomutt
@@ -470,6 +486,7 @@ bindsym $mod+n exec --no-startup-id popup notes
 for_window [instance="floating_*"] floating enable
 for_window [instance="floating_*"] border $border_style $popup_bordersize
 for_window [instance="floating_notes"] resize set 550 600
+for_window [instance="floating_nvim"] resize set 750 800
 for_window [instance="floating_sudo"] resize set 200 50
 for_window [instance="floating_*"] move position center
 #
@@ -489,10 +506,8 @@ bindsym $mod+Shift+n exec --no-startup-id float notes edit
 #
 set $transparent	#222432
 
-# hide bar
-bindsym $mod+F11 bar hidden_state hide
-# show bar
-bindsym $mod+F10 bar hidden_state show
+# hide/show bar
+bindsym $mod+F11 bar hidden_state toggle
 # dock/undock bar
 bindsym $mod+F12 bar mode toggle
 

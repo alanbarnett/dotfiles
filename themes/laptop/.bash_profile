@@ -13,11 +13,6 @@ BIN_PATH=$HOME/bin:$HOME/bin/color-scripts:$HOME/dotfiles/bin
 
 PATH=$PATH:$RUBY_PATH:$BIN_PATH
 
-# variables for ibus
-export GTK_IM_MODULE=ibus
-export XMODIFIERS=@im=ibus
-export QT_IM_MODULE=ibus
-
 # Session settings variables
 export WM=i3
 export TERMINAL=my_urxvt
@@ -25,6 +20,14 @@ export EDITOR=nvim
 export BROWSER=iceweasel
 export MANPAGER='nvim +Man!'
 export EMAIL=alanbarnett328@gmail.com
+
+# variables for ibus
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
+
+# variables for task
+export TASKRC="$HOME/.config/task/config"
 
 # Source my bashrc, if it exists
 [[ -f ~/.bashrc ]] && . ~/.bashrc

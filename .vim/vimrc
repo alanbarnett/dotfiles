@@ -275,6 +275,7 @@ augroup END
 augroup terminal_settings
 	autocmd!
 	autocmd TermOpen * setlocal nonumber norelativenumber
+	autocmd TermOpen * setlocal sidescrolloff=0
 	" TODO terminal statusline differences
     "autocmd TermOpen * setlocal statusline=%{b:term_title}
 augroup END

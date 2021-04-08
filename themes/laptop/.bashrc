@@ -13,7 +13,7 @@ echo -ne "\e[1;34mhello \e[m"
 # Variables {{{
 
 HISTCONTROL=ignoreboth:erasedups
-HISTIGNORE="history:ls:pwd:fg:bg:clear:exit"
+HISTIGNORE="history:pwd:fg:bg:clear:exit"
 
 # For my gcc alias
 CFLAGS='-Wall -Wextra -Werror'
@@ -34,6 +34,13 @@ function rm ()
 	mv -iv -- "$@" ~/trash
 }
 
+# Tells you how many of an amount of silver you need to get 1 gold
+# I used this to help me figure out prices of ores/metals in terraria
+function sg()
+{
+	echo "100 / $1" | bc -l;
+}
+
 # }}}
 
 # Prompt {{{
@@ -47,7 +54,7 @@ function rm ()
 
 # default options (add arguments to default commands)
 #alias ls='ls --color=auto -F'		# Add colors and */=>@| classifier
-alias ls='ft_ls -cl'				# Use my custom ls instead
+alias ls='ft_ls -Gl'				# Use my custom ls instead
 alias grep='grep --color=auto'		# Add colors
 alias cp='cp -iv'					# Ask before overwriting, show copied files
 alias mv='mv -iv'					# Ask before overwriting, show moved files
@@ -61,7 +68,7 @@ alias bc='bc -l'					# Use the advanced math library
 alias la='ls -a'					# -A to ignore . and .. folders
 alias ll='ls -l'
 alias lla='ls -al'
-alias fls='ft_ls -cl'
+alias fls='ft_ls -Gl'
 # TODO make wttr into a script
 # take arg for zip code, other args for style of output
 # bar vs script vs cli
@@ -69,6 +76,7 @@ alias wttr='curl http://wttr.in/94555'
 alias btcg='curl rate.sx/btc'
 alias cn='clear; neofetch'
 alias pa='pacaur'
+alias r='ranger'
 
 # sudo shortcuts
 alias s='sudo systemctl'
@@ -102,8 +110,11 @@ alias gS='git stash'
 # task shortcuts
 alias t='task'
 alias ta='task add'
+alias td='task done'
+alias tD='task delete'
 alias te='task edit'
 alias tm='task modify'
+alias tt='task project:today'
 
 # cd shortcuts
 alias dots='cd ~/dotfiles'

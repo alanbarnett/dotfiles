@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# Arguments come in as move syntax
+
+# The first argument is a folder, and will be a symlink to that folder
+# The second argument is where that folder is getting moved to, and where the
+# symlink will point
+
+
+# TODO Checks on the arguments and usage message
+
+
+mv -iv "$1" "$2"
+
+ln -sv "$2/${1##*/}" "$1"
