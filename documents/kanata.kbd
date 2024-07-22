@@ -1,0 +1,504 @@
+;; Alan Barnett, 8/4/2023 (8/18/2023)
+
+;; Optional config, only one per file
+(defcfg
+  process-unmapped-keys yes
+)
+
+;; defsrc defines the keys that will be intercepted by kanata. The order of the
+;; keys matches with deflayer declarations and all deflayer declarations must
+;; have the same number of keys as defsrc. Any keys not listed in defsrc will
+;; be passed straight to the operating system.
+(defsrc
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet rctl
+  ;; Numpad Keys, these are the only ones I want to change
+  kp/  kp+
+)
+
+;; The first layer defined is the layer that will be active by default when
+;; kanata starts up.
+;; My implementation of the Colemak layout, with lots of small changes
+(deflayer colemak
+  bspc 1    2    3    4    5    6    7    8    9    0    -    =    @bsl
+  tab  q    w    f    p    v    j    l    u    y    '    bspc [    ]
+  lctl a    r    s    t    g    m    n    e    i    o    /    ret
+  lsft x    c    d    b    z    k    h    ,    .    rsft ;
+  grv  lmet @anp           spc            ralt rmet caps
+  kp+  kp/
+)
+
+;; Colemak, but I'm testing wide and extend
+(deflayer colemak-cawe
+  bspc 1    2    3    4    5    -    =    6    7    8    9    0    @bsl
+  tab  q    w    f    p    v    [    j    l    u    y    '    bspc ret
+  @exw a    r    s    t    g    ]    m    n    e    i    o    @ect
+  @zsh x    c    d    b    ret  ;    k    h    ,    .    @sls
+  grv  lmet @wan           spc            ralt rmet caps
+  kp+  kp/
+)
+
+;; Colemak, but I'm testing wide without Extend. I don't like it when
+;; processing transcripts, I'm too used to ctrl being there and I honestly
+;; don't know if I desire changing that (for working on transcripts).
+(deflayer colemak-caw
+  bspc 1    2    3    4    5    [    ]    6    7    8    9    0    @bsl
+  tab  q    w    f    p    v    =    j    l    u    y    '    bspc ret
+  lctl a    r    s    t    g    -    m    n    e    i    o    @ect
+  @zsh x    c    d    b    ret  ;    k    h    ,    .    @sls
+  grv  lmet @wan           spc            ralt rmet caps
+  kp+  kp/
+)
+
+;; Colemak, but I'm testing an "extend layer"
+(deflayer colemak-ext
+  bspc 1    2    3    4    5    6    7    8    9    0    -    =    @bsl
+  tab  q    w    f    p    v    j    l    u    y    '    bspc [    ]
+  @ext a    r    s    t    g    m    n    e    i    o    /    ret
+  lsft x    c    d    b    z    k    h    ,    .    rsft ;
+  grv  lmet @anp           spc            ralt rmet caps
+  kp+  kp/
+)
+
+;; This layer is the standard QWERTY layout except for the backslash (@bsl)
+;; which is an alias for a tap-hold key.
+(deflayer qwerty
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    @bsl
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet rctl
+  kp/  kp+
+)
+
+;; The dvorak layer remaps the keys to the dvorak layout. In addition there is
+;; another tap-hold key: @cap. This key retains caps lock functionality when
+;; quickly tapped but is read as left-control when held.
+(deflayer dvorak
+  bspc 1    2    3    4    5    6    7    8    9    0    [    ]    @bsl
+  tab  '    ,    .    p    y    f    g    c    r    l    bspc /    =
+  lctl a    o    e    u    i    d    h    t    n    s    -    ret
+  lsft q    j    k    x    ;    b    m    w    v    @zsh /
+  grv  lmet lalt           spc            ralt rmet caps
+  kp/  kp+
+)
+
+
+;; defalias is used to declare a shortcut for a more complicated action to keep
+;; the deflayer declarations clean and aligned. The alignment in deflayers is not
+;; necessary, but is strongly recommended for ease of understanding visually.
+;;
+;; Aliases are referred to by `@<alias_name>`.
+(defalias
+  ;; tap: backtick (grave), hold: toggle layer-switching layer while held
+  bsl (tap-hold 200 200 \ (layer-toggle layers))
+
+  ;; layer-switch changes the base layer.
+  qwr (layer-switch qwerty)
+  dvk (layer-switch dvorak)
+  cmk (layer-switch colemak)
+  cex (layer-switch colemak-ext)
+  cwe (layer-switch colemak-cawe)
+  caw (layer-switch colemak-caw)
+  tpo (layer-switch taipo)
+
+  ;; tap for singlequote, hold for lctl
+  qct (tap-hold 200 200 ' lctl)
+  ;; tap for singlequote, hold for lctl
+  ect (tap-hold 200 200 ret lctl)
+
+  ;; z on tap, shift on hold
+  zsh (tap-hold-press 200 200 z lsft)
+  ;; slash on tap, shift on hold
+  sls (tap-hold-press 200 200 / rsft)
+
+  ;; hold caps for extend
+  ext (tap-hold-press 200 200 esc (layer-toggle extend))
+  exw (tap-hold-press 200 200 esc (layer-toggle extend-wide))
+
+  ;; windows one shot
+  osw (one-shot 1000 lmet)
+  ;; alt one shot
+  osa (one-shot 1000 lalt)
+  ;; shift one shot
+  oss (one-shot 1000 lsft)
+  ;; ctrl one shot
+  osc (one-shot-release 1000 lctl)
+)
+
+;; The `lrld` action stands for "live reload". This will re-parse everything
+;; except for linux-dev, meaning you cannot live reload and switch keyboard
+;; devices.
+(deflayer layers
+  @cex @qwr @dvk @cmk @cwe @tpo @caw _    _    _    _    _    lrld _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _              _              _    _    _
+  _    _
+)
+
+;; Start of basic Extend layer.
+(deflayer extend
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    pgup home up   end  _    C-bspc _    _
+  _    @osw @osa @oss @osc _    pgdn lft  down rght _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _              _              _    _    _
+  _    _
+)
+
+;; Start of wide Extend layer.
+(deflayer extend-wide
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    pgup home up   end  _    C-bspc _
+  _    @osw @osa @oss @osc _    _    pgdn lft  down rght _    _
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _              _              _    _    _
+  _    _
+)
+
+(defalias
+  ;; hold alt for right hand numpad, left hand still has usual alt
+  anp (multi lalt (layer-toggle alted-with-numpad))
+  ;; same thing, for wide configuration
+  wan (multi lalt (layer-toggle wide-alted-with-numpad))
+
+  ;; This is a lot of lines for this, and it doesn't even work very well.
+  ;; The reason I don't just make alt a separate layer entirely, is that A-tab
+  ;; wouldn't work right if it were just bound to the tab key on the alt layer.
+  ;; It would only toggle, you couldn't really hold alt for that.
+  ;; The release-key doesn't work on the same keypress, so I imagine to use
+  ;; this that I'll adopt the muscle memory of hitting A+space first.
+  ak0 (multi (release-key lalt) kp0)
+  ak1 (multi (release-key lalt) kp1)
+  ak2 (multi (release-key lalt) kp2)
+  ak3 (multi (release-key lalt) kp3)
+  ak4 (multi (release-key lalt) kp4)
+  ak5 (multi (release-key lalt) kp5)
+  ak6 (multi (release-key lalt) kp6)
+  ak7 (multi (release-key lalt) kp7)
+  ak8 (multi (release-key lalt) kp8)
+  ak9 (multi (release-key lalt) kp9)
+  abs (multi (release-key lalt) bspc)
+  ak/ (multi (release-key lalt) kp/)
+  ak* (multi (release-key lalt) kp*)
+  ak- (multi (release-key lalt) kp-)
+  ak+ (multi (release-key lalt) kp+)
+  ak: (multi (release-key lalt) S-;)
+)
+
+;; Use right half of the alt "layer" for a numpad, leave left half for macros
+(deflayer alted-with-numpad
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    @ak7 @ak8 @ak9 _    @abs _    _
+  _    _    _    _    _    _    @ak+ @ak4 @ak5 @ak6 @ak- _    _
+  _    _    _    _    _    _    @ak* @ak1 @ak2 @ak3 @ak/ _
+  _    _    _              @ak0           _    _    _
+  _    _
+)
+
+
+;; Use right half of the alt "layer" for a numpad, leave left half for macros
+(deflayer wide-alted-with-numpad
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    @ak7 @ak8 @ak9 @ak: @abs _
+  _    _    _    _    _    _    _    @ak+ @ak4 @ak5 @ak6 @ak- _
+  _    _    _    _    _    _    _    @ak* @ak1 @ak2 @ak3 @ak/
+  _    _    _              @ak0           _    _    _
+  _    _
+)
+
+;; Mouse layer
+(deflayer moused
+  @cex @qwr @dvk @cmk @cwe @tpo @caw _    _    _    _    _    lrld _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _              _              _    _    _
+  _    _
+)
+
+
+
+
+
+
+
+
+
+
+;; Chord business, implementing taipo
+;; Lots of duplication to have separate chords on left and right hand, so
+;; chords don't trigger across hands
+(defchords taipo-left 500
+  (  r              ) r
+  (    s            ) s
+  (      n          ) n
+  (        i        ) i
+  (          a      ) a
+  (            o    ) o
+  (              t  ) t
+  (                e) e
+  (  r s            ) b
+  (      n i        ) y
+  (          a o    ) l
+  (              t e) h
+  (    s n          ) p
+  (            o t  ) u
+  (  r     i        ) g
+  (          a     e) d
+  (  r   n          ) z
+  (    s   i        ) f
+  (          a   t  ) q
+  (            o   e) c
+  (  r           t  ) x
+  (        i   o    ) v
+  (    s           e) k
+  (      n   a      ) j
+  (  r             e) m
+  (        i a      ) w
+  (    s         t  ) /
+  (      n     o    ) -
+  (  r         o    ) ;
+  (        i     t  ) S-/
+  (      n         e) ,
+  (    s     a      ) '
+  (  r       a      ) (one-shot 1000 lmet)
+  (    s       o    ) (one-shot 1000 lalt)
+  (      n       t  ) (one-shot 1000 lctl)
+  (        i       e) (one-shot 1000 lsft)
+  (    s n i        ) tab
+  (            o t e) ret
+  (P                ) spc
+  (P r              ) S-r
+  (P   s            ) S-s
+  (P     n          ) S-n
+  (P       i        ) S-i
+  (P         a      ) S-a
+  (P           o    ) S-o
+  (P             t  ) S-t
+  (P               e) S-e
+  (P r s            ) S-b
+  (P     n i        ) S-y
+  (P         a o    ) S-l
+  (P             t e) S-h
+  (P   s n          ) S-p
+  (P           o t  ) S-u
+  (P r     i        ) S-g
+  (P         a     e) S-d
+  (P r   n          ) S-z
+  (P   s   i        ) S-f
+  (P         a   t  ) S-q
+  (P           o   e) S-c
+  (P r           t  ) S-x
+  (P       i   o    ) S-v
+  (P   s           e) S-k
+  (P     n   a      ) S-j
+  (P r             e) S-m
+  (P       i a      ) S-w
+  (P   s         t  ) \
+  (P     n     o    ) S--
+  (P r         o    ) S-;
+  (P       i     t  ) S-1
+  (P     n         e) .
+  (P   s     a      ) S-'
+  (P r       a      ) rght
+  (P   s       o    ) up
+  (P     n       t  ) down
+  (P       i       e) lft
+  (P   s n i        ) del
+  (P           o t e) esc
+  (S                ) bspc
+  (S r              ) S-.
+  (S   s            ) S-]
+  (S     n          ) ]
+  (S       i        ) S-0
+  (S         a      ) S-,
+  (S           o    ) S-[
+  (S             t  ) [
+  (S               e) S-9
+  (S r s            ) 9
+  (S     n i        ) 5
+  (S         a o    ) 4
+  (S             t e) 0
+  (S   s n          ) 7
+  (S           o t  ) 2
+  (S r     i        ) S-3
+  (S         a     e) S-2
+  (S r   n          ) 8
+  (S   s   i        ) 6
+  (S         a   t  ) 3
+  (S           o   e) 1
+  (S r           t  ) S-6
+  (S       i   o    ) S-=
+  (S   s           e) S-8
+  (S     n   a      ) =
+  (S r             e) S-4
+  (S       i a      ) S-7
+  (S   s         t  ) S-\
+  (S     n     o    ) S-5
+  (S r         o    ) ;
+  (S       i     t  ) S-/
+  (S     n         e) S-`
+  (S   s     a      ) `
+  (S r       a      ) end
+  (S   s       o    ) pgup
+  (S     n       t  ) pgdn
+  (S       i       e) home
+  (S   s n i        ) tab
+  (S           o t e) ret
+)
+(defchords taipo-right 500
+  (  r              ) r
+  (    s            ) s
+  (      n          ) n
+  (        i        ) i
+  (          a      ) a
+  (            o    ) o
+  (              t  ) t
+  (                e) e
+  (  r s            ) b
+  (      n i        ) y
+  (          a o    ) l
+  (              t e) h
+  (    s n          ) p
+  (            o t  ) u
+  (  r     i        ) g
+  (          a     e) d
+  (  r   n          ) z
+  (    s   i        ) f
+  (          a   t  ) q
+  (            o   e) c
+  (  r           t  ) x
+  (        i   o    ) v
+  (    s           e) k
+  (      n   a      ) j
+  (  r             e) m
+  (        i a      ) w
+  (    s         t  ) /
+  (      n     o    ) -
+  (  r         o    ) ;
+  (        i     t  ) S-/
+  (      n         e) ,
+  (    s     a      ) '
+  (  r       a      ) (one-shot 1000 lmet)
+  (    s       o    ) (one-shot 1000 lalt)
+  (      n       t  ) (one-shot 1000 lctl)
+  (        i       e) (one-shot 1000 lsft)
+  (    s n i        ) tab
+  (            o t e) ret
+  (P                ) spc
+  (P r              ) S-r
+  (P   s            ) S-s
+  (P     n          ) S-n
+  (P       i        ) S-i
+  (P         a      ) S-a
+  (P           o    ) S-o
+  (P             t  ) S-t
+  (P               e) S-e
+  (P r s            ) S-b
+  (P     n i        ) S-y
+  (P         a o    ) S-l
+  (P             t e) S-h
+  (P   s n          ) S-p
+  (P           o t  ) S-u
+  (P r     i        ) S-g
+  (P         a     e) S-d
+  (P r   n          ) S-z
+  (P   s   i        ) S-f
+  (P         a   t  ) S-q
+  (P           o   e) S-c
+  (P r           t  ) S-x
+  (P       i   o    ) S-v
+  (P   s           e) S-k
+  (P     n   a      ) S-j
+  (P r             e) S-m
+  (P       i a      ) S-w
+  (P   s         t  ) \
+  (P     n     o    ) S--
+  (P r         o    ) S-;
+  (P       i     t  ) S-1
+  (P     n         e) .
+  (P   s     a      ) S-'
+  (P r       a      ) rght
+  (P   s       o    ) up
+  (P     n       t  ) down
+  (P       i       e) lft
+  (P   s n i        ) del
+  (P           o t e) esc
+  (S                ) bspc
+  (S r              ) S-.
+  (S   s            ) S-]
+  (S     n          ) ]
+  (S       i        ) S-0
+  (S         a      ) S-,
+  (S           o    ) S-[
+  (S             t  ) [
+  (S               e) S-9
+  (S r s            ) 9
+  (S     n i        ) 5
+  (S         a o    ) 4
+  (S             t e) 0
+  (S   s n          ) 7
+  (S           o t  ) 2
+  (S r     i        ) S-3
+  (S         a     e) S-2
+  (S r   n          ) 8
+  (S   s   i        ) 6
+  (S         a   t  ) 3
+  (S           o   e) 1
+  (S r           t  ) S-6
+  (S       i   o    ) S-=
+  (S   s           e) S-8
+  (S     n   a      ) =
+  (S r             e) S-4
+  (S       i a      ) S-7
+  (S   s         t  ) S-\
+  (S     n     o    ) S-5
+  (S r         o    ) ;
+  (S       i     t  ) S-/
+  (S     n         e) S-`
+  (S   s     a      ) `
+  (S r       a      ) end
+  (S   s       o    ) pgup
+  (S     n       t  ) pgdn
+  (S       i       e) home
+  (S   s n i        ) tab
+  (S           o t e) ret
+)
+
+(defalias
+  tlr (chord taipo-left r)
+  tls (chord taipo-left s)
+  tln (chord taipo-left n)
+  tli (chord taipo-left i)
+  tla (chord taipo-left a)
+  tlo (chord taipo-left o)
+  tlt (chord taipo-left t)
+  tle (chord taipo-left e)
+  tlP (chord taipo-left P)
+  tlS (chord taipo-left S)
+  trr (chord taipo-right r)
+  trs (chord taipo-right s)
+  trn (chord taipo-right n)
+  tri (chord taipo-right i)
+  tra (chord taipo-right a)
+  tro (chord taipo-right o)
+  trt (chord taipo-right t)
+  tre (chord taipo-right e)
+  trP (chord taipo-right P)
+  trS (chord taipo-right S)
+)
+
+(deflayer taipo
+  bspc _    _    _    _    _    _    _    _    _    _    _    _    @bsl
+  _    @tlr @tls @tln @tli _    _    _    @tri @trn @trs @trr bspc _
+  lctl @tla @tlo @tlt @tle _    _    _    @tre @trt @tro @tra _
+  _    _    _    _    @tlP @tlS @trS @trP _    _    _    _
+  _    _    _              @tlP           _    _    _
+  _    _
+)
